@@ -1,17 +1,18 @@
 
 /* #457B9D */
 nav {
-    background-color: #A8DADC;
+    background-color: #457B9D;
 }
 
 main {
     background-color: whitesmoke;
-    margin: 0;
+    margin: 50px 0;
 }
 
 .icon {
     width: 70px;
     padding: 15px;
+    color: white;
 }
 
 #search-icon {
@@ -31,7 +32,7 @@ main {
 }
 
 .hospital-cards {
-    background-color: #457B9D;
+    background-color: #A8DADC;
     border-radius: 10px;
 }
 
@@ -46,4 +47,9 @@ main {
 .hospital-card-icon {
     padding: 25px;
     text-align: center;
+}
+
+footer {
+    background-color: #1D3557;
+    color: #F1FAEE;
 }
