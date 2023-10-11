@@ -1,1 +1,49 @@
 
+/* #457B9D */
+nav {
+    background-color: #A8DADC;
+}
+
+main {
+    background-color: whitesmoke;
+    margin: 0;
+}
+
+.icon {
+    width: 70px;
+    padding: 15px;
+}
+
+#search-icon {
+    margin: 0;
+    padding: 15px;
+}
+
+#search-text {
+    margin: 0;
+    padding: 15px;
+    color: grey;
+}
+
+#search-card {
+    background-color: #E9ECEF;
+    border-radius: 10px;
+}
+
+.hospital-cards {
+    background-color: #457B9D;
+    border-radius: 10px;
+}
+
+.hospital-name {
+    font-size: 30px;
+}
+
+.hospital-detail-boxes {
+    padding: 0 40px;
+}
+
+.hospital-card-icon {
+    padding: 25px;
+    text-align: center;
+}
