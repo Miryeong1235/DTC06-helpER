@@ -20,7 +20,7 @@ main {
 }
 
 #profile-icon {
-    padding: 5px 15px 0 15px;
+    padding: 5px 15px 0px 15px;
     color: #E9ECEF;
 }
 
@@ -31,7 +31,7 @@ main {
 
 #search-text {
     margin: 0;
-    padding: 15px;
+    padding: 20px;
     color: grey;
 }
 
@@ -50,11 +50,11 @@ main {
 }
 
 .hospital-detail-boxes {
-    padding: 0 40px;
+    padding: 0 30px;
 }
 
 .hospital-card-icon {
-    padding: 25px;
+    padding: 35px;
     text-align: center;
 }
 
