@@ -19,6 +19,11 @@ main {
     color: white;
 }
 
+#profile-icon {
+    padding: 5px 15px 0 15px;
+    color: #E9ECEF;
+}
+
 #search-icon {
     margin: 0;
     padding: 15px;
