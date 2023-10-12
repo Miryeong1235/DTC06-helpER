@@ -1,5 +1,9 @@
-
 /* #457B9D */
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
 nav {
     background-color: #457B9D;
 }
