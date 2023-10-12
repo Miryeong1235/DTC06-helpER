@@ -5,11 +5,11 @@
 }
 
 nav {
-    background-color: #457B9D;
+    background-color: #1D3557;
 }
 
 main {
-    background-color: whitesmoke;
+    background-color: #336699;
     margin: 50px 0;
 }
 
@@ -41,7 +41,7 @@ main {
 }
 
 .hospital-cards {
-    background-color: #A8DADC;
+    background-color: #add7f6;
     border-radius: 10px;
 }
 
