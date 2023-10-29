@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My BCIT Project</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- Boostrap Library JS CDN  go here -->
+
+    <!-- Other libraries go here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <!-------------------------------------------------------->
+    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+    <!-- Stuff for body goes here -->
+    <nav class="container-fluid fixed-top">
+        <div class="row justify-content-between">
+            <img class="col-3 icon m-1" src="./images/logo.jpg" alt="">
+            <div class="row col-3 ml-2 my-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor"
+                    class="bi bi-person-circle" id="profile-icon" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+                <p class="m-0 text-center text-white small">Sign In</p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="px-4 pt-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="./images/hospital.jpeg" alt="" width="360" height="254">
+        <h1 class="display-5 fw-bold">HelpER</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Register your personal information</p>
+        </div>
+    </div>
+
+    <form class="m-3 pb-5">
+        <p class="lead">Personal information</p>
+        <div class="form-group">
+            <label for="exampleInputFname">First name</label>
+            <input type="text" class="form-control" id="exampleInputFname" placeholder="First name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFname">Last name</label>
+            <input type="text" class="form-control" id="exampleInputFname" placeholder="Last name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputdof">Date of birth</label>
+            <input type="date" class="form-control" id="exampleInputdof" placeholder="MM/DD/YYYY">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPhone">Phone number</label>
+            <input type="tel" class="form-control" id="exampleInputPhone" placeholder="No hyphens">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPHN">Personal Health Number</label>
+            <input type="number" class="form-control" id="exampleInputPHN" placeholder="No hyphens">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputStreetNumber">Street number</label>
+            <input type="number" class="form-control" id="exampleInputStreetNumber" placeholder="555">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputStreetName">Street name</label>
+            <input type="text" class="form-control" id="exampleInputStreetName" placeholder="Seymour Street">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputCity">City</label>
+            <input type="text" class="form-control" id="exampleInputCity" placeholder="Vancouver">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputProvince">Province</label>
+            <input type="text" class="form-control" id="exampleInputProvince" placeholder="BC">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPostalCode">Postal Code</label>
+            <input type="text" class="form-control" id="exampleInputPostalCode" placeholder="X0X 0X0">
+        </div>
+
+        <!-- <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div> -->
+        <!-- <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+    </form>
+
+    <form class="m-3 pb-5">
+        <p class="lead">Emergency Contact</p>
+        <div class="form-group">
+            <label for="exampleInputEmergengyName">Full name</label>
+            <input type="text" class="form-control" id="exampleInputEmergengyName" placeholder="Full name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPhone">Phone number</label>
+            <input type="tel" class="form-control" id="exampleInputPhone" placeholder="No hyphens">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPHN">Relationship</label>
+            <input type="text" class="form-control" id="exampleInputPHN" placeholder="Enter the relationship">
+        </div>
+
+    </form>
+
+    <form class="m-3 pb-5">
+        <p class="lead">Family Doctor</p>
+        <div class="form-group">
+            <label for="exampleInputFamilyDoctorName">Doctor's Full name</label>
+            <input type="text" class="form-control" id="exampleInputFamilyDoctorName" placeholder="Full name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFamilyClinicName">Clinic's name</label>
+            <input type="text" class="form-control" id="exampleInputFamilyClinicName" placeholder="Clinic's name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputDoctorPhone">Phone number</label>
+            <input type="tel" class="form-control" id="exampleInputDoctorPhone" placeholder="No hyphens">
+        </div>
+
+    </form>
+
+    <form class="m-3 pb-3">
+        <p class="lead">Medical History</p>
+        <div class="form-group">
+            <label for="exampleInputMedications">Please list any medications you are currently taking:</label>
+            <input type="text" class="form-control" id="exampleInputMedications" placeholder="Medication name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputAllergies">Please list any allergies:</label>
+            <input type="text" class="form-control" id="exampleInputAllergies" placeholder="Enter if you have allergy">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputSurgery">Please list any surgery history:</label>
+            <input type="text" class="form-control" id="exampleInputSurgery" placeholder="Enter your surgery history">
+        </div>
+
+    </form>
+
+    <form class="m-3 pb-3">
+
+        <br>
+        <p>Do you consume any alcohol?</p>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="alcoholDont">
+            <label class="form-check-label" for="alcoholDont">
+                Don't drink
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="alcoholSometimes" checked>
+            <label class="form-check-label" for="alcoholSometimes">
+                Sometimes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="alcoholEveryday" checked>
+            <label class="form-check-label" for="alcoholEveryday">
+                Everyday
+            </label>
+        </div>
+
+    </form>
+    <form class="m-3 pb-5">
+
+        <br>
+        <p>Do you smoke cigarette?</p>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="smokeNever">
+            <label class="form-check-label" for="smokeNever">
+                Never smoke
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="smokeYes" checked>
+            <label class="form-check-label" for="smokeYes">
+                I do smoke
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="smokeQuit" checked>
+            <label class="form-check-label" for="smokeQuit">
+                I quitted
+            </label>
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label for="exampleInputAdditional">Additional Notes:</label>
+            <input type="text" class="form-control" id="exampleInputAdditional" placeholder="">
+        </div>
+
+        <button type="submit" class="btn btn-primary m-3 ">Submit</button>
+    </form>
+
+
+
+    <footer class="container-fluid p-3 fixed-bottom">
+        <div class="row justify-content-between">
+            <div class="col text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                    class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
+                </svg>
+            </div>
+            <div class="col text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-bell"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
+                </svg>
+            </div>
+            <div class="col text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                    class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z" />
+                </svg>
+            </div>
+            <div class="col text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-list"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+            </div>
+        </div>
+    </footer>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script src="./scripts/firebaseAPI_TEAM06.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/script.js"></script>
+    <!-- <script src="./scripts/script.js"></script> -->
+
+    <script>
+        logout();       //make sure user is logged out
+    </script>
+
+</body>
+
+</html>
