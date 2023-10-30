@@ -41,8 +41,9 @@ main {
 }
 
 .hospital-cards {
-    background-color: #add7f6;
+    /* background-color: #add7f6; */
     border-radius: 10px;
+    border: #add7f6 4px solid;
 }
 
 .hospital-name {
