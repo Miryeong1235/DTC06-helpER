@@ -111,6 +111,7 @@ function displayCardsDynamically(collection) {
                 var details = doc.data().details;  // get value of the "details" key
                 var hospitalCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
                 var hospitalHour = doc.data().hours; //gets the length field
+                var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
 
                 //update title and text and image
@@ -118,7 +119,7 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-hour').innerHTML = hospitalHour;
                 newcard.querySelector('.card-text').innerHTML = details;
                 newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
-
+                newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
