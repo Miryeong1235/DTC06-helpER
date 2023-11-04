@@ -93,7 +93,7 @@
         </form>
     </div>
 
-    <!--  -->
+    <!-- Container for all hospital cards -->
     <div class="container m-5 text-center">
         <h4>Recommended hospitals for you</h4>
         <!-- Here is the container for cards  -->
@@ -102,6 +102,23 @@
             </div>
         </div>
     </div>
+
+    <!-- Templates for general use, not displayed -->
+    <template id="hospitalCardTemplate">
+        <div class="card py-2 mx-2" style="width: 18rem">
+            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-length">placeholder</p>
+                <br />
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Read more ...</a>
+            </div>
+        </div>
+    </template>
 
 
     <footer class="container-fluid p-3 fixed-bottom">
