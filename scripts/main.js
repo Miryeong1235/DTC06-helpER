@@ -96,3 +96,40 @@ function writeHospitals() {
         last_updated: firebase.firestore.FieldValue.serverTimestamp()
     });
 }
+
+//------------------------------------------------------------------------------
+// Input parameter is a string representing the collection we are reading from
+//------------------------------------------------------------------------------
+function displayCardsDynamically(collection) {
+    let cardTemplate = document.getElementById("hospitalCardTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
+
+    db.collection(collection).get()   //the collection called "hikes"
+        .then(allHopitals => {
+            //var i = 1;  //Optional: if you want to have a unique ID for each hike
+            allHopitals.forEach(doc => { //iterate thru each doc
+                var title = doc.data().name;       // get value of the "name" key
+                var details = doc.data().details;  // get value of the "details" key
+                var hospitalCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
+                var hospitalHour = doc.data().hours; //gets the length field
+                let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
+
+                //update title and text and image
+                newcard.querySelector('.card-title').innerHTML = title;
+                newcard.querySelector('.card-hour').innerHTML = hospitalHour;
+                newcard.querySelector('.card-text').innerHTML = details;
+                newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
+
+                //Optional: give unique ids to all elements for future use
+                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
+                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
+                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
+
+                //attach to gallery, Example: "hikes-go-here"
+                document.getElementById(collection + "-go-here").appendChild(newcard);
+
+                //i++;   //Optional: iterate variable to serve as unique ID
+            })
+        })
+}
+
+displayCardsDynamically("hospitals");  //input param is the name of the collection
