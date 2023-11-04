@@ -27,7 +27,7 @@ getNameFromAuth(); //run the function
 // Hospital information data
 function writeHospitals() {
     //define a variable for the collection you want to create in Firestore to populate data
-    var hikesRef = db.collection("hikes");
+    var hospitalsRef = db.collection("hospitals");
 
     hospitalsRef.add({
         code: "VGH",
