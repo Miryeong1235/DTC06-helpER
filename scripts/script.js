@@ -25,9 +25,14 @@ function profile() {
 
 
 //------------------------------------------------
-// Call this function to go back to main page
+// Call this function to go to designated page
 //-------------------------------------------------
 function toMain() {
     console.log("go back to main page");
     location.href = "main.html";
+}
+
+function joinWaitList() {
+    console.log("go to join waitlist page");
+    location.href = "join_waitlist.html";
 }
