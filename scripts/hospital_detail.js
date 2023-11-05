@@ -24,8 +24,8 @@ function displayHospitalInfo() {
 
             let imgEvent = document.querySelector(".hospital-img");
             imgEvent.src = `./images/${hospitalCode}.png`;
-            document.getElementById("hospitalPhoneNumber").innerHTML = phoneNumber;
-            document.getElementById("hospitalAddress").innerHTML = address;
+            document.getElementById("hospitalPhoneNumber").innerHTML = hospitalPhoneNumber;
+            document.getElementById("hospitalAddress").innerHTML = hospitalAddress;
         });
 }
 
