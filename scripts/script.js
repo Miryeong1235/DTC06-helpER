@@ -20,5 +20,5 @@ function signIn() {
 
 function profile() {
     console.log("clicked profile icon");
-    location.href = "profile.html";
+    location.href = "profile_menu.html";
 }
