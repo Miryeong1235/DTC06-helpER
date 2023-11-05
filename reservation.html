@@ -15,7 +15,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
     <!-- Boostrap Library JS CDN  go here -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
 
     <!-- Other libraries go here -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,12 +53,12 @@
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
     <!-------------------------------------------------------->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" /> -->
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <style>
         div button,
@@ -86,7 +96,31 @@
                 <p class="card-text text-dark">Teams ahead of you:</p>
                 <p class="fs-1">5</p>
                 <div class="d-grid gap-2 col-8 mx-auto">
-                    <button onclick="cancelRes()" class="btn btn-danger" type="button">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                        Cancel reservation
+                    </button>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel" style="color: red;">Cancel
+                                        reservation</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color: black;">
+                                    You will be removed from the waitlist. Are you sure you want to continue?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go
+                                        Back</button>
+                                    <button type="button" class="btn btn-danger">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,7 +135,31 @@
                 <h5 class="card-title" style="padding-bottom: 10px;">XYZ Hospital</h5>
                 <p class="card-text text-dark">Checkup complete</p>
                 <div class="d-grid gap-2 col-8 mx-auto">
-                    <button data-modal-target="#modal" class="btn btn-dark" type="button">Write review</button>
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal-2">
+                        Write Review
+                    </button>
+                    <div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel" style="color: blue;">Write review
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color: black;">
+                                    You will be directed to the review page. Are you sure you want to continue?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go
+                                        Back</button>
+                                    <button type="button" class="btn btn-primary">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,7 +169,31 @@
                 <h5 class="card-title" style="padding-bottom: 10px;">123 Hospital</h5>
                 <p class="card-text text-dark">Checkup complete</p>
                 <div class="d-grid gap-2 col-8 mx-auto">
-                    <button class="btn btn-dark" type="button">Write review</button>
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal-3">
+                        Write Review
+                    </button>
+                    <div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel" style="color: blue;">Write review
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color: black;">
+                                    You will be directed to the review page. Are you sure you want to continue?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go
+                                        Back</button>
+                                    <button type="button" class="btn btn-primary">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -149,17 +231,7 @@
             </div>
         </div>
     </footer>
-    <div class="modal" id="modal">
-        <div class="modal-header">
-            <div class="title">XYZ Hospital</div>
-            <button data-close-button class="close-button">&times;</button>
-        </div>
-        <div class="modal-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem incidunt eaque maiores
-            soluta, rem laudantium iusto quisquam placeat corporis repellendus.
-        </div>
-    </div>
-    <div id="overlay active"></div>
+
 </body>
 
 </html>
