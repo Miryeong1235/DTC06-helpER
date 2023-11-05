@@ -101,16 +101,7 @@
                 <h5 class="card-title" style="padding-bottom: 10px;">XYZ Hospital</h5>
                 <p class="card-text text-dark">Checkup complete</p>
                 <div class="d-grid gap-2 col-8 mx-auto">
-                    <button class="btn btn-dark" type="button">Write review</button>
-                    <div class="review" id="review">
-                        <div class="review-header">
-                            <div class="title">XYZ Hospital</div>
-                            <button class="close-button">&times;</button>
-                        </div>
-                        <div class="review-body">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem incidunt eaque maiores soluta, rem laudantium iusto quisquam placeat corporis repellendus.
-                        </div>
-                    </div>
+                    <button data-modal-target="#modal" class="btn btn-dark" type="button">Write review</button>
                 </div>
             </div>
         </div>
@@ -158,7 +149,17 @@
             </div>
         </div>
     </footer>
-
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">XYZ Hospital</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem incidunt eaque maiores
+            soluta, rem laudantium iusto quisquam placeat corporis repellendus.
+        </div>
+    </div>
+    <div id="overlay active"></div>
 </body>
 
 </html>
