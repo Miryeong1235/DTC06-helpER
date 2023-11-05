@@ -22,3 +22,12 @@ function profile() {
     console.log("clicked profile icon");
     location.href = "profile_menu.html";
 }
+
+
+//------------------------------------------------
+// Call this function to go back to main page
+//-------------------------------------------------
+function toMain() {
+    console.log("go back to main page");
+    location.href = "main.html";
+}
