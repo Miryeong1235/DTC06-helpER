@@ -35,10 +35,40 @@
     <nav id="navbarPlaceholder"></nav>
 
     <!-- detail container -->
-    <div class="container my-5 py-4 text-center">
+    <div class="container mt-5 py-5 text-center">
         <br>
-        <h1><span id="hospitalName">this hospital</span></h1>
+        <h2><span id="hospitalName" class="fw-bold">this hospital</span></h2>
         <img class="hospital-img responsive" src="" />
+        <!-- <div class="text-start mx-5">-->
+    </div>
+
+    <div class="container my-2 py-2 justify-content-center">
+        <table class="table">
+            <tr>
+                <td class="col-4"><span class="fw-bold">Hours: </span></td>
+                <td><span id="hospitalHour">operation hour</span></td>
+            </tr>
+            <tr>
+                <td><span class="fw-bold">Phone number: </span></td>
+                <td><span id="hospitalPhoneNumber">phone number</span></td>
+            </tr>
+            <tr>
+                <td><span class="fw-bold">Address: </span></td>
+                <td><span id="hospitalAddress">address</span></td>
+            </tr>
+            <tr>
+                <td><span class="fw-bold">Details: </span></td>
+                <td><span id="details">detail</span></td>
+            </tr>
+            <tr>
+                <td><span class="fw-bold">Current wait time: </span></td>
+                <td><span id="currentWaitTime">current wait time</span></td>
+            </tr>
+            <tr>
+                <td><span class="fw-bold">Expected Length of Stay</span></td>
+                <td><span id="LengthOfStay">expected length of stay</span></td>
+            </tr>
+        </table>
         <div id="details-go-here"></div>
     </div>
 
@@ -95,7 +125,7 @@
                 </div> -->
 
 
-    <div class="row mx-5">
+    <div class="row m-5">
         <button type="button" class="btn btn-danger rounded-pill py-2 my-2" onclick="joinWaitList()">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
                 class="bi bi-person-lines-fill" viewBox="0 0 16 16">
@@ -115,6 +145,7 @@
 
     </div>
 
+    <br>
 
     <footer class="container-fluid p-3 fixed-bottom">
         <div class="row justify-content-between">

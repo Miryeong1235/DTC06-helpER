@@ -12,11 +12,20 @@ function displayHospitalInfo() {
             thisHospital = doc.data();
             hospitalCode = thisHospital.code;
             hospitalName = doc.data().name;
+            hospitalHour = thisHospital.hours;
+            details = thisHospital.details;
+            hospitalPhoneNumber = doc.data().phoneNumber;
+            hospitalAddress = doc.data().address;
 
             // only populate title, and image
             document.getElementById("hospitalName").innerHTML = hospitalName;
+            document.getElementById("hospitalHour").innerHTML = hospitalHour;
+            document.getElementById("details").innerHTML = details;
+
             let imgEvent = document.querySelector(".hospital-img");
-            imgEvent.src = `./images/${hospitalCode}.png`;;
+            imgEvent.src = `./images/${hospitalCode}.png`;
+            document.getElementById("hospitalPhoneNumber").innerHTML = hospitalPhoneNumber;
+            document.getElementById("hospitalAddress").innerHTML = hospitalAddress;
         });
 }
 
