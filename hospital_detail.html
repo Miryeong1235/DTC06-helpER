@@ -11,6 +11,24 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/style.css">
+
+    <!-------------------------------------------------------->
+    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
+
+    <!-- Link to scripts of your own -->
+    <script src="./scripts/firebaseAPI_TEAM06.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/hospital_detail.js"></script>
+
+
 </head>
 
 <body>
@@ -31,12 +49,12 @@
 
     <!-- detail container -->
     <div class="container my-5 py-4">
-        <h1><span id="hospitalName"> this hospital</span></h1>
+        <h1><span id="hospitalName">this hospital</span></h1>
         <img class="hospital-img responsive" src="" />
         <div id="details-go-here"></div>
     </div>
 
-    <!-- old templete for hospital details -->
+    <!-- old template for hospital details -->
     <!-- <div class="my-5 py-4">
         <img src="images/ER_photo.jpeg" class="img-fluid" alt="">
         <div class="overflow-auto">
@@ -146,10 +164,7 @@
         </div>
     </footer>
 
-    <!-- Link to scripts of your own -->
-    <script src="./scripts/firebaseAPI_TEAM06.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/hospital_detail.js"></script>
+
 </body>
 
 </html>
