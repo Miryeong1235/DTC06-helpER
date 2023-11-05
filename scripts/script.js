@@ -9,3 +9,16 @@ function logout() {
         // An error happened.
     });
 }
+
+//------------------------------------------------
+// Call this function when the "sign in" button is clicked
+//-------------------------------------------------
+function signIn() {
+    console.log("clicked sign in icon");
+    location.href = "login.html";
+}
+
+function profile() {
+    console.log("clicked profile icon");
+    location.href = "profile.html";
+}
