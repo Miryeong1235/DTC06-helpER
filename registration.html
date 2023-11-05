@@ -58,8 +58,8 @@
             <input type="text" class="form-control" id="exampleInputFname" placeholder="First name">
         </div>
         <div class="form-group">
-            <label for="exampleInputFname">Last name</label>
-            <input type="text" class="form-control" id="exampleInputFname" placeholder="Last name">
+            <label for="exampleInputLname">Last name</label>
+            <input type="text" class="form-control" id="exampleInputLname" placeholder="Last name">
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -73,7 +73,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPhone">Phone number</label>
-            <input type="tel" class="form-control" id="exampleInputPhone" placeholder="No hyphens">
+            <input type="number" class="form-control" id="exampleInputPhone" placeholder="No hyphens">
         </div>
         <div class="form-group">
             <label for="exampleInputPHN">Personal Health Number</label>
@@ -117,12 +117,12 @@
             <input type="text" class="form-control" id="exampleInputEmergengyName" placeholder="Full name">
         </div>
         <div class="form-group">
-            <label for="exampleInputPhone">Phone number</label>
-            <input type="tel" class="form-control" id="exampleInputPhone" placeholder="No hyphens">
+            <label for="exampleInputEmergengyPhone">Phone number</label>
+            <input type="number" class="form-control" id="exampleInputEmergengyPhone" placeholder="No hyphens">
         </div>
         <div class="form-group">
-            <label for="exampleInputPHN">Relationship</label>
-            <input type="text" class="form-control" id="exampleInputPHN" placeholder="Enter the relationship">
+            <label for="exampleInputRelation">Relationship</label>
+            <input type="text" class="form-control" id="exampleInputRelation" placeholder="Enter the relationship">
         </div>
 
     </form>
@@ -139,7 +139,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputDoctorPhone">Phone number</label>
-            <input type="tel" class="form-control" id="exampleInputDoctorPhone" placeholder="No hyphens">
+            <input type="number" class="form-control" id="exampleInputDoctorPhone" placeholder="No hyphens">
         </div>
 
     </form>
@@ -217,11 +217,13 @@
             <input type="text" class="form-control" id="exampleInputAdditional" placeholder="">
         </div>
 
-        <button type="submit" class="btn btn-primary m-3 ">Submit</button>
+        <div class="text-center m-4">
+            <button type="button" class="btn btn-primary m-3 px-5" onclick="writeProfile()">Submit</button>
+        </div>
     </form>
 
 
-
+    <!-- <footer id="footerPlaceholder"></footer> -->
     <footer class="container-fluid p-3 fixed-bottom">
         <div class="row justify-content-between">
             <div class="col text-center">
@@ -263,10 +265,11 @@
     <script src="./scripts/firebaseAPI_TEAM06.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/user_profile.js"></script>
 
-    <script>
+    <!-- <script>
         logout();       //make sure user is logged out
-    </script>
+    </script> -->
 
 </body>
 

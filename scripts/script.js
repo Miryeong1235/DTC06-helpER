@@ -36,3 +36,13 @@ function joinWaitList() {
     console.log("go to join waitlist page");
     location.href = "join_waitlist.html";
 }
+
+function toRegister() {
+    console.log("go to prompt to register page");
+    location.href = "prompt_to_register.html";
+}
+
+function toRegistration() {
+    console.log("go to registration page");
+    location.href = "registration.html";
+}
