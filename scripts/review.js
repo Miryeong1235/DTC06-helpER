@@ -22,3 +22,9 @@ function reviewHospitals() {
         last_updated: firebase.firestore.Timestamp.fromDate(new Date("September 5, 2023"))
     });
 }
+
+function writeReview() {
+    user = firebase.auth().currentUser;
+
+    var user_profile = db.collection('userProfiles').doc(user.uid);    
+}
