@@ -26,5 +26,6 @@ function reviewHospitals() {
 function writeReview() {
     user = firebase.auth().currentUser;
 
-    var user_profile = db.collection('userProfiles').doc(user.uid);    
+    var user_profile = db.collection('review').doc(user.uid + "-" + );
+    comment: $("#exampleFormControlTextarea1").val()    
 }
