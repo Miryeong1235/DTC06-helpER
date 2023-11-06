@@ -33,8 +33,9 @@ function toMain() {
 }
 
 function toPostReview(url) {
+    hospitalid = url.split("?")[1]
     console.log("go to post review page");
-    location.href = "post_review.html";
+    location.href = "post_review.html" + "?" + hospitalid;
 }
 
 function joinWaitList() {

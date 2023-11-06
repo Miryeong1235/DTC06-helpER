@@ -23,10 +23,22 @@ function reviewHospitals() {
     });
 }
 
-function writeReview() {
-    user = firebase.auth().currentUser;
+function writeReview(url) {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
 
-    var user_profile = db.collection('review').doc(user.uid + "-" + );
-    comment: $("#exampleFormControlTextarea1").val()    
+            hospitalid = url.split("?")[1];
+            console.log(user.uid + "-" + hospitalid);
+            var review = db.collection('review').doc(user.uid + "-" + hospitalid);
+            review.set({
+                // rating: $(""),
+                comment: $("#exampleFormControlTextarea1").val()
+            })
+        }
+        else {
+            console.log('logout')
+        }
+    })
 }
+
 
