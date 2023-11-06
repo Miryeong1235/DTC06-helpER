@@ -30,8 +30,15 @@ function writeReview(url) {
             hospitalid = url.split("?")[1];
             console.log(user.uid + "-" + hospitalid);
             var review = db.collection('review').doc(user.uid + "-" + hospitalid);
+            var star = document.getElementsByName("rate");
+            for (i=0; i < star.length; i++) {
+                if (star[i].checked) {
+                    star_id = star[i].getAttribute('id');
+                    star_val = $(`#${star_id}Label`).text();
+                    break;
+            }}
             review.set({
-                // rating: $(""),
+                rating: star_val,
                 comment: $("#exampleFormControlTextarea1").val()
             })
         }
