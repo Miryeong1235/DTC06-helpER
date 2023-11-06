@@ -31,16 +31,23 @@ function writeReview(url) {
             console.log(user.uid + "-" + hospitalid);
             var review = db.collection('review').doc(user.uid + "-" + hospitalid);
             var star = document.getElementsByName("rate");
-            for (i=0; i < star.length; i++) {
+            for (i = 0; i < star.length; i++) {
                 if (star[i].checked) {
                     star_id = star[i].getAttribute('id');
                     star_val = $(`#${star_id}Label`).text();
                     break;
-            }}
+                }
+            }
             review.set({
                 rating: star_val,
                 comment: $("#exampleFormControlTextarea1").val()
             })
+                .then(function () {
+                    console.log("review updated");
+                    window.location.assign("main.html");
+                }).catch(function (error) {
+                    console.log("Error adding review: " + error);
+                })
         }
         else {
             console.log('logout')
