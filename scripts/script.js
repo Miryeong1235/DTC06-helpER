@@ -46,3 +46,22 @@ function toRegistration() {
     console.log("go to registration page");
     location.href = "registration.html";
 }
+
+function toConfirmRegister() {
+    console.log("go to confirm registration page");
+    location.href = "confirm_registration.html";
+}
+
+
+//------------------------------------------------
+// Call this function to get user display name
+//-------------------------------------------------
+function getDisplayName() {
+    firebase.auth().onAuthStateChanged(user => {
+        console.log(user);
+        if (user) {
+            console.log(user.displayName);
+            $("#user_name").text(user.displayName);
+        }
+    })
+}

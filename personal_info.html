@@ -41,186 +41,109 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
     <!-- Stuff for body goes here -->
-    <nav id="navbarPlaceholder"></nav>
+    <nav class="pb-4" id="navbarPlaceholder"></nav>
 
-    <div class="px-4 pt-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="./images/hospital.jpeg" alt="" width="360" height="254">
-        <h1 class="display-5 fw-bold">HelpER</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Register your personal information</p>
-        </div>
+    <div class="pt-5 my-5 text-center">
+        <h1 class="display-5 fw-bold"><span id="user_name"></span>'s Profile</h1>
     </div>
 
-    <form class="m-3 pb-5">
-        <p class="lead">Personal information</p>
-        <div class="form-group">
-            <label for="exampleInputFname">First name</label>
-            <input type="text" class="form-control" id="exampleInputFname" placeholder="First name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputLname">Last name</label>
-            <input type="text" class="form-control" id="exampleInputLname" placeholder="Last name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputdof">Date of birth</label>
-            <input type="date" class="form-control" id="exampleInputdof" placeholder="MM/DD/YYYY">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPhone">Phone number</label>
-            <input type="number" class="form-control" id="exampleInputPhone" placeholder="No hyphens">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPHN">Personal Health Number</label>
-            <input type="number" class="form-control" id="exampleInputPHN" placeholder="No hyphens">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputStreetNumber">Street number</label>
-            <input type="number" class="form-control" id="exampleInputStreetNumber" placeholder="555">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputStreetName">Street name</label>
-            <input type="text" class="form-control" id="exampleInputStreetName" placeholder="Seymour Street">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputCity">City</label>
-            <input type="text" class="form-control" id="exampleInputCity" placeholder="Vancouver">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputProvince">Province</label>
-            <input type="text" class="form-control" id="exampleInputProvince" placeholder="BC">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPostalCode">Postal Code</label>
-            <input type="text" class="form-control" id="exampleInputPostalCode" placeholder="X0X 0X0">
-        </div>
+    <div class="text-center pb-1">
+        <button type="button" class="btn btn-outline-primary mb-3 px-5" onclick="writeProfile()">Edit</button>
+    </div>
 
-        <!-- <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div> -->
-        <!-- <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div> -->
-    </form>
-
-    <form class="m-3 pb-5">
-        <p class="lead">Emergency Contact</p>
-        <div class="form-group">
-            <label for="exampleInputEmergengyName">Full name</label>
-            <input type="text" class="form-control" id="exampleInputEmergengyName" placeholder="Full name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmergengyPhone">Phone number</label>
-            <input type="number" class="form-control" id="exampleInputEmergengyPhone" placeholder="No hyphens">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputRelation">Relationship</label>
-            <input type="text" class="form-control" id="exampleInputRelation" placeholder="Enter the relationship">
-        </div>
-
-    </form>
-
-    <form class="m-3 pb-5">
-        <p class="lead">Family Doctor</p>
-        <div class="form-group">
-            <label for="exampleInputFamilyDoctorName">Doctor's Full name</label>
-            <input type="text" class="form-control" id="exampleInputFamilyDoctorName" placeholder="Full name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputFamilyClinicName">Clinic's name</label>
-            <input type="text" class="form-control" id="exampleInputFamilyClinicName" placeholder="Clinic's name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputDoctorPhone">Phone number</label>
-            <input type="number" class="form-control" id="exampleInputDoctorPhone" placeholder="No hyphens">
-        </div>
-
-    </form>
-
-    <form class="m-3 pb-3">
-        <p class="lead">Medical History</p>
-        <div class="form-group">
-            <label for="exampleInputMedications">Please list any medications you are currently taking:</label>
-            <input type="text" class="form-control" id="exampleInputMedications" placeholder="Medication name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputAllergies">Please list any allergies:</label>
-            <input type="text" class="form-control" id="exampleInputAllergies" placeholder="Enter if you have allergy">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputSurgery">Please list any surgery history:</label>
-            <input type="text" class="form-control" id="exampleInputSurgery" placeholder="Enter your surgery history">
-        </div>
-
-    </form>
-
-    <form class="m-3 pb-3">
-
-        <br>
-        <p>Do you consume any alcohol?</p>
-
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="alcohol" id="alcoholDont">
-            <label class="form-check-label" for="alcoholDont">
-                Don't drink
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="alcohol" id="alcoholSometimes" checked>
-            <label class="form-check-label" for="alcoholSometimes">
-                Sometimes
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="alcohol" id="alcoholEveryday" checked>
-            <label class="form-check-label" for="alcoholEveryday">
-                Everyday
-            </label>
-        </div>
-
-    </form>
-    <form class="m-3 pb-5">
-
-        <br>
-        <p>Do you smoke cigarette?</p>
-
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="tobacco" id="smokeNever">
-            <label class="form-check-label" for="smokeNever">
-                Never smoke
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="tobacco" id="smokeYes" checked>
-            <label class="form-check-label" for="smokeYes">
-                I do smoke
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="tobacco" id="smokeQuit" checked>
-            <label class="form-check-label" for="smokeQuit">
-                I quitted
-            </label>
-        </div>
-
-        <br>
-
-        <div class="form-group">
-            <label for="exampleInputAdditional">Additional Notes:</label>
-            <input type="text" class="form-control" id="exampleInputAdditional" placeholder="">
-        </div>
-
-        <div class="text-center m-4">
-            <button type="button" class="btn btn-primary m-3 px-5" onclick="writeProfile()">Submit</button>
-        </div>
-    </form>
+    <div class="p-4 mb-5 pb-5">
+        <h3>Personal Information</h3>
+        <table class="table table-borderless m-3 pb-5">
+            <tr>
+                <td class="col-5">First name</td>
+                <td id="exampleInputFname"></td>
+            </tr>
+            <tr>
+                <td>Last name</td>
+                <td id="exampleInputLname"></td>
+            </tr>
+            <tr>
+                <td>Email address</td>
+                <td id="exampleInputEmail1"></td>
+            </tr>
+            <tr>
+                <td>Date of birth</td>
+                <td id="exampleInputdof"></td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td id="exampleInputPhone"></td>
+            </tr>
+            <tr>
+                <td>PHN</td>
+                <td id="exampleInputPHN"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><span id="exampleInputStreetNumber"></span>&nbsp;<span id="exampleInputStreetName"></span>
+                    ,&nbsp;<span id="exampleInputCity"></span>,&nbsp;<span id="exampleInputProvince"></span>
+                    &nbsp;<span id="exampleInputPostalCode"></span></td>
+            </tr>
+        </table>
+        <h3 class="pt-3">Emergency Contact</h3>
+        <table class="table table-borderless m-3 pb-5">
+            <tr>
+                <td class="col-5">Full name</td>
+                <td id="exampleInputEmergengyName"></td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td id="exampleInputEmergengyPhone"></td>
+            </tr>
+            <tr>
+                <td>Relationship</td>
+                <td id="exampleInputRelation"></td>
+            </tr>
+        </table>
+        <h3 class="pt-3">Family Doctor</h3>
+        <table class="table table-borderless m-3 pb-5">
+            <tr>
+                <td class="col-5">Full name</td>
+                <td id="exampleInputFamilyDoctorName"></td>
+            </tr>
+            <tr>
+                <td>Clinic</td>
+                <td id="exampleInputFamilyClinicName"></td>
+            </tr>
+            <tr>
+                <td>Phone number</td>
+                <td id="exampleInputDoctorPhone"></td>
+            </tr>
+        </table>
+        <h3 class="pt-3">Medical History</h3>
+        <table class="table table-borderless m-3 pb-5">
+            <tr>
+                <td class="col-5">Current medications</td>
+                <td id="exampleInputMedications"></td>
+            </tr>
+            <tr>
+                <td>Allergies</td>
+                <td id="exampleInputAllergies"></td>
+            </tr>
+            <tr>
+                <td>Surgery history</td>
+                <td id="exampleInputSurgery"></td>
+            </tr>
+        </table>
+        <h3 class="pt-3">Smoke or Drink</h3>
+        <table class="table table-borderless m-3 pb-5">
+            <tr>
+                <td class="col-5">Alcohol</td>
+                <td id="exampleInputAlcohol"></td>
+            </tr>
+            <tr>
+                <td>Cigarette</td>
+                <td id="exampleInputCigarette"></td>
+            </tr>
+        </table>
+        <h3 class="pt-3">Addition notes</h3>
+        <p id="exampleInputAdditional" class="px-3"></p>
+    </div>
 
 
     <!-- <footer id="footerPlaceholder"></footer> -->
@@ -266,6 +189,11 @@
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/user_profile.js"></script>
+
+    <script>
+        getDisplayName()
+        readProfile()
+    </script>
 
 </body>
 
