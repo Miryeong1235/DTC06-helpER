@@ -29,3 +29,4 @@ function writeReview() {
     var user_profile = db.collection('review').doc(user.uid + "-" + );
     comment: $("#exampleFormControlTextarea1").val()    
 }
+

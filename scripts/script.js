@@ -32,6 +32,11 @@ function toMain() {
     location.href = "main.html";
 }
 
+function toPostReview(url) {
+    console.log("go to post review page");
+    location.href = "post_review.html";
+}
+
 function joinWaitList() {
     console.log("go to join waitlist page");
     location.href = "join_waitlist.html";
