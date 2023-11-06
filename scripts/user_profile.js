@@ -9,7 +9,6 @@ function writeProfile() {
     user_profile.set({
         first_name: $("#exampleInputFname").val(),
         last_name: $("#exampleInputLname").val(),
-        surgery: $("#exampleInputSurgery").val(),
         email: $("#exampleInputEmail1").val(),
         date_of_birth: $("#exampleInputdof").val(),
         phone: $("#exampleInputPhone").val(),
