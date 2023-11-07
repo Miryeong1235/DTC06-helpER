@@ -24,9 +24,7 @@
 
 
     <!-- Link to scripts of your own -->
-    <script src="./scripts/firebaseAPI_TEAM06.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/hospital_detail.js"></script>
+    
 
 
 </head>
@@ -158,6 +156,14 @@
         </button>
     </div>
 
+    <div class="container my-5 text-center">
+        <!-- Here is the container for cards  -->
+        <div class="container">
+            <div id="review-go-here" class="row justify-content-center">
+            </div>
+        </div>
+    </div>
+    <br>
 
     <template id="reviewTemplate">
         <div class="card mb-4">
@@ -211,6 +217,12 @@
     <script src="./scripts/firebaseAPI_TEAM06.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/review.js"></script>
+    <script src="./scripts/hospital_detail.js"></script>
+    <script>
+        var hospitalId = displayHospitalInfo();
+        displayCardsDynamically("review", hospitalId);  //input param is the name of the collection
+    </script>
 
 </body>
 

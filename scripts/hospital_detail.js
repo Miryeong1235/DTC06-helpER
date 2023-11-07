@@ -27,6 +27,7 @@ function displayHospitalInfo() {
             document.getElementById("hospitalPhoneNumber").innerHTML = hospitalPhoneNumber;
             document.getElementById("hospitalAddress").innerHTML = hospitalAddress;
         });
+        return ID
 }
 
 displayHospitalInfo();
