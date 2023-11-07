@@ -68,17 +68,21 @@ function displayCardsDynamically(collection, hospitalId) {
     db.collection(collection).get()   //the collection called "hikes"
         .then(allReviews => {
             allReviews.forEach(doc => { //iterate thru each doc
-                var title = hospitalName;
-                var rating = parseInt(doc.data().rating.split(' stars')[0]);
-                var stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-                var comments = doc.data().comment;
-                let newcard = cardTemplate.content.cloneNode(true);
-                //update title and text and image
-                newcard.querySelector('#reviewHospitalName').innerHTML = title;
-                newcard.querySelector('#reviewStar').innerHTML = stars;
-                newcard.querySelector('#reviewContent').innerHTML = comments;
-
-                document.getElementById(collection + "-go-here").appendChild(newcard);
+                let doc_id = doc.id
+                if (doc_id.includes('-'+hospitalId)) {
+                    var title = hospitalName;
+                    var rating = parseInt(doc.data().rating.split(' stars')[0]);
+                    var stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+                    var comments = doc.data().comment;
+                    let newcard = cardTemplate.content.cloneNode(true);
+                    //update title and text and image
+                    newcard.querySelector('#reviewHospitalName').innerHTML = title;
+                    newcard.querySelector('#reviewStar').innerHTML = stars;
+                    newcard.querySelector('#reviewContent').innerHTML = comments;
+    
+                    document.getElementById(collection + "-go-here").appendChild(newcard);
+                }
+                
             })
         })
 }
