@@ -37,7 +37,9 @@ function writeProfile() {
             tobacco: tobacco_val,
             alcohol: alcohol_val
         })
+        console.log($("#exampleInputEmergengyName").val(), 'outside emergency')
         if ($("#exampleInputEmergengyName").val()) {
+            console.log('inside the if for emergency')
             user_profile_extension.doc('emergency_contact').set({
                 name: $("#exampleInputEmergengyName").val(),
                 phone: $("#exampleInputEmergengyPhone").val(),
@@ -65,6 +67,7 @@ function writeProfile() {
         }
     }).then(function () {
         console.log("user profile updated");
+    }).then(function() {
         window.location.assign("confirm_registration.html");
     }).catch(function (error) {
         console.log("Error adding user registration: " + error);
