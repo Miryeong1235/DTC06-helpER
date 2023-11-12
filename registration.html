@@ -100,30 +100,21 @@
             <label for="exampleInputPostalCode">Postal Code</label>
             <input type="text" class="form-control" id="exampleInputPostalCode" placeholder="X0X 0X0">
         </div>
-
-        <!-- <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div> -->
-        <!-- <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div> -->
     </form>
 
     <form class="m-3 pb-5">
         <p class="lead">Emergency Contact</p>
         <div class="form-group">
             <label for="exampleInputEmergengyName">Full name</label>
-            <input type="text" class="form-control" id="exampleInputEmergengyName" placeholder="Full name">
+            <input type="text" class="form-control extension-emergency_contact" id="exampleInputEmergengyName" placeholder="Full name">
         </div>
         <div class="form-group">
             <label for="exampleInputEmergengyPhone">Phone number</label>
-            <input type="number" class="form-control" id="exampleInputEmergengyPhone" placeholder="No hyphens">
+            <input type="number" class="form-control extension-emergency_contact" id="exampleInputEmergengyPhone" placeholder="No hyphens">
         </div>
         <div class="form-group">
             <label for="exampleInputRelation">Relationship</label>
-            <input type="text" class="form-control" id="exampleInputRelation" placeholder="Enter the relationship">
+            <input type="text" class="form-control extension-emergency_contact" id="exampleInputRelation" placeholder="Enter the relationship">
         </div>
 
     </form>
@@ -132,15 +123,15 @@
         <p class="lead">Family Doctor</p>
         <div class="form-group">
             <label for="exampleInputFamilyDoctorName">Doctor's Full name</label>
-            <input type="text" class="form-control" id="exampleInputFamilyDoctorName" placeholder="Full name">
+            <input type="text" class="form-control extension-family_doctor" id="exampleInputFamilyDoctorName" placeholder="Full name">
         </div>
         <div class="form-group">
             <label for="exampleInputFamilyClinicName">Clinic's name</label>
-            <input type="text" class="form-control" id="exampleInputFamilyClinicName" placeholder="Clinic's name">
+            <input type="text" class="form-control extension-family_doctor" id="exampleInputFamilyClinicName" placeholder="Clinic's name">
         </div>
         <div class="form-group">
             <label for="exampleInputDoctorPhone">Phone number</label>
-            <input type="number" class="form-control" id="exampleInputDoctorPhone" placeholder="No hyphens">
+            <input type="number" class="form-control extension-family_doctor" id="exampleInputDoctorPhone" placeholder="No hyphens">
         </div>
 
     </form>
@@ -149,15 +140,15 @@
         <p class="lead">Medical History</p>
         <div class="form-group">
             <label for="exampleInputMedications">Please list any medications you are currently taking:</label>
-            <input type="text" class="form-control" id="exampleInputMedications" placeholder="Medication name">
+            <input type="text" class="form-control extension-medical_history" id="exampleInputMedications" placeholder="Medication name">
         </div>
         <div class="form-group">
             <label for="exampleInputAllergies">Please list any allergies:</label>
-            <input type="text" class="form-control" id="exampleInputAllergies" placeholder="Enter if you have allergy">
+            <input type="text" class="form-control extension-medical_history" id="exampleInputAllergies" placeholder="Enter if you have allergy">
         </div>
         <div class="form-group">
             <label for="exampleInputSurgery">Please list any surgery history:</label>
-            <input type="text" class="form-control" id="exampleInputSurgery" placeholder="Enter your surgery history">
+            <input type="text" class="form-control extension-medical_history" id="exampleInputSurgery" placeholder="Enter your surgery history">
         </div>
 
     </form>
@@ -236,9 +227,9 @@
     <script src="./scripts/script.js"></script>
     <script src="./scripts/user_profile.js"></script>
 
-    <!-- <script>
-        logout();       //make sure user is logged out
-    </script> -->
+    <script>
+        populateUserInfo();
+    </script>
 
 </body>
 
