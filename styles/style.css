@@ -74,6 +74,22 @@ footer {
     color: #F1FAEE;
 }
 
+footer a {
+    color: #F1FAEE;
+    text-decoration: none;
+    vertical-align: bottom;
+}
+
+.material-symbols-outlined {
+    font-size: 45px;
+    font-weight: 800;
+}
+
+.material-icons {
+    font-size: 45px;
+    font-weight: 100;
+}
+
 .rate {
     float: left;
     height: 46px;

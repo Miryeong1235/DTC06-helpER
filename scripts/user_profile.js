@@ -79,8 +79,8 @@ function readProfile() {
 
         var user_profile = db.collection('userProfiles').doc(user.uid);
         var user_profile_extension = user_profile.collection('extension');
-        // var tobacco = document.getElementsByName('tobacco');
-        // var alcohol = document.getElementsByName('alcohol');
+        var tobacco = undefined; // document.getElementsByName('tobacco');
+        var alcohol = undefined; // document.getElementsByName('alcohol');
 
         user_profile.get().then(profile => {
             let data = profile.data();
