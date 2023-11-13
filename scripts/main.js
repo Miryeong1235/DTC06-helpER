@@ -129,9 +129,9 @@ function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("hospitalCardTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
 
     db.collection(collection).get()   //the collection called "hikes"
-        .then(allHopitals => {
+        .then(allHospitals => {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
-            allHopitals.forEach(doc => { //iterate thru each doc
+            allHospitals.forEach(doc => { //iterate thru each doc
                 var title = doc.data().name;       // get value of the "name" key
                 var details = doc.data().details;  // get value of the "details" key
                 var hospitalCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image

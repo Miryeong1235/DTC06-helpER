@@ -86,27 +86,27 @@ getUserId();
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
-function displayCardsDynamically(collection, hospitalId) {
-    db.collection("hospitals").doc(hospitalId).get().then(doc => {
-        hospitalName = doc.data().name;
-    })
+function displayFavouritesDynamically(collection) {
 
-    let cardTemplate = document.getElementById("reviewTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
+    let cardTemplate = document.getElementById("favouriteHospitalTemplate"); // Retrieve the HTML element with the ID "favouriteHospitalTemplate" and store it in the cardTemplate variable. 
+    let hospitalInfo = db.collection('userProfiles').get().id;
+    console.log(hospitalInfo);
 
-    db.collection(collection).get()   //the collection called "hikes"
-        .then(allReviews => {
-            allReviews.forEach(doc => { //iterate thru each doc
+    favouriteDocRef.get().then(querySnapshot => {
+        return querySnapshot.docs.map(doc => doc.id);
+    })  //the collection called "favourite"
+        .then(allFavourites => {
+            allFavourites.forEach(doc => { //iterate thru each doc
                 let doc_id = doc.id
-                if (doc_id.includes('-' + hospitalId)) {
-                    var title = hospitalName;
-                    var rating = parseInt(doc.data().rating.split(' stars')[0]);
-                    var stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-                    var comments = doc.data().comment;
+                if (doc_id in hospitalInfo) {
+
                     let newcard = cardTemplate.content.cloneNode(true);
+                    newcard.querySelector('.card-title').innerHTML = title;
+                    newcard.querySelector('.card-hour').innerHTML = hospitalHour;
+                    newcard.querySelector('.card-text').innerHTML = details;
+                    newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
+                    newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
                     //update title and text and image
-                    newcard.querySelector('#reviewHospitalName').innerHTML = title;
-                    newcard.querySelector('#reviewStar').innerHTML = stars;
-                    newcard.querySelector('#reviewContent').innerHTML = comments;
 
                     document.getElementById(collection + "-go-here").appendChild(newcard);
                 }
@@ -114,3 +114,6 @@ function displayCardsDynamically(collection, hospitalId) {
             })
         })
 }
+
+
+displayFavouritesDynamically('favourite');
