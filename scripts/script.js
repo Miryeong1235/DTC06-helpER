@@ -23,11 +23,17 @@ function profile() {
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
         if (user) {
-            if (db.collection('userProfile').doc(user.uid)) {
-                location.href = "personal_info.html";
-            } else {
-                location.href = "prompt_to_registration.html";
-            }
+            db.collection('userProfiles').get()
+                .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
+                .then(uidList => {
+                    console.log('user profile has record:', uidList.includes(user.uid));
+                    if (uidList.includes(user.uid)) {
+                        location.href = "personal_info.html";
+                    } else {
+                        location.href = "prompt_to_register.html";
+                    }
+                })
+            
         } else {
             console.log('user not logged in');
         }
