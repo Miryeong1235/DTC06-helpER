@@ -23,7 +23,7 @@ function profile() {
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
         if (user) {
-            db.collection('userProfile').get()
+            db.collection('userProfiles').get()
                 .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
                 .then(uidList => {
                     console.log('user profile has record:', uidList.includes(user.uid));
