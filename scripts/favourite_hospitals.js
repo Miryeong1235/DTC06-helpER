@@ -8,8 +8,10 @@ function getUserId() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
-            userUid = user.uid;
+            var userUid = user.uid;
             favouriteDocRef = db.collection('userProfiles').doc(userUid).collection('favourite');
+            displayFavouritesDynamically(userUid, 'favourite');
+
         } else {
             console.log('User not logged in')
         }
@@ -86,34 +88,62 @@ getUserId();
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
-function displayFavouritesDynamically(collection) {
+function displayFavouritesDynamically(userUid, collection) {
+    favouriteDocRef = db.collection('userProfiles').doc(userUid).collection('favourite');
+    hospitalInfo = db.collection('hospitals');
 
     let cardTemplate = document.getElementById("favouriteHospitalTemplate"); // Retrieve the HTML element with the ID "favouriteHospitalTemplate" and store it in the cardTemplate variable. 
-    let hospitalInfo = db.collection('userProfiles').get().id;
-    console.log(hospitalInfo);
 
-    favouriteDocRef.get().then(querySnapshot => {
-        return querySnapshot.docs.map(doc => doc.id);
-    })  //the collection called "favourite"
-        .then(allFavourites => {
-            allFavourites.forEach(doc => { //iterate thru each doc
-                let doc_id = doc.id
-                if (doc_id in hospitalInfo) {
+    console.log(hospitalInfo, '123');
 
-                    let newcard = cardTemplate.content.cloneNode(true);
-                    newcard.querySelector('.card-title').innerHTML = title;
-                    newcard.querySelector('.card-hour').innerHTML = hospitalHour;
-                    newcard.querySelector('.card-text').innerHTML = details;
-                    newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
-                    newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
-                    //update title and text and image
+    hospitalInfo.get().then(querySnapshot => {
+        return querySnapshot.docs.map(doc => doc.id); //病院のIDのリスト
+    }).then(hospitalList => {
+        console.log(hospitalList) //病院のIDが全てconsoleされる
+ 
+        hospitalList.forEach(doc => { //iterate thru each doc
+            let favourite_hospital = favouriteDocRef.doc.id;
+            console.log(favourite_hospital) //とれていない
+            if (favourite_hospital.includes(doc.id)) {
+                let newcard = cardTemplate.content.cloneNode(true);
+                newcard.querySelector('.card-title').innerHTML = title;
+                newcard.querySelector('.card-hour').innerHTML = hospitalHour;
+                newcard.querySelector('.card-text').innerHTML = details;
+                newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
+                newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
+                //update title and text and image
 
-                    document.getElementById(collection + "-go-here").appendChild(newcard);
-                }
+                document.getElementById(collection + "-go-here").appendChild(newcard);
+            }
 
-            })
         })
+    })
+
+    // hospitalInfo.get().then(querySnapshot => {
+    //     return querySnapshot.docs.map(doc => doc.id); //病院のIDのリスト
+    // }).then(hospitalList => {
+    //     console.log(hospitalList)
+    // } //病院のIDが全てconsoleされる
+    // ).then(allFavourites => {
+    //     console.log(allFavourites, 'yy')
+    //     allFavourites.forEach(doc => { //iterate thru each doc
+    //         let favourite_hospital = favouriteDocRef.doc.id;
+    //         if (favourite_hospital.includes(doc.id)) {
+    //             let newcard = cardTemplate.content.cloneNode(true);
+    //             newcard.querySelector('.card-title').innerHTML = title;
+    //             newcard.querySelector('.card-hour').innerHTML = hospitalHour;
+    //             newcard.querySelector('.card-text').innerHTML = details;
+    //             newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
+    //             newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
+    //             //update title and text and image
+
+    //             document.getElementById(collection + "-go-here").appendChild(newcard);
+    //         }
+
+    //     })
+    // })
+
 }
 
 
-displayFavouritesDynamically('favourite');
+// displayFavouritesDynamically(userUid, 'favourite');
