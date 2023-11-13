@@ -65,9 +65,9 @@ function joinWaitList(url) {
                 .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
                 .then(reservationList => {
                     if (reservationList.includes(hospitalId)) {
-                        location.href = "waitlist_confirmed.html?docID=" + hospitalId;
+                        location.href = "waitlist_confirmed.html?docID=" + user.uid + "-" + hospitalId;
                     } else {
-                        location.href = "join_waitlist.html?docID=" + hospitalId;
+                        location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
                     }
                 });
 }})}
@@ -90,6 +90,16 @@ function toConfirmRegister() {
 function toWaitlistConfirmed() {
     console.log("go to waitlist confirmed page");
     location.href = "waitlist_confirmed.html";
+}
+
+function toMyReview() {
+    console.log("go to my reviews page");
+    location.href = "review.html";
+}
+
+function toMyReservation() {
+    console.log("go to my reviews page");
+    location.href = "reservation.html";
 }
 
 //------------------------------------------------

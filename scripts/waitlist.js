@@ -6,7 +6,7 @@ function populateReservationInfo() {
 function writeReservation() {
     var user = firebase.auth().currentUser;
     let params = new URL(window.location.href); // get URL
-    let hospitalId = params.searchParams.get("docID"); // get value for key "docID"
+    let hospitalId = params.searchParams.get("docID").split('-')[1]; // get value for key "docID"
     var reservation = db.collection('userProfiles').doc(user.uid).collection('reservation').doc(hospitalId);
 
     reservation.set({
@@ -22,7 +22,7 @@ function readReservation(populate=false) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             let params = new URL(window.location.href); // get URL
-            let hospitalId = params.searchParams.get("docID"); // get value for key "docID"
+            let hospitalId = params.searchParams.get("docID").split('-')[1]; // get value for key "docID"
             console.log(hospitalId);
             var userProfile = db.collection('userProfiles').doc(user.uid);
             var reservation = userProfile.collection('reservation');
@@ -51,6 +51,8 @@ function readReservation(populate=false) {
                             })
                     }
                 })
+        } else {
+            console.log('user not logged in')
         }
     })
 }
