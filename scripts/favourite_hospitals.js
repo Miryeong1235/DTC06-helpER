@@ -97,10 +97,10 @@ function displayFavouritesDynamically(userUid, collection) {
     console.log(hospitalInfo, '123');
 
     favouriteDocRef.get().then(querySnapshot => {
-        return querySnapshot.docs.map(doc => doc.id); 
+        return querySnapshot.docs.map(doc => doc.id);
     }).then(favHospitalList => {
         console.log(favHospitalList); //favourite hospital list
- 
+
         favHospitalList.forEach(hospitalId => { //iterate thru each doc
             console.log(hospitalId); //each hospital id
             console.log(hospitalInfo);
@@ -111,18 +111,19 @@ function displayFavouritesDynamically(userUid, collection) {
                     newcard.querySelector('.card-title').innerHTML = data.name;
                     newcard.querySelector('.card-hour').innerHTML = data.hours;
                     newcard.querySelector('.card-text').innerHTML = data.details;
+                    fillHeart(newcard, hospitalId);
                     newcard.querySelector('.card-image').src = `./images/${data.code}.png`; //Example: MSJ.png
                     newcard.querySelector('a').href = "hospital_detail.html?docID=" + hospitalId;
                     document.getElementById(collection + "-go-here").appendChild(newcard);
                 }).then(() => {
                     console.log(document.getElementById(collection + "-go-here"));
-                    })
-                
-                //update title and text and image
+                })
 
-                
-            })
+            //update title and text and image
+
 
         })
-    }
+
+    })
+}
 
