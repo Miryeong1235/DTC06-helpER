@@ -97,20 +97,21 @@ function displayFavouritesDynamically(userUid, collection) {
     console.log(hospitalInfo, '123');
 
     favouriteDocRef.get().then(querySnapshot => {
-        return querySnapshot.docs.map(doc => doc.id); //病院のIDのリスト
+        return querySnapshot.docs.map(doc => doc.id); 
     }).then(favHospitalList => {
-        console.log(favHospitalList); //病院のIDが全てconsoleされる
+        console.log(favHospitalList); //favourite hospital list
  
         favHospitalList.forEach(hospitalId => { //iterate thru each doc
-            console.log(hospitalId); //とれていない
+            console.log(hospitalId); //each hospital id
+            console.log(hospitalInfo);
             hospitalInfo.doc(hospitalId).get()
                 .then(doc => doc.data())
                 .then(data => {
                     let newcard = cardTemplate.content.cloneNode(true);
-                    newcard.querySelector('.card-title').innerHTML = data.title;
-                    newcard.querySelector('.card-hour').innerHTML = data.hospitalHour;
+                    newcard.querySelector('.card-title').innerHTML = data.name;
+                    newcard.querySelector('.card-hour').innerHTML = data.hours;
                     newcard.querySelector('.card-text').innerHTML = data.details;
-                    newcard.querySelector('.card-image').src = `./images/${data.hospitalCode}.png`; //Example: MSJ.png
+                    newcard.querySelector('.card-image').src = `./images/${data.code}.png`; //Example: MSJ.png
                     newcard.querySelector('a').href = "hospital_detail.html?docID=" + hospitalId;
                     document.getElementById(collection + "-go-here").appendChild(newcard);
                 }).then(() => {
@@ -125,31 +126,3 @@ function displayFavouritesDynamically(userUid, collection) {
         })
     }
 
-    // hospitalInfo.get().then(querySnapshot => {
-    //     return querySnapshot.docs.map(doc => doc.id); //病院のIDのリスト
-    // }).then(hospitalList => {
-    //     console.log(hospitalList)
-    // } //病院のIDが全てconsoleされる
-    // ).then(allFavourites => {
-    //     console.log(allFavourites, 'yy')
-    //     allFavourites.forEach(doc => { //iterate thru each doc
-    //         let favourite_hospital = favouriteDocRef.doc.id;
-    //         if (favourite_hospital.includes(doc.id)) {
-    //             let newcard = cardTemplate.content.cloneNode(true);
-    //             newcard.querySelector('.card-title').innerHTML = title;
-    //             newcard.querySelector('.card-hour').innerHTML = hospitalHour;
-    //             newcard.querySelector('.card-text').innerHTML = details;
-    //             newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
-    //             newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
-    //             //update title and text and image
-
-    //             document.getElementById(collection + "-go-here").appendChild(newcard);
-    //         }
-
-    //     })
-    // })
-
-
-
-
-// displayFavouritesDynamically(userUid, 'favourite');
