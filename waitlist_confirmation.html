@@ -36,39 +36,41 @@
         <table class="table table-borderless m-4">
             <tr>
                 <td>First Name</td>
-                <td>John</td>
+                <td id="fname"></td>
             </tr>
             <tr>
                 <td>Last Name</td>
-                <td>Smith</td>
+                <td id="lname"></td>
             </tr>
             <tr>
                 <td>Date of Birth</td>
-                <td>1990/04/23</td>
+                <td id="dateOfBirth"></td>
             </tr>
             <tr>
                 <td>Phone Number</td>
-                <td>(778)-123-4567</td>
+                <td id="phone"></td>
             </tr>
             <tr>
                 <td>Personal Health Number</td>
-                <td>9000-123-4567</td>
+                <td id="phn"></td>
             </tr>
             <tr>
                 <td>Address</td>
-                <td>123 - 4566 Pender Street, Vancouver, BC</td>
+                <td><span id="exampleInputStreetNumber"></span>&nbsp;<span id="exampleInputStreetName"></span>
+                    ,&nbsp;<span id="exampleInputCity"></span>,&nbsp;<span id="exampleInputProvince"></span>
+                    &nbsp;<span id="exampleInputPostalCode"></span></td>
             </tr>
             <tr>
                 <td>Purpose of Visit</td>
-                <td>Severe stomachache</td>
+                <td id="purposeOfVisit"></td>
             </tr>
             <tr>
                 <td>Symptoms</td>
-                <td>severe stomachache, loss of appetite, fever, nausea</td>
+                <td id="symptoms"></td>
             </tr>
         </table>
         <div class="text-center my-5">
-            <button class="btn btn-primary m-2">Confirm</button>
+            <button class="btn btn-primary m-2" onclick="toWaitlistConfirmed()">Confirm</button>
             <button class="btn btn-secondary m-2">Modify Information</button>
         </div>
     </div>
@@ -83,6 +85,9 @@
     <script src="./scripts/firebaseAPI_TEAM06.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
-    
+    <script src="./scripts/waitlist.js"></script>
+    <script>
+        readReservation()
+    </script>
 </body>
 </html>

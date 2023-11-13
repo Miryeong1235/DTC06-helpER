@@ -37,11 +37,11 @@
         <h1 class="text-center m-5">Join Waitlist</h1>
         <div class="m-5">
             <label for="comment">Purpose of Visit:</label>
-            <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+            <textarea class="form-control" rows="5" id="purposeOfVisit" name="text"></textarea>
         </div>
         <div class="m-5">
             <label for="comment">Your Symptoms:</label>
-            <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+            <textarea class="form-control" rows="5" id="symptoms" name="text"></textarea>
         </div>
         <div class="m-4">
             <h2 class="text-center py-2">Authorization</h2>
@@ -50,10 +50,10 @@
                 under penalty of perjury the above information is true and correct.
             </p>
             <label>Signature:</label><br>
-            <input class="form-control input-sm" id="inputsm" type="text"><br>
+            <input class="form-control input-sm" id="signature" type="text"><br>
             <label>Date:</label><br>
-            <input class="form-control input-sm" id="inputsm" type="date"><br>
-            <div class="text-center my-5"><button class="btn btn-primary px-5">Confirm</button></div>
+            <input class="form-control input-sm" id="signDate" type="date"><br>
+            <div class="text-center my-5"><button class="btn btn-primary px-5" onclick="writeReservation()">Confirm</button></div>
         </div>
     </div>
 
@@ -68,6 +68,7 @@
     <script src="./scripts/firebaseAPI_TEAM06.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/waitlist.js"></script>
 
 </body>
 

@@ -49,15 +49,28 @@ function toMain() {
 }
 
 function toPostReview(url) {
-    hospitalid = url.split("?")[1]
+    hospitalid = url.split("?")[1];
     console.log("go to post review page");
     location.href = "post_review.html" + "?" + hospitalid;
 }
 
-function joinWaitList() {
+function joinWaitList(url) {
     console.log("go to join waitlist page");
-    location.href = "join_waitlist.html";
-}
+    hospitalId = url.split("?docID=")[1];
+    firebase.auth().onAuthStateChanged(user => {
+        console.log(user);
+        if (user) {
+            let reservationRef = db.collection('userProfiles').doc(user.uid).collection('reservation');
+            reservationRef.get()
+                .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
+                .then(reservationList => {
+                    if (reservationList.includes(hospitalId)) {
+                        location.href = "waitlist_confirmed.html?docID=" + hospitalId;
+                    } else {
+                        location.href = "join_waitlist.html?docID=" + hospitalId;
+                    }
+                });
+}})}
 
 function toRegister() {
     console.log("go to prompt to register page");
@@ -74,6 +87,10 @@ function toConfirmRegister() {
     location.href = "confirm_registration.html";
 }
 
+function toWaitlistConfirmed() {
+    console.log("go to waitlist confirmed page");
+    location.href = "waitlist_confirmed.html";
+}
 
 //------------------------------------------------
 // Call this function to get user display name
