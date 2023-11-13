@@ -41,6 +41,8 @@ function writeHospitals() {
         phoneNumber: "(604) 875-4111",
         details: "Ages 17 and older/ Adult Hospital",
         hours: "24-7",
+        lat: "49.26144421604015",
+        lng: "- 123.12215827464874",
         last_updated: firebase.firestore.FieldValue.serverTimestamp()  //current system time
     });
     hospitalsRef.add({
