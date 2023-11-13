@@ -29,10 +29,10 @@ function showMap() {
                 map.addImage('eventpin', image); // Pin Icon
 
                 // READING information from "hikes" collection in Firestore
-                db.collection('hikes').get().then(allHikes => {
+                db.collection('hospitals').get().then(allHospitals => {
                     const features = []; // Defines an empty array for information to be added to
 
-                    allHikes.forEach(doc => {
+                    allHospitals.forEach(doc => {
                         lat = doc.data().lat;
                         lng = doc.data().lng;
                         console.log(lat, lng);
