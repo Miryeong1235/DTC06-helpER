@@ -122,7 +122,7 @@ function readProfile(autofillRegistration = false) {
             let data = emergency.data();
             if (data) {
                 let elementIds = ['exampleInputEmergengyName', 'exampleInputEmergengyPhone', 'exampleInputRelation'];
-                let attrNames = ['name', 'phone', 'email', 'relationship']
+                let attrNames = ['name', 'phone', 'relationship']
                 for (i = 0; i < elementIds.length; i++) {
                     let elementId = elementIds[i];
                     if (autofillRegistration) {

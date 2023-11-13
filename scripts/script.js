@@ -20,8 +20,18 @@ function signIn() {
 
 function profile() {
     console.log("clicked profile icon");
-    location.href = "profile_menu.html";
-}
+    firebase.auth().onAuthStateChanged(user => {
+        console.log(user);
+        if (user) {
+            if (db.collection('userProfile').doc(user.uid)) {
+                location.href = "personal_info.html";
+            } else {
+                location.href = "prompt_to_registration.html";
+            }
+        } else {
+            console.log('user not logged in');
+        }
+})}
 
 
 //------------------------------------------------
