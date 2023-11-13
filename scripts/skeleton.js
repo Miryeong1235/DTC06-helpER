@@ -18,3 +18,35 @@ function loadSkeleton() {
     });
 }
 loadSkeleton(); //invoke the function
+
+var menuOpen = false;
+
+function toggleMenu() {
+    if (menuOpen) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+}
+
+function openMenu() {
+    $('#hamburgerPlaceholder').load('./text/hamburger_menu.html');
+    document.getElementById("hamburgerPlaceholder").style.width = "300px";
+    document.getElementById("hamburgerPlaceholder").style.border = "1px solid grey";
+    menuOpen = true;
+}
+
+function closeMenu() {
+    document.getElementById("hamburgerPlaceholder").style.width = "0";
+    document.getElementById("hamburgerPlaceholder").style.border = "none";
+    menuOpen = false;
+}
+
+
+// make profile menu in hamburger
+
+// in hospital detail, if not logged in, click on join waitlist or write a review, will direct to login page
+
+// notification slide up window, hamburger slide from right window
+
+// each page html in profile menu

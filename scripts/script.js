@@ -19,7 +19,7 @@ function signIn() {
 }
 
 function profile() {
-    console.log("clicked profile icon");
+    console.log("user clicked profile icon or personal info");
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
         if (user) {
