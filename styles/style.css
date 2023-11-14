@@ -8,7 +8,8 @@ nav {
     background-color: #1D3557;
 }
 
-#logout-btn, nav button {
+#logout-btn,
+nav button {
     background: none;
     color: inherit;
     border: none;
@@ -143,8 +144,9 @@ footer a {
     color: black;
     background-color: whitesmoke;
     transition: 0.2s;
-  }
+}
 
-  .material-icons{
-    
-  }
+.material-icons {
+    cursor: pointer;
+    font-size: 25px;
+}
