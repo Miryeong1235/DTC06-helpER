@@ -41,12 +41,3 @@ function closeMenu() {
     document.getElementById("hamburgerPlaceholder").style.border = "none";
     menuOpen = false;
 }
-
-
-// make profile menu in hamburger
-
-// in hospital detail, if not logged in, click on join waitlist or write a review, will direct to login page
-
-// notification slide up window, hamburger slide from right window
-
-// each page html in profile menu

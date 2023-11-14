@@ -72,6 +72,20 @@ function joinWaitList(url) {
                 });
 }})}
 
+function updateJoinWaitList(url) {
+    console.log("go to join waitlist page");
+    hospitalId = url.split("?docID=")[1];
+    firebase.auth().onAuthStateChanged(user => {
+        console.log(user);
+        if (user) {
+            location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
+        }})
+}
+
+function toMap() {
+    location.href = "map.html"
+}
+
 function toRegister() {
     console.log("go to prompt to register page");
     location.href = "prompt_to_register.html";
