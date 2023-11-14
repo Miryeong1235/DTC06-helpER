@@ -125,9 +125,16 @@ function writeHospitals() {
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
+var currentUser = undefined;
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("hospitalCardTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
-
+    
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            console.log(user.uid); // Let's know who the logged-in user is by logging their UID
+            currentUser = db.collection("userProfiles").doc(user.uid);
+        }
+    })
     db.collection(collection).get()   //the collection called "hikes"
         .then(allHospitals => {
             //var i = 1;  //Optional: if you want to have a unique ID for each hike
@@ -138,7 +145,7 @@ function displayCardsDynamically(collection) {
                 var hospitalHour = doc.data().hours; //gets the length field
                 var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
-                
+
                 //update title and text and image
                 // newcard.querySelector('#heart').innerHTML = 'abc';
                 newcard.querySelector('.card-title').innerHTML = title;
@@ -146,13 +153,19 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-text').innerHTML = details;
                 newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
                 newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
-                newcard.querySelector('i').id = "heart-"+docID
-                newcard.querySelector('i').onclick = ()=> updateHeart(docID)
+                newcard.querySelector('i').id = "heart-" + docID
+                newcard.querySelector('i').onclick = () => updateHeart(docID);
                 //Optional: give unique ids to all elements for future use
                 // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
                 // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
                 // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
-
+                currentUser.get().then(userDoc => {
+                    //get the user name
+                    var bookmarks = userDoc.data().bookmarks;
+                    if (bookmarks.includes(docID)) {
+                        document.getElementById('heart-' + docID).innerText = 'favorite';
+                    }
+                })
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
                 // fillHeart(newcard, docID);
@@ -172,3 +185,29 @@ document.getElementById('search').addEventListener('submit', function (event) {
     window.location.href = 'search.html?query=' + encodeURIComponent(userInput);
 
 });
+
+function updateHeart(hosID) {
+
+    var iconID = 'heart-' + hosID;
+    // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
+    hike_saved = document.getElementById('heart-' + hosID).innerText == 'favorite'
+    if (hike_saved) {
+        currentUser.update({
+            // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
+            // This method ensures that the ID is added only if it's not already present, preventing duplicates.
+            bookmarks: firebase.firestore.FieldValue.arrayRemove(hosID)
+        }).then(function () {
+            console.log("bookmark has been removed for " + hosID);
+            //this is to change the icon of the hike that was saved to "filled"
+            document.getElementById(iconID).innerText = 'favorite_outline';
+        });
+    } else {
+        currentUser.update({
+            bookmarks: firebase.firestore.FieldValue.arrayUnion(hosID)
+        }).then(function () {
+            console.log("bookmark has been saved for " + hosID);
+            //this is to change the icon of the hike that was saved to "filled"
+            document.getElementById(iconID).innerText = 'favorite';
+        });
+    }
+}
