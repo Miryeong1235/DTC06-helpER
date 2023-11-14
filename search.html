@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HelpER</title>
+    <meta name="comp1800 template" content="My 1800 App">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- Boostrap Library JS CDN  go here -->
+
+    <!-- Other libraries go here -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <!-------------------------------------------------------->
+    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
+    <style>
+        div button,
+        div input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+    <!-- Stuff for body goes here -->
+    <nav id="navbarPlaceholder"></nav>
+
+
+    <!-- <div class="px-4 pt-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="./images/hospital.jpeg" alt="" width="360" height="254">
+        <h1 class="display-5 fw-bold">HelpER</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Hi <span id="name-goes-here"></span>, How can I help you?</p>
+        </div>
+
+    </div> -->
+
+    <!-- Container for all hospital cards -->
+    <div class="container my-5 text-center">
+        <h4 style="margin-top: 100px;">Here are your results</h4>
+        <!-- Here is the container for cards  -->
+        <div class="container">
+            <div id="hospitals-go-here" class="row  justify-content-center">
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- Templates for general use, not displayed -->
+    <template id="hospitalCardTemplate">
+        <div class="card py-2 m-2 justify-content-center" style="width: 18rem">
+            <img class="card-image card-img-top" src=" ..." alt="..." />
+            <div class="card-body">
+                <h5 class="card-title d-inline-block px-1">Card title</h5>
+                <!-- heart icon -->
+                <span id="heart" onclick="toggleFavourite(this)">
+                    heart here
+                </span>
+                <p class="card-hour">placeholder</p>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the
+                    bulk of the card's content.
+                </p>
+                <a class="btn btn-primary card-href">Read more ...</a>
+            </div>
+        </div>
+    </template>
+
+    <footer id="footerPlaceholder"></footer>
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- Link to scripts of your own -->
+    <script src="./scripts/firebaseAPI_TEAM06.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/search.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="scripts/favourite_hospitals.js"></script>
+
+</body>
+
+</html>
