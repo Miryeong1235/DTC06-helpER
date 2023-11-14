@@ -35,22 +35,6 @@ function showMap() {
                 // // Add the image to the map style.
                 map.addImage('eventpin', image); // Pin Icon
 
-                // map.on('load', function () {
-                //     db.collection("hospitals").get()
-                //         .then(allHospitals => {
-                //             allHospitals.forEach(doc => {
-                //                 var lon = doc.data().lon;
-                //                 var lat = doc.data().lat;
-
-                //                 let markerLocation = [lon, lat];
-
-                //                 let marker = new mapboxgl.Marker()
-                //                     .setLngLat(markerLocation)
-                //                     .addTo(map);
-                //             });
-                //         });
-                // });
-
                 // READING information from "hikes" collection in Firestore
                 db.collection('hospitals').get().then(allHospitals => {
                     const features = []; // Defines an empty array for information to be added to
