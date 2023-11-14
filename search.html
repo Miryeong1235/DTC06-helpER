@@ -52,38 +52,18 @@
     <nav id="navbarPlaceholder"></nav>
 
 
-    <div class="px-4 pt-5 my-5 text-center">
+    <!-- <div class="px-4 pt-5 my-5 text-center">
         <img class="d-block mx-auto mb-4" src="./images/hospital.jpeg" alt="" width="360" height="254">
         <h1 class="display-5 fw-bold">HelpER</h1>
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Hi <span id="name-goes-here"></span>, How can I help you?</p>
         </div>
 
-    </div>
-
-    <!-- Search bar -->
-    <div class=" bg-white">
-        <form class="form-inline d-flex w-75 mx-auto" id="search">
-            <input class="form-control" id="searchBar" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
-                    width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path
-                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                </svg></button>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
-                    width="16" height="16" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z" />
-                    <path fill-rule="evenodd"
-                        d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z" />
-                </svg></button>
-
-        </form>
-    </div>
+    </div> -->
 
     <!-- Container for all hospital cards -->
     <div class="container my-5 text-center">
-        <h4>Recommended hospitals for you</h4>
+        <h4 style="margin-top: 100px;">Here are your results</h4>
         <!-- Here is the container for cards  -->
         <div class="container">
             <div id="hospitals-go-here" class="row  justify-content-center">
@@ -99,7 +79,9 @@
             <div class="card-body">
                 <h5 class="card-title d-inline-block px-1">Card title</h5>
                 <!-- heart icon -->
-                <i class ="material-icons"> favorite </i>
+                <span id="heart" onclick="toggleFavourite(this)">
+                    heart here
+                </span>
                 <p class="card-hour">placeholder</p>
                 <p class="card-text">
                     Some quick example text to build on the card title and make up the
@@ -119,9 +101,9 @@
     <!-- Link to scripts of your own -->
     <script src="./scripts/firebaseAPI_TEAM06.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/main.js"></script>
+    <script src="./scripts/search.js"></script>
     <script src="./scripts/script.js"></script>
-    <!-- <script src="scripts/favourite_hospitals.js"></script> -->
+    <script src="scripts/favourite_hospitals.js"></script>
 
 </body>
 
