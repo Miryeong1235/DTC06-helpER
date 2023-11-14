@@ -160,3 +160,13 @@ function displayCardsDynamically(collection) {
 }
 
 displayCardsDynamically("hospitals");  //input param is the name of the collection
+
+document.getElementById('search').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var userInput = document.getElementById('searchBar').value;
+    console.log(userInput);
+
+    window.location.href = 'search.html?query=' + encodeURIComponent(userInput);
+
+});
