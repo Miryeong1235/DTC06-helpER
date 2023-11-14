@@ -32,112 +32,112 @@ function showMap() {
             (error, image) => {
                 if (error) throw error;
 
-                // Add the image to the map style.
+                // // Add the image to the map style.
                 map.addImage('eventpin', image); // Pin Icon
 
-                map.on('load', function () {
-                    db.collection("hospitals").get()
-                        .then(allHospitals => {
-                            allToilets.forEach(doc => {
-                                var lon = doc.data().lon;
-                                var lat = doc.data().lat;
+                // map.on('load', function () {
+                //     db.collection("hospitals").get()
+                //         .then(allHospitals => {
+                //             allHospitals.forEach(doc => {
+                //                 var lon = doc.data().lon;
+                //                 var lat = doc.data().lat;
 
-                                let markerLocation = [lon, lat];
+                //                 let markerLocation = [lon, lat];
 
-                                let marker = new mapboxgl.Marker()
-                                    .setLngLat(markerLocation)
-                                    .addTo(map);
-                            });
-                        });
-                });
-
-                // // READING information from "hikes" collection in Firestore
-                // db.collection('hospitals').get().then(allHospitals => {
-                //     const features = []; // Defines an empty array for information to be added to
-
-                //     allHospitals.forEach(doc => {
-                //         lat = doc.data().lat;
-                //         lng = doc.data().lng;
-                //         console.log(lat, lng);
-                //         coordinates = [lng, lat];
-                //         console.log(coordinates);
-                //         // Coordinates
-                //         event_name = doc.data().name; // Event Name
-                //         preview = doc.data().details; // Text Preview
-                //         // img = doc.data().posterurl; // Image
-                //         // url = doc.data().link; // URL
-
-                //         // Pushes information into the features array
-                //         // in our application, we have a string description of the hike
-                //         features.push({
-                //             'type': 'Feature',
-                //             'properties': {
-                //                 'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hike.html?id=${doc.id}" target="_blank" title="Opens in a new window">Read more</a>`
-                //             },
-                //             'geometry': {
-                //                 'type': 'Point',
-                //                 'coordinates': coordinates
-                //             }
+                //                 let marker = new mapboxgl.Marker()
+                //                     .setLngLat(markerLocation)
+                //                     .addTo(map);
+                //             });
                 //         });
-                //     });
-
-                //     // Adds features as a source of data for the map
-                //     map.addSource('places', {
-                //         'type': 'geojson',
-                //         'data': {
-                //             'type': 'FeatureCollection',
-                //             'features': features
-                //         }
-                //     });
-
-                //     // Creates a layer above the map displaying the pins
-                //     // by using the sources that was just added
-                //     map.addLayer({
-                //         'id': 'places',
-                //         'type': 'symbol',
-                //         // source: 'places',
-                //         'source': 'places',
-                //         'layout': {
-                //             'icon-image': 'eventpin', // Pin Icon
-                //             'icon-size': 0.1, // Pin Size
-                //             'icon-allow-overlap': true // Allows icons to overlap
-                //         }
-                //     });
-
-                //     //-----------------------------------------------------------------------
-                //     // Add Click event listener, and handler function that creates a popup
-                //     // that displays info from "hikes" collection in Firestore
-                //     //-----------------------------------------------------------------------
-                //     map.on('click', 'places', (e) => {
-                //         // Extract coordinates array.
-                //         // Extract description of that place
-                //         const coordinates = e.features[0].geometry.coordinates.slice();
-                //         const description = e.features[0].properties.description;
-
-                //         // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
-                //         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                //             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                //         }
-
-                //         new mapboxgl.Popup()
-                //             .setLngLat(coordinates)
-                //             .setHTML(description)
-                //             .addTo(map);
-                //     });
-
-                //     //-----------------------------------------------------------------------
-                //     // Add mousenter event listener, and handler function to 
-                //     // Change the cursor to a pointer when the mouse is over the places layer.
-                //     //-----------------------------------------------------------------------
-                //     map.on('mouseenter', 'places', () => {
-                //         map.getCanvas().style.cursor = 'pointer';
-                //     });
-
-                //     // Defaults cursor when not hovering over the places layer
-                //     map.on('mouseleave', 'places', () => {
-                //         map.getCanvas().style.cursor = '';
-                //     });
                 // });
+
+                // READING information from "hikes" collection in Firestore
+                db.collection('hospitals').get().then(allHospitals => {
+                    const features = []; // Defines an empty array for information to be added to
+
+                    allHospitals.forEach(doc => {
+                        lat = doc.data().lat;
+                        lng = doc.data().lng;
+                        console.log(lat, lng);
+                        coordinates = [lng, lat];
+                        console.log(coordinates);
+                        // Coordinates
+                        event_name = doc.data().name; // Event Name
+                        preview = doc.data().details; // Text Preview
+                        // img = doc.data().posterurl; // Image
+                        // url = doc.data().link; // URL
+
+                        // Pushes information into the features array
+                        // in our application, we have a string description of the hike
+                        features.push({
+                            'type': 'Feature',
+                            'properties': {
+                                'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hospital_detail.html?docID=${doc.id}">Read more</a>`
+                            },
+                            'geometry': {
+                                'type': 'Point',
+                                'coordinates': coordinates
+                            }
+                        });
+                    });
+
+                    // Adds features as a source of data for the map
+                    map.addSource('places', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': features
+                        }
+                    });
+
+                    // Creates a layer above the map displaying the pins
+                    // by using the sources that was just added
+                    map.addLayer({
+                        'id': 'places',
+                        'type': 'symbol',
+                        // source: 'places',
+                        'source': 'places',
+                        'layout': {
+                            'icon-image': 'eventpin', // Pin Icon
+                            'icon-size': 0.1, // Pin Size
+                            'icon-allow-overlap': true // Allows icons to overlap
+                        }
+                    });
+
+                    //-----------------------------------------------------------------------
+                    // Add Click event listener, and handler function that creates a popup
+                    // that displays info from "hikes" collection in Firestore
+                    //-----------------------------------------------------------------------
+                    map.on('click', 'places', (e) => {
+                        // Extract coordinates array.
+                        // Extract description of that place
+                        const coordinates = e.features[0].geometry.coordinates.slice();
+                        const description = e.features[0].properties.description;
+
+                        // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
+                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                        }
+
+                        new mapboxgl.Popup()
+                            .setLngLat(coordinates)
+                            .setHTML(description)
+                            .addTo(map);
+                    });
+
+                    //-----------------------------------------------------------------------
+                    // Add mousenter event listener, and handler function to 
+                    // Change the cursor to a pointer when the mouse is over the places layer.
+                    //-----------------------------------------------------------------------
+                    map.on('mouseenter', 'places', () => {
+                        map.getCanvas().style.cursor = 'pointer';
+                    });
+
+                    // Defaults cursor when not hovering over the places layer
+                    map.on('mouseleave', 'places', () => {
+                        map.getCanvas().style.cursor = '';
+                    });
+                });
             }
         );
 
