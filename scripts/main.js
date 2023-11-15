@@ -127,7 +127,7 @@ function writeHospitals() {
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("hospitalCardTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
-    
+
     var currentUser = db.collection("userProfiles").doc(userUid);
 
     db.collection(collection).get()   //the collection called "hospitals"
@@ -147,20 +147,32 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-text').innerHTML = details;
                 newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
                 newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
-                newcard.querySelector('i').id = "heart-" + docID;
-                newcard.querySelector('i').onclick = () => updateHeart(docID);
-                //Optional: give unique ids to all elements for future use
-                // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
-                currentUser.get().then(userDoc => {
-                    //get the user name
-                    console.log(userDoc.data(), userUid);
-                    bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
-                        document.getElementById('heart-' + docID).innerText = 'favorite';
-                    }
-                })
+                newcard.querySelector('i').id = "heart-" + docID; //assigning unique id to each element
+                newcard.querySelector('i').onclick = () => saveBookmark(docID);
+
+                // currentUser.get().then(userDoc => {
+                //     //get the user name
+                //     console.log(userDoc.data(), userUid);
+                //     bookmarks = userDoc.data().bookmarks;
+                //     if (bookmarks.includes(docID)) {
+                //         document.getElementById('heart-' + docID).innerText = 'favorite';
+                //     }
+                // })
+                
+                let currentUser = db.collection("userProfiles").doc(userUid);
+                newcard.querySelector('i').onclick = () => {
+                    currentUser.get().then(userDoc => {
+                        var bookmarks = userDoc.data().bookmarks;
+                        if (bookmarks.includes(docID)) {
+                            // If already bookmarked, remove the bookmark
+                            removeBookmark(docID);
+                        } else {
+                            // If not bookmarked, add the bookmark
+                            saveBookmark(docID);
+                        }
+                    });
+                };
+
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
                 // fillHeart(newcard, docID);
@@ -181,28 +193,65 @@ document.getElementById('search').addEventListener('submit', function (event) {
 
 });
 
-function updateHeart(hospitalID) {
+// function saveBookmark(hospitalID) {
+//     let currentUser = db.collection("userProfiles").doc(userUid);
+//     var iconID = 'heart-' + hospitalID;
+//     // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
+//     hospital_saved = document.getElementById('heart-' + hospitalID).innerText == 'favorite'
+//     if (hospital_saved) {
+//         currentUser.update({
+//             // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
+//             // This method ensures that the ID is added only if it's not already present, preventing duplicates.
+//             bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
+//         }).then(function () {
+//             console.log("bookmark has been removed for " + hospitalID);
+//             //this is to change the icon of the hike that was saved to "filled"
+//             document.getElementById(iconID).innerText = 'favorite_outline';
+//         });
+//     } else {
+//         currentUser.update({
+//             bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
+//         }).then(function () {
+//             console.log("bookmark has been saved for " + hospitalID);
+//             //this is to change the icon of the hike that was saved to "filled"
+//             document.getElementById(iconID).innerText = 'favorite';
+//         });
+//     }
+// }
+
+function saveBookmark(hospitalID) {
     let currentUser = db.collection("userProfiles").doc(userUid);
-    let iconID = 'heart-' + hospitalID;
     // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
-    hospital_saved = document.getElementById('heart-' + hospitalID).innerText == 'favorite'
-    if (hospital_saved) {
-        currentUser.update({
-            // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
-            // This method ensures that the ID is added only if it's not already present, preventing duplicates.
-            bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
-        }).then(function () {
-            console.log("bookmark has been removed for " + hospitalID);
-            //this is to change the icon of the hike that was saved to "filled"
-            document.getElementById(iconID).innerText = 'favorite_outline';
-        });
-    } else {
-        currentUser.update({
-            bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
-        }).then(function () {
-            console.log("bookmark has been saved for " + hospitalID);
+    currentUser.update({
+        // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
+        // This method ensures that the ID is added only if it's not already present, preventing duplicates.
+        bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
+    })
+        // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
+        .then(function () {
+            console.log("bookmark has been saved for" + hospitalID);
+            var iconID = 'heart-' + hospitalID;
+            //console.log(iconID);
             //this is to change the icon of the hike that was saved to "filled"
             document.getElementById(iconID).innerText = 'favorite';
         });
-    }
+}
+
+//-----------------------------------------------------------------------------
+// This function is called to remove a bookmark.
+//-----------------------------------------------------------------------------
+function removeBookmark(hospitalID) {
+    let currentUser = db.collection("userProfiles").doc(userUid);
+    // Manage the backend process to remove the hikeDocID from the user's bookmarks.
+    currentUser.update({
+        // Use 'arrayRemove' to remove the bookmark ID from the 'bookmarks' array.
+        bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
+    })
+        // Handle the front-end update to change the icon, providing visual feedback to the user that it has been un-bookmarked.
+        .then(function () {
+            console.log("bookmark has been removed for " + hospitalID);
+            var iconID = 'heart-' + hospitalID;
+            // Change the icon of the hike that was un-bookmarked to "hollow"
+            document.getElementById(iconID).innerText = 'favorite_outline';
+        });
 }
