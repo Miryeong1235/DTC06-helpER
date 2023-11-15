@@ -37,7 +37,7 @@ function writeHospitals() {
         name: "Vancouver General Hospital",
         city: "Vancouver",
         province: "BC",
-        address: "920 West 10th Ave Vancouver, BC, V5Z 1M9",          //number value
+        address: "920 West 10th Ave Vancouver, BC, V5Z 1M9",         
         phoneNumber: "(604) 875-4111",
         details: "Ages 17 and older/ Adult Hospital",
         hours: "24-7",
@@ -45,7 +45,7 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "RH",
-        name: "Richmond Hospital", //replace with your own city?
+        name: "Richmond Hospital", 
         city: "Richmond",
         province: "BC",
         address: "7000 Westminster Highway Richmond, BC, V6X 1A2, BC, V5Z 1M9",          //number value
@@ -56,10 +56,10 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "SPH",
-        name: "St. Paul's Hospital", //replace with your own city?
+        name: "St. Paul's Hospital", 
         city: "Vancouver",
         province: "BC",
-        address: "1081 Burrard St Vancouver, BC, V6Z 1Y6",          //number value
+        address: "1081 Burrard St Vancouver, BC, V6Z 1Y6",         
         phoneNumber: "(604) 682-2344",
         details: "Patients of all ages seen/ Full Service Hospital",
         hours: "24-7",
@@ -67,10 +67,10 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "MSJ",
-        name: "Mount Saint Joseph Hospital", //replace with your own city?
+        name: "Mount Saint Joseph Hospital", 
         city: "Vancouver",
         province: "BC",
-        address: "3080 Prince Edward St Vancouver, BC, V5T 3N4",          //number value
+        address: "3080 Prince Edward St Vancouver, BC, V5T 3N4",          
         phoneNumber: "(604) 874-1141",
         details: "Patients of all ages seen/ Full Service Hospital",
         hours: "8am to 8pm",
@@ -78,10 +78,10 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "LGH",
-        name: "Lions Gate Hospital", //replace with your own city?
+        name: "Lions Gate Hospital", 
         city: "North Vancouver",
         province: "BC",
-        address: "231 East 15th St North Vancouver, BC, V7L 2L7",          //number value
+        address: "231 East 15th St North Vancouver, BC, V7L 2L7",          
         phoneNumber: "(604) 988-3131",
         details: "Patients of all ages seen/ Full Service Hospital",
         hours: "24-7",
@@ -89,10 +89,10 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "UBC",
-        name: "UBC Hospital", //replace with your own city?
+        name: "UBC Hospital", 
         city: "Vancouver",
         province: "BC",
-        address: "2211 Wesbrook Mall Vancouver, BC, V6T 2B5",          //number value
+        address: "2211 Wesbrook Mall Vancouver, BC, V6T 2B5",          
         phoneNumber: "(604) 822-7121",
         details: "Patients of all ages seen",
         hours: "8am to 8pm",
@@ -100,27 +100,6 @@ function writeHospitals() {
     });
 }
 
-// function fillHeart(elem, hospitalId) {
-//     let element = elem.querySelector('#heart');
-//     let favouriteDocRef = db.collection('userProfiles').doc(userUid).collection('favourite');
-//     if (favouriteDocRef) {
-//         favouriteDocRef.get().then(querySnapshot => {
-//             return querySnapshot.docs.map(doc => doc.id);
-//         }).then(hospitalIdList => {
-//             if (hospitalIdList.includes(hospitalId)) {
-//                 element.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-//                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-//             </svg>`;
-//             } else {
-//                 element.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-//                 class="bi bi-heart" viewBox="0 0 16 16">
-//                 <path
-//                     d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-//             </svg>`;
-//             }
-//         })
-//     }
-// }
 
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
@@ -148,35 +127,21 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`; //Example: MSJ.png
                 newcard.querySelector('a').href = "hospital_detail.html?docID=" + docID;
                 newcard.querySelector('i').id = "heart-" + docID; //assigning unique id to each element
-                newcard.querySelector('i').onclick = () => saveBookmark(docID);
+                newcard.querySelector('i').onclick = () => updateBookmark(docID);
 
-                // currentUser.get().then(userDoc => {
-                //     //get the user name
-                //     console.log(userDoc.data(), userUid);
-                //     bookmarks = userDoc.data().bookmarks;
-                //     if (bookmarks.includes(docID)) {
-                //         document.getElementById('heart-' + docID).innerText = 'favorite';
-                //     }
-                // })
-                
                 let currentUser = db.collection("userProfiles").doc(userUid);
-                newcard.querySelector('i').onclick = () => {
-                    currentUser.get().then(userDoc => {
-                        var bookmarks = userDoc.data().bookmarks;
-                        if (bookmarks.includes(docID)) {
-                            // If already bookmarked, remove the bookmark
-                            removeBookmark(docID);
-                        } else {
-                            // If not bookmarked, add the bookmark
-                            saveBookmark(docID);
-                        }
-                    });
-                };
+
+
+                currentUser.get().then(userDoc => {
+                    var bookmarks = userDoc.data().bookmarks;
+                    if (bookmarks.includes(docID)) {
+                        // If already bookmarked, remove the bookmark
+                        document.getElementById('heart-' + docID).innerHTML = 'favorite'
+                    }
+                });
 
                 //attach to gallery, Example: "hikes-go-here"
                 document.getElementById(collection + "-go-here").appendChild(newcard);
-                // fillHeart(newcard, docID);
-                //i++;   //Optional: iterate variable to serve as unique ID
             })
         })
 }
@@ -193,65 +158,29 @@ document.getElementById('search').addEventListener('submit', function (event) {
 
 });
 
-// function saveBookmark(hospitalID) {
-//     let currentUser = db.collection("userProfiles").doc(userUid);
-//     var iconID = 'heart-' + hospitalID;
-//     // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
-//     hospital_saved = document.getElementById('heart-' + hospitalID).innerText == 'favorite'
-//     if (hospital_saved) {
-//         currentUser.update({
-//             // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
-//             // This method ensures that the ID is added only if it's not already present, preventing duplicates.
-//             bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
-//         }).then(function () {
-//             console.log("bookmark has been removed for " + hospitalID);
-//             //this is to change the icon of the hike that was saved to "filled"
-//             document.getElementById(iconID).innerText = 'favorite_outline';
-//         });
-//     } else {
-//         currentUser.update({
-//             bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
-//         }).then(function () {
-//             console.log("bookmark has been saved for " + hospitalID);
-//             //this is to change the icon of the hike that was saved to "filled"
-//             document.getElementById(iconID).innerText = 'favorite';
-//         });
-//     }
-// }
-
-function saveBookmark(hospitalID) {
+function updateBookmark(hospitalID) {
     let currentUser = db.collection("userProfiles").doc(userUid);
-    // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
-    currentUser.update({
-        // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
-        // This method ensures that the ID is added only if it's not already present, preventing duplicates.
-        bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
-    })
-        // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
-        .then(function () {
-            console.log("bookmark has been saved for" + hospitalID);
-            var iconID = 'heart-' + hospitalID;
-            //console.log(iconID);
-            //this is to change the icon of the hike that was saved to "filled"
-            document.getElementById(iconID).innerText = 'favorite';
-        });
-}
+    currentUser.get().then(userDoc => {
+        let bookmarks = userDoc.data().bookmarks;
+        let iconID = 'heart-' + hospitalID;
+        let isBookmarked = bookmarks.includes(hospitalID); //check if this hikeDocID exist in bookmark
+        console.log(isBookmarked);
 
-//-----------------------------------------------------------------------------
-// This function is called to remove a bookmark.
-//-----------------------------------------------------------------------------
-function removeBookmark(hospitalID) {
-    let currentUser = db.collection("userProfiles").doc(userUid);
-    // Manage the backend process to remove the hikeDocID from the user's bookmarks.
-    currentUser.update({
-        // Use 'arrayRemove' to remove the bookmark ID from the 'bookmarks' array.
-        bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
+        if (isBookmarked) {
+            currentUser.update({
+                bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
+            }).then(() => {
+                console.log("bookmark has been removed for " + hospitalID);
+                document.getElementById(iconID).innerText = 'favorite_outline';
+            })
+        } else {
+            currentUser.update({
+                bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
+            }).then(() => {
+                console.log("bookmark has been saved for " + hospitalID);
+                document.getElementById(iconID).innerText = 'favorite';
+            })
+        }
+
     })
-        // Handle the front-end update to change the icon, providing visual feedback to the user that it has been un-bookmarked.
-        .then(function () {
-            console.log("bookmark has been removed for " + hospitalID);
-            var iconID = 'heart-' + hospitalID;
-            // Change the icon of the hike that was un-bookmarked to "hollow"
-            document.getElementById(iconID).innerText = 'favorite_outline';
-        });
 }
