@@ -89,13 +89,11 @@ getUserId();
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
 function displayFavouritesDynamically(userUid, collection) {
-    favouriteDocRef = db.collection('userProfiles').doc(userUid).collection('favourite');
+    currentUser = db.collection("userProfiles").doc(userUid);
     hospitalInfo = db.collection('hospitals');
 
     let cardTemplate = document.getElementById("favouriteHospitalTemplate"); // Retrieve the HTML element with the ID "favouriteHospitalTemplate" and store it in the cardTemplate variable. 
-
-    console.log(hospitalInfo, '123');
-
+    
     favouriteDocRef.get().then(querySnapshot => {
         return querySnapshot.docs.map(doc => doc.id);
     }).then(favHospitalList => {
@@ -111,9 +109,16 @@ function displayFavouritesDynamically(userUid, collection) {
                     newcard.querySelector('.card-title').innerHTML = data.name;
                     newcard.querySelector('.card-hour').innerHTML = data.hours;
                     newcard.querySelector('.card-text').innerHTML = data.details;
-                    fillHeart(newcard, hospitalId);
+                    newcard.querySelector('i').onclick = () => updateHeart(docID);
                     newcard.querySelector('.card-image').src = `./images/${data.code}.png`; //Example: MSJ.png
                     newcard.querySelector('a').href = "hospital_detail.html?docID=" + hospitalId;
+                    currentUser.get().then(userDoc => {
+                        //get the user name
+                        var bookmarks = userDoc.data().bookmarks;
+                        if (bookmarks.includes(docID)) {
+                            document.getElementById('heart-' + docID).innerText = 'favorite';
+                        }
+                    })
                     document.getElementById(collection + "-go-here").appendChild(newcard);
                 }).then(() => {
                     console.log(document.getElementById(collection + "-go-here"));
@@ -127,3 +132,28 @@ function displayFavouritesDynamically(userUid, collection) {
     })
 }
 
+function updateHeart(hosID) {
+
+    var iconID = 'heart-' + hosID;
+    // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
+    hike_saved = document.getElementById('heart-' + hosID).innerText == 'favorite'
+    if (hike_saved) {
+        currentUser.update({
+            // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
+            // This method ensures that the ID is added only if it's not already present, preventing duplicates.
+            bookmarks: firebase.firestore.FieldValue.arrayRemove(hosID)
+        }).then(function () {
+            console.log("bookmark has been removed for " + hosID);
+            //this is to change the icon of the hike that was saved to "filled"
+            document.getElementById(iconID).innerText = 'favorite_outline';
+        });
+    } else {
+        currentUser.update({
+            bookmarks: firebase.firestore.FieldValue.arrayUnion(hosID)
+        }).then(function () {
+            console.log("bookmark has been saved for " + hosID);
+            //this is to change the icon of the hike that was saved to "filled"
+            document.getElementById(iconID).innerText = 'favorite';
+        });
+    }
+}
