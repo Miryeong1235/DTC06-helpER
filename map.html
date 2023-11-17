@@ -62,14 +62,28 @@
         <h2 style="font-weight: bold; margin-top: 90px; text-align: center;">Map</h2>
         <div id='map' style='width: 100%; height: 400px;'></div>
         <!-- MAPBOX -->
-        <div>
-            <div class="card">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"></p>
+        <div class="container">
+            <div id="hospitals-go-here" class="row  justify-content-center">
             </div>
         </div>
+        <template id="hospitalCardTemplate">
+            <div class="card py-2 m-2 justify-content-center" style="width: 18rem">
+                <img class="card-image card-img-top" src=" ..." alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title d-inline-block px-1">Card title</h5>
+                    <!-- heart icon -->
+                    <i class ="material-icons material-icons2"> favorite_outline </i>
+                    <p class="card-hour">placeholder</p>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                    </p>
+                    <a class="btn btn-primary card-href">Read more ...</a>
+                </div>
+            </div>
+        </template>
+    
+
     </main>
     <footer id="footerPlaceholder"></footer>
 
