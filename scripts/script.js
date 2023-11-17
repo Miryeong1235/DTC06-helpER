@@ -101,11 +101,6 @@ function toConfirmRegister() {
     location.href = "confirm_registration.html";
 }
 
-function toWaitlistConfirmed() {
-    console.log("go to waitlist confirmed page");
-    location.href = "waitlist_confirmed.html";
-}
-
 function toMyReview() {
     console.log("go to my reviews page");
     location.href = "review.html";

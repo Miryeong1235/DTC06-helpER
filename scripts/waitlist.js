@@ -15,7 +15,7 @@ function writeReservation() {
         signature: $("#signature").val(),
         signDate: $("#signDate").val(),
         last_updated: firebase.firestore.FieldValue.serverTimestamp(),
-    }).then(() => { location.href = "waitlist_confirmation.html?docID=" + hospitalId; })
+    }).then(() => { location.href = "waitlist_confirmation.html?docID=" + user.uid + "-" + hospitalId; })
 }
 
 function readReservation(populate=false) {
@@ -56,3 +56,11 @@ function readReservation(populate=false) {
         }
     })
 }
+
+function cancelWaitlist() {
+    var txt;
+    if (confirm("Are you sure you want to cancel?")) {
+        alert("You have canceled your waitlist.")
+        location.href = "";
+    }
+  }
