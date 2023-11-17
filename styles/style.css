@@ -150,3 +150,31 @@ footer a {
     cursor: pointer;
     font-size: 25px;
 }
+
+#contact-three-parts {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: small;
+    gap: 50px;
+}
+
+@media (min-width: 426px) {
+    #contact-three-parts {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+    
+    #contact-address {
+        text-align: center;
+    }
+
+    #contact-phone {
+        text-align: center;
+    }
+
+    #contact-email {
+        text-align: center;
+    }
+}
