@@ -37,7 +37,7 @@ function writeHospitals() {
         name: "Vancouver General Hospital",
         city: "Vancouver",
         province: "BC",
-        address: "920 West 10th Ave Vancouver, BC, V5Z 1M9",         
+        address: "920 West 10th Ave Vancouver, BC, V5Z 1M9",
         phoneNumber: "(604) 875-4111",
         details: "Ages 17 and older/ Adult Hospital",
         hours: "24-7",
@@ -45,7 +45,7 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "RH",
-        name: "Richmond Hospital", 
+        name: "Richmond Hospital",
         city: "Richmond",
         province: "BC",
         address: "7000 Westminster Highway Richmond, BC, V6X 1A2, BC, V5Z 1M9",          //number value
@@ -56,10 +56,10 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "SPH",
-        name: "St. Paul's Hospital", 
+        name: "St. Paul's Hospital",
         city: "Vancouver",
         province: "BC",
-        address: "1081 Burrard St Vancouver, BC, V6Z 1Y6",         
+        address: "1081 Burrard St Vancouver, BC, V6Z 1Y6",
         phoneNumber: "(604) 682-2344",
         details: "Patients of all ages seen/ Full Service Hospital",
         hours: "24-7",
@@ -67,10 +67,10 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "MSJ",
-        name: "Mount Saint Joseph Hospital", 
+        name: "Mount Saint Joseph Hospital",
         city: "Vancouver",
         province: "BC",
-        address: "3080 Prince Edward St Vancouver, BC, V5T 3N4",          
+        address: "3080 Prince Edward St Vancouver, BC, V5T 3N4",
         phoneNumber: "(604) 874-1141",
         details: "Patients of all ages seen/ Full Service Hospital",
         hours: "8am to 8pm",
@@ -78,10 +78,10 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "LGH",
-        name: "Lions Gate Hospital", 
+        name: "Lions Gate Hospital",
         city: "North Vancouver",
         province: "BC",
-        address: "231 East 15th St North Vancouver, BC, V7L 2L7",          
+        address: "231 East 15th St North Vancouver, BC, V7L 2L7",
         phoneNumber: "(604) 988-3131",
         details: "Patients of all ages seen/ Full Service Hospital",
         hours: "24-7",
@@ -89,10 +89,10 @@ function writeHospitals() {
     });
     hospitalsRef.add({
         code: "UBC",
-        name: "UBC Hospital", 
+        name: "UBC Hospital",
         city: "Vancouver",
         province: "BC",
-        address: "2211 Wesbrook Mall Vancouver, BC, V6T 2B5",          
+        address: "2211 Wesbrook Mall Vancouver, BC, V6T 2B5",
         phoneNumber: "(604) 822-7121",
         details: "Patients of all ages seen",
         hours: "8am to 8pm",
@@ -163,7 +163,7 @@ function updateBookmark(hospitalID) {
     currentUser.get().then(userDoc => {
         let bookmarks = userDoc.data().bookmarks;
         let iconID = 'heart-' + hospitalID;
-        
+
         if (bookmarks) {
             var isBookmarked = bookmarks.includes(hospitalID); //check if this hikeDocID exist in bookmark
             console.log(isBookmarked);
@@ -182,12 +182,15 @@ function updateBookmark(hospitalID) {
                     document.getElementById(iconID).innerText = 'favorite';
                 })
             }
-        } else {
-            var isBookmarked = false;
-            currentUser.set({bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
-            }).then(() => {
-                console.log("bookmark initialize");
-            })
-        }
+        } 
+        // else {
+        //     var isBookmarked = false;
+        //     currentUser.set({
+        //         bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID),
+        //     }).then(() => {
+        //         document.getElementById(iconID).innerText = 'favorite';
+        //         console.log("bookmark initialize");
+        //     })
+        // }
     })
 }

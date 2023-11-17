@@ -12,20 +12,40 @@ function writeProfile() {
     var alcohol = document.getElementsByName('alcohol');
 
     // write basic info
-    user_profile.set({
-        first_name: $("#exampleInputFname").val(),
-        last_name: $("#exampleInputLname").val(),
-        email: $("#exampleInputEmail1").val(),
-        date_of_birth: $("#exampleInputdof").val(),
-        phone: $("#exampleInputPhone").val(),
-        phn: $("#exampleInputPHN").val(),
-        street_no: $("#exampleInputStreetNumber").val(),
-        street_name: $("#exampleInputStreetName").val(),
-        city: $("#exampleInputCity").val(),
-        province: $("#exampleInputProvince").val(),
-        postal_code: $("#exampleInputPostalCode").val(),
-    });
-
+    user_profile.get()
+        .then((currentUser) => {
+            if (currentUser.exists) {
+                user_profile.update({
+                    bookmarks: firebase.firestore.FieldValue.arrayUnion(),
+                    first_name: $("#exampleInputFname").val(),
+                    last_name: $("#exampleInputLname").val(),
+                    email: $("#exampleInputEmail1").val(),
+                    date_of_birth: $("#exampleInputdof").val(),
+                    phone: $("#exampleInputPhone").val(),
+                    phn: $("#exampleInputPHN").val(),
+                    street_no: $("#exampleInputStreetNumber").val(),
+                    street_name: $("#exampleInputStreetName").val(),
+                    city: $("#exampleInputCity").val(),
+                    province: $("#exampleInputProvince").val(),
+                    postal_code: $("#exampleInputPostalCode").val(),
+                })
+            } else {
+                user_profile.set({
+                    bookmarks: firebase.firestore.FieldValue.arrayUnion(),
+                    first_name: $("#exampleInputFname").val(),
+                    last_name: $("#exampleInputLname").val(),
+                    email: $("#exampleInputEmail1").val(),
+                    date_of_birth: $("#exampleInputdof").val(),
+                    phone: $("#exampleInputPhone").val(),
+                    phn: $("#exampleInputPHN").val(),
+                    street_no: $("#exampleInputStreetNumber").val(),
+                    street_name: $("#exampleInputStreetName").val(),
+                    city: $("#exampleInputCity").val(),
+                    province: $("#exampleInputProvince").val(),
+                    postal_code: $("#exampleInputPostalCode").val(),
+                })
+            }
+        })
     // retrieve smoking frequency
     for (i = 0; i < tobacco.length; i++) {
         if (tobacco[i].checked) {
@@ -103,9 +123,9 @@ function readProfile(autofillRegistration = false) {
             let data = profile.data();
             if (data) {
                 let elementIds = ['exampleInputFname', 'exampleInputLname', 'exampleInputEmail1', 'exampleInputdof', 'exampleInputPhone',
-                    'exampleInputPHN', 'exampleInputStreetNumber', 'exampleInputStreetName', 'exampleInputCity', 'exampleInputProvince', 
+                    'exampleInputPHN', 'exampleInputStreetNumber', 'exampleInputStreetName', 'exampleInputCity', 'exampleInputProvince',
                     'exampleInputPostalCode'];
-                let attrNames = ['first_name', 'last_name', 'email', 'date_of_birth', 'phone', 'phn', 'street_no', 'street_name', 'city', 
+                let attrNames = ['first_name', 'last_name', 'email', 'date_of_birth', 'phone', 'phn', 'street_no', 'street_name', 'city',
                     'province', 'postal_code']
                 for (i = 0; i < elementIds.length; i++) {
                     let elementId = elementIds[i];
@@ -114,8 +134,9 @@ function readProfile(autofillRegistration = false) {
                     } else {
                         $(`#${elementId}`).text(data[attrNames[i]]);
                     }
-                }}
+                }
             }
+        }
         )
 
         user_profile_extension.doc('emergency_contact').get().then(emergency => {
