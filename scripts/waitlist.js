@@ -56,3 +56,11 @@ function readReservation(populate=false) {
         }
     })
 }
+
+function cancelWaitlist() {
+    var txt;
+    if (confirm("Are you sure you want to cancel?")) {
+        alert("You have canceled your waitlist.")
+        location.href = "";
+    }
+  }
