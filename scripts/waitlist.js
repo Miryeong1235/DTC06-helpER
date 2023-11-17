@@ -22,7 +22,7 @@ function readReservation(populate=false) {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             let params = new URL(window.location.href); // get URL
-            let hospitalId = params.searchParams.get("docID").split('-')[1]; // get value for key "docID"
+            let hospitalId = params.searchParams.get("docID"); // get value for key "docID"
             console.log(hospitalId);
             var userProfile = db.collection('userProfiles').doc(user.uid);
             var reservation = userProfile.collection('reservation');
