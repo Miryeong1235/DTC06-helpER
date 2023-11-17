@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    
+
     <!-- Boostrap Library JS CDN  go here -->
 
     <!-- Other libraries go here -->
@@ -50,58 +50,33 @@
 
     <div style="height: 100px;"></div>
 
-    <div class="bg-light text-black text-center p-4 w-100">
+    <div class="bg-light text-black text-center p-4 w-100 my-3">
         <h2>My Reviews</h2>
         <p>View all your past reviews.</p>
     </div>
 
-    <div class="container mt-4" style="padding-bottom: 100px;">
+    <!-- <div class="container mt-4">
         <h4>Recent Reviews</h4>
-        <!-- User Review 1 -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">UVW Hospital</h5>
-                <p>Your Review: Great service <span class="stars">★★★★☆</span></p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores adipisci quo placeat illo eligendi
-                    eos vitae animi, minima quasi, tenetur deleniti! Illo, natus labore. Facilis omnis reprehenderit et
-                    quam, ipsum sint sunt beatae labore veritatis, ratione nemo odit officia voluptatem.</p>
-            </div>
-        </div>
-        <!-- User Review 2 -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">XXX Hospital</h5>
-                <p>Your Review: Okay experience <span class="stars">★★★☆☆</span></p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ea quas fuga nisi tempore aspernatur.
-                    Eius temporibus eum atque, modi necessitatibus iure expedita cumque nobis eaque perferendis ipsum.
-                    Ad, cumque? Sequi enim minima numquam, eos tempore itaque voluptates possimus eaque.</p>
-            </div>
-        </div>
-        <!-- User Review 3 -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">XYZ Hospital</h5>
-                <p>Your Review: Great service <span class="stars">★★★★☆</span></p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores adipisci quo placeat illo eligendi
-                    eos
-                    vitae animi, minima quasi, tenetur deleniti! Illo, natus labore. Facilis omnis reprehenderit et
-                    quam, ipsum
-                    sint sunt beatae labore veritatis, ratione nemo odit officia voluptatem.</p>
-            </div>
-        </div>
-        <!-- User Review 4 -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">ABC Hospital</h5>
-                <p>Your Review: Okay experience <span class="stars">★★★☆☆</span></p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et ea quas fuga nisi tempore aspernatur.
-                    Eius
-                    temporibus eum atque, modi necessitatibus iure expedita cumque nobis eaque perferendis ipsum. Ad,
-                    cumque?
-                    Sequi enim minima numquam, eos tempore itaque voluptates possimus eaque.</p>
+    </div> -->
+
+    <div class="container mb-5 text-center">
+        <!-- Here is the container for cards  -->
+        <div class="container">
+            <div id="review-go-here" class="row justify-content-center">
             </div>
         </div>
     </div>
+    <br>
+
+    <template id="myReviewTemplate">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 id="reviewHospitalName">Hospital name</h5>
+                <p id="reviewStar">star comes here</p>
+                <p id="reviewContent">this is content</p>
+            </div>
+        </div>
+    </template>
 
     <footer id="footerPlaceholder"></footer>
 
@@ -113,6 +88,7 @@
     <script src="./scripts/firebaseAPI_TEAM06.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/my_review.js"></script>
 
 </body>
 
