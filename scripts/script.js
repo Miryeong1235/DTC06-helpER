@@ -128,3 +128,8 @@ function getDisplayName() {
         }
     })
 }
+
+function toContactUs() {
+    console.log("go to contact page");
+    location.href = "contact.html";
+}
