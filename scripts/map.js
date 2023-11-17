@@ -50,6 +50,10 @@ function showMap() {
                         preview = doc.data().details; // Text Preview
                         // img = doc.data().posterurl; // Image
                         // url = doc.data().link; // URL
+                        
+                        //Calculate distance between hospital and user location
+                        // const distance = calculateDistance(lat, lng, userLocation[1], userLocation[0]);
+                        // const distanceText = `${distance.toFixed(2)} km`;
 
                         // Pushes information into the features array
                         // in our application, we have a string description of the hike
@@ -64,6 +68,12 @@ function showMap() {
                             }
                         });
                     });
+
+                    // features.sort((a, b) => {
+                    //     const distA = calculateDistance(a.geometry.coordinates[1], a.geometry.coordinates[0], userLocation[1], userLocation[0]);
+                    //     const distB = calculateDistance(b.geometry.coordinates[1], b.geometry.coordinates[0], userLocation[1], userLocation[0]);
+                    //     return distA - distB;
+                    // });
 
                     // Adds features as a source of data for the map
                     map.addSource('places', {
@@ -191,3 +201,16 @@ function showMap() {
 
 // Call the function to display the map with the user's location and event pins
 showMap();
+
+//
+
+// function calculateDistance(lat1, lon1, lat2, lon2) {
+//     const R = 6371; // Earth's radius in kilometers
+//     const dLat = (lat2 - lat1) * Math.PI / 180;
+//     const dLon = (lon2 - lon1) * Math.PI / 180;
+//     const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+//               Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+//               Math.sin(dLon/2) * Math.sin(dLon/2);
+//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+//     return R * c; // returns the distance in kilometers
+// }
