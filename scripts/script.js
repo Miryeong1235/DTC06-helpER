@@ -116,12 +116,32 @@ function toWaitlistConfirmed(url) {
 
 function toMyReview() {
     console.log("go to my reviews page");
-    location.href = "review.html";
+    firebase.auth().onAuthStateChanged(user => {
+        console.log(user);
+        if (user) {
+            location.href = "review.html";
+        } else {
+            console.log('user not logged in');
+            if (confirm("You are not logged in, log in now!")) {
+                location.href = "login.html";
+            } 
+        }
+    })
 }
 
 function toMyReservation() {
     console.log("go to my reviews page");
-    location.href = "reservation.html";
+    firebase.auth().onAuthStateChanged(user => {
+        console.log(user);
+        if (user) {
+            location.href = "reservation.html";
+        } else {
+            console.log('user not logged in');
+            if (confirm("You are not logged in, log in now!")) {
+                location.href = "login.html";
+            } 
+        }
+    })
 }
 
 //------------------------------------------------
