@@ -81,13 +81,23 @@ function toNotification() {
             } 
         }
     })
-    // location.href = "favourite_hospitals.html";
 }
 
 function toPostReview(url) {
     hospitalid = url.split("?")[1];
     console.log("go to post review page");
-    location.href = "post_review.html" + "?" + hospitalid;
+    firebase.auth().onAuthStateChanged(user => {
+        console.log(user);
+        if (user) {
+            console.log('user logged in, need to create a notification page.')
+            location.href = "post_review.html" + "?" + hospitalid;
+        } else {
+            console.log('user not logged in');
+            if (confirm("You are not logged in, log in now!")) {
+                location.href = "login.html";
+            } 
+        }
+    })
 }
 
 function joinWaitList(url) {
@@ -106,6 +116,11 @@ function joinWaitList(url) {
                         location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
                     }
                 });
+        } else {
+            console.log('user not logged in');
+            if (confirm("You are not logged in, log in now!")) {
+                location.href = "login.html";
+            }
         }
     })
 }
