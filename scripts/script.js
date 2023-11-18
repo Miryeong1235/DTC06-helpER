@@ -33,11 +33,15 @@ function profile() {
                         location.href = "prompt_to_register.html";
                     }
                 })
-            
+
         } else {
             console.log('user not logged in');
+            if (confirm("You are not logged in, log in now!")) {
+                location.href = "login.html";
+            } 
         }
-})}
+    })
+}
 
 
 //------------------------------------------------
@@ -70,7 +74,9 @@ function joinWaitList(url) {
                         location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
                     }
                 });
-}})}
+        }
+    })
+}
 
 function updateJoinWaitList(url) {
     console.log("go to join waitlist page");
@@ -79,7 +85,8 @@ function updateJoinWaitList(url) {
         console.log(user);
         if (user) {
             location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
-        }})
+        }
+    })
 }
 
 function toMap() {
