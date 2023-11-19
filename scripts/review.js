@@ -86,7 +86,11 @@ function displayCardsDynamically(collection, hospitalId, starFilter = '1 stars')
                 }
 
             })
+            if (document.getElementById(collection + "-go-here").innerHTML == '') {
+                document.getElementById(collection + "-go-here").innerHTML = 'No Match <br> <br>'
+            }
         })
+    
 }
 
 
