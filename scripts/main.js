@@ -159,38 +159,39 @@ document.getElementById('search').addEventListener('submit', function (event) {
 });
 
 function updateBookmark(hospitalID) {
-    let currentUser = db.collection("userProfiles").doc(userUid);
-    currentUser.get().then(userDoc => {
-        let bookmarks = userDoc.data().bookmarks;
-        let iconID = 'heart-' + hospitalID;
+    firebase.auth().onAuthStateChanged(user => {
+        // Check if a user is signed in:
+        if (user) {
+            let currentUser = db.collection("userProfiles").doc(userUid);
+            currentUser.get().then(userDoc => {
+                let bookmarks = userDoc.data().bookmarks;
+                let iconID = 'heart-' + hospitalID;
 
-        if (bookmarks) {
-            var isBookmarked = bookmarks.includes(hospitalID); //check if this hikeDocID exist in bookmark
-            console.log(isBookmarked);
-            if (isBookmarked) {
-                currentUser.update({
-                    bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
-                }).then(() => {
-                    console.log("bookmark has been removed for " + hospitalID);
-                    document.getElementById(iconID).innerText = 'favorite_outline';
-                })
-            } else {
-                currentUser.update({
-                    bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
-                }).then(() => {
-                    console.log("bookmark has been saved for " + hospitalID);
-                    document.getElementById(iconID).innerText = 'favorite';
-                })
-            }
-        } 
-        // else {
-        //     var isBookmarked = false;
-        //     currentUser.set({
-        //         bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID),
-        //     }).then(() => {
-        //         document.getElementById(iconID).innerText = 'favorite';
-        //         console.log("bookmark initialize");
-        //     })
-        // }
+                if (bookmarks) {
+                    var isBookmarked = bookmarks.includes(hospitalID); //check if this hikeDocID exist in bookmark
+                    console.log(isBookmarked);
+                    if (isBookmarked) {
+                        currentUser.update({
+                            bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
+                        }).then(() => {
+                            console.log("bookmark has been removed for " + hospitalID);
+                            document.getElementById(iconID).innerText = 'favorite_outline';
+                        })
+                    } else {
+                        currentUser.update({
+                            bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
+                        }).then(() => {
+                            console.log("bookmark has been saved for " + hospitalID);
+                            document.getElementById(iconID).innerText = 'favorite';
+                        })
+                    }
+                }
+            })
+        } else {
+            console.log('user not logged in');
+            if (confirm("You are not logged in, log in now!")) {
+                location.href = "login.html";
+            } 
+        }
     })
 }
