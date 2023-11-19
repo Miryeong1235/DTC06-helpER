@@ -106,16 +106,23 @@ function joinWaitList(url) {
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
         if (user) {
-            let reservationRef = db.collection('userProfiles').doc(user.uid).collection('reservation');
-            reservationRef.get()
-                .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
-                .then(reservationList => {
-                    if (reservationList.includes(hospitalId)) {
-                        location.href = "waitlist_confirmed.html?docID=" + user.uid + "-" + hospitalId;
-                    } else {
-                        location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
-                    }
-                });
+            let currentUser = db.collection("userProfiles").doc(user.uid);
+            currentUser.get().then(userDoc => {
+                if (userDoc.exists) {
+                    let reservationRef = db.collection('userProfiles').doc(user.uid).collection('reservation');
+                    reservationRef.get()
+                        .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
+                        .then(reservationList => {
+                            if (reservationList.includes(hospitalId)) {
+                                location.href = "waitlist_confirmed.html?docID=" + user.uid + "-" + hospitalId;
+                            } else {
+                                location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
+                            }
+                        });
+                } else {
+                    location.href = "prompt_to_register.html";
+                }
+            })
         } else {
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {
