@@ -35,6 +35,9 @@ function displayCardsDynamically(collection, userUid) { //collection is userProf
                         if (hospital_doc.exists) {
                             let newCard = cardTemplate.content.cloneNode(true);
                             newCard.querySelector('#currentReservationHospitalName').innerHTML = hospital_doc.data().name;
+                            
+                            let randomNumberOfPeople = Math.floor(Math.random() * 30) + 1
+                            newCard.querySelector('#numberOfPeople').innerHTML = randomNumberOfPeople;
 
                             document.getElementById("current-reservation-go-here").appendChild(newCard);
 
@@ -45,5 +48,4 @@ function displayCardsDynamically(collection, userUid) { //collection is userProf
             });
         });
 }
-
 
