@@ -66,11 +66,24 @@ function toggleMenu() {
 }
 
 function openMenu() {
-    $('#hamburgerPlaceholder').load('./text/hamburger_menu.html');
+    $('#hamburgerPlaceholder').load('./text/hamburger_menu.html', () => {
+        firebase.auth().onAuthStateChanged(user => {
+            console.log(document.getElementById('logout-btn').style.display === 'block', '====')
+            // Check if a user is signed in:
+            if (user) {
+                // Do something for the currently logged-in user here: 
+                document.getElementById("display-name").innerHTML = user.displayName;
+                document.getElementById("display-welcome").innerHTML = 'Welcome to helpER!';
+            } else {
+                document.getElementById('logout-btn').style.display = 'none';
+            }
+        })
+    });
     document.getElementById("hamburgerPlaceholder").style.width = "300px";
     document.getElementById("hamburgerPlaceholder").style.border = "1px solid grey";
     document.getElementById("menu-icon").innerHTML = 'menu_open';
     menuOpen = true;
+    
 }
 
 function closeMenu() {
