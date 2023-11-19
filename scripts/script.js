@@ -208,3 +208,8 @@ function toContactUs() {
     console.log("go to contact page");
     location.href = "contact.html";
 }
+
+function toHelp() {
+    console.log("go to help page");
+    location.href = "help.html";
+}
