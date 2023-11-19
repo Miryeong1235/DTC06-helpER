@@ -213,3 +213,8 @@ function toHelp() {
     console.log("go to help page");
     location.href = "help.html";
 }
+
+function toMap() {
+    console.log("go to map");
+    location.href = "map.html";
+}
