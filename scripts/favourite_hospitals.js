@@ -58,6 +58,9 @@ function getBookmarks(user) {
                     document.getElementById("favourite-go-here").appendChild(newcard);
                 })
             });
+            if (document.getElementById("favourite-go-here").innerHTML.trim() == '') {
+                document.getElementById("favourite-go-here").innerHTML += '<p class="py-5 my-5">You have not saved any hospital yet!</p>';
+            }
         })
 }
 
