@@ -20,11 +20,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
-    
+
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
     <!-------------------------------------------------------->
@@ -50,44 +52,32 @@
 
     <h4 style="padding-top: 50px; padding-left: 20px;">Current Reservation</h4>
 
-    <div class="current-reservation">
-        <div class="card border-primary mb-3 mx-auto" style="max-width: 90%;">
+    <!-- current reservation container -->
+    <div class="container my-5" id="current-reservation">
+        <div id="current-reservation-go-here" class="row"></div>
+    </div>
+    <br>
+
+    <!-- template for my reservation-->
+    <template id="myReservationCardTemplate">
+        <div class="card border-primary mb-3 mx-auto p-0" style="max-width: 90%;">
             <div class="card-header">In waitlist</div>
             <div class="card-body text-primary">
-                <h5 class="card-title" style="padding-bottom: 10px;">ABC Hospital</h5>
+                <h5 id="currentReservationHospitalName" class="card-title]" style="padding-bottom: 10px;">Hospital's name</h5>
                 <p class="card-text text-dark">Teams ahead of you:</p>
-                <p class="fs-1">5</p>
+                <p class="fs-1" id="numberOfPeople">number</p>
                 <div class="d-grid gap-2 col-8 mx-auto">
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" id="cancelButton" class="btn btn-danger" data-toggle="modal"
+                        data-target="#exampleModal">
                         Cancel reservation
                     </button>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel" style="color: red;">Cancel
-                                        reservation</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body" style="color: black;">
-                                    You will be removed from the waitlist. Are you sure you want to continue?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go
-                                        Back</button>
-                                    <button type="button" class="btn btn-danger">Continue</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </template>
+
+    <!-- previous reservations -->
     <h4 style="padding-top: 25px; padding-left: 20px;">Previous Reservations</h4>
 
     <div class="previous-reservations" style="padding-bottom: 80px;">
