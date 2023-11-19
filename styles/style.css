@@ -86,9 +86,9 @@ footer a {
     font-weight: 100;
 }
 
-.material-icons {
+.active-button, .material-icons {
     font-size: 45px;
-    font-weight: 100;
+    font-weight: 700;
 }
 
 .rate {
