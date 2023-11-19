@@ -117,13 +117,13 @@
         <h5>Filter by Rating</h4>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="ratingSelect">Select Rating</label>
-                <select class="form-select" id="ratingSelect" onchange="filterByRating()">
-                <option value="0">All Ratings</option>
-                <option value="5">5 stars</option>
-                <option value="4">4 stars</option>
-                <option value="3">3 stars</option>
-                <option value="2">2 stars</option>
-                <option value="1">1 stars</option>
+                <select class="form-select" id="ratingSelect" onchange="filterByRating(this)">
+                    <option value="0">All Ratings</option>
+                    <option value="5">5 stars</option>
+                    <option value="4">More than 4 stars</option>
+                    <option value="3">More than 3 stars</option>
+                    <option value="2">More than 2 stars</option>
+                    <option value="1">More than 1 stars</option>
                 </select>
             </div>
     </div>

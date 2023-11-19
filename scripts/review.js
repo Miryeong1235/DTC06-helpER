@@ -58,18 +58,20 @@ function writeReview(url) {
 //------------------------------------------------------------------------------
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
-function displayCardsDynamically(collection, hospitalId) {
+function displayCardsDynamically(collection, hospitalId, starFilter = '1 stars') {
     db.collection("hospitals").doc(hospitalId).get().then(doc => {
         hospitalName = doc.data().name;
     })
-    
-    let cardTemplate = document.getElementById("reviewTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
 
-    db.collection(collection).get()   //the collection called "hikes"
+    let cardTemplate = document.getElementById("reviewTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
+    document.getElementById(collection + "-go-here").innerHTML = '';
+    db.collection(collection).where('rating', '>=', starFilter).get()   //the collection called "hikes"
         .then(allReviews => {
+            console.log(allReviews)
             allReviews.forEach(doc => { //iterate thru each doc
+                console.log(doc, 'doc')
                 let doc_id = doc.id
-                if (doc_id.includes('-'+hospitalId)) {
+                if (doc_id.includes('-' + hospitalId)) {
                     var title = hospitalName;
                     var rating = parseInt(doc.data().rating.split(' stars')[0]);
                     var stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
@@ -79,13 +81,19 @@ function displayCardsDynamically(collection, hospitalId) {
                     newcard.querySelector('#reviewHospitalName').innerHTML = title;
                     newcard.querySelector('#reviewStar').innerHTML = stars;
                     newcard.querySelector('#reviewContent').innerHTML = comments;
-    
+
                     document.getElementById(collection + "-go-here").appendChild(newcard);
                 }
-                
+
             })
         })
 }
 
-// ★★★☆☆
+
+function filterByRating(selectObject) {
+    console.log('helllo')
+    var value = selectObject.value
+    console.log(value, 'the button selected');
+    displayCardsDynamically("review", hospitalId, `${value} stars`)
+}
 
