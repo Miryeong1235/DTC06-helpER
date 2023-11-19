@@ -133,10 +133,12 @@ function displayCardsDynamically(collection) {
 
 
                 currentUser.get().then(userDoc => {
-                    var bookmarks = userDoc.data().bookmarks;
-                    if (bookmarks.includes(docID)) {
-                        // If already bookmarked, remove the bookmark
-                        document.getElementById('heart-' + docID).innerHTML = 'favorite'
+                    if (userDoc.exists) {
+                        var bookmarks = userDoc.data().bookmarks;
+                        if (bookmarks.includes(docID)) {
+                            // If already bookmarked, remove the bookmark
+                            document.getElementById('heart-' + docID).innerHTML = 'favorite'
+                        }
                     }
                 });
 
@@ -164,34 +166,54 @@ function updateBookmark(hospitalID) {
         if (user) {
             let currentUser = db.collection("userProfiles").doc(userUid);
             currentUser.get().then(userDoc => {
-                let bookmarks = userDoc.data().bookmarks;
-                let iconID = 'heart-' + hospitalID;
+                if (userDoc.exists) {
+                    let bookmarks = userDoc.data().bookmarks;
+                    let iconID = 'heart-' + hospitalID;
 
-                if (bookmarks) {
-                    var isBookmarked = bookmarks.includes(hospitalID); //check if this hikeDocID exist in bookmark
-                    console.log(isBookmarked);
-                    if (isBookmarked) {
-                        currentUser.update({
-                            bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
-                        }).then(() => {
-                            console.log("bookmark has been removed for " + hospitalID);
-                            document.getElementById(iconID).innerText = 'favorite_outline';
-                        })
+                    if (bookmarks) {
+                        var isBookmarked = bookmarks.includes(hospitalID); //check if this hikeDocID exist in bookmark
+                        console.log(isBookmarked);
+                        if (isBookmarked) {
+                            currentUser.update({
+                                bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
+                            }).then(() => {
+                                console.log("bookmark has been removed for " + hospitalID);
+                                document.getElementById(iconID).innerText = 'favorite_outline';
+                            })
+                        } else {
+                            currentUser.update({
+                                bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
+                            }).then(() => {
+                                console.log("bookmark has been saved for " + hospitalID);
+                                document.getElementById(iconID).innerText = 'favorite';
+                            })
+                        }
                     } else {
-                        currentUser.update({
-                            bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
-                        }).then(() => {
-                            console.log("bookmark has been saved for " + hospitalID);
-                            document.getElementById(iconID).innerText = 'favorite';
-                        })
+                        console.log("Something went wrong! Bookmark attribute does not exist.")
                     }
+                } else {
+                    currentUser.set({
+                        bookmarks: firebase.firestore.FieldValue.arrayUnion(),
+                        first_name: '',
+                        last_name: '',
+                        email: '',
+                        date_of_birth: '',
+                        phone: '',
+                        phn: '',
+                        street_no: '',
+                        street_name: '',
+                        city: '',
+                        province: '',
+                        postal_code: '',
+                    })
                 }
+
             })
         } else {
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {
                 location.href = "login.html";
-            } 
+            }
         }
     })
 }
