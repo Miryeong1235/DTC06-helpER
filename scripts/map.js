@@ -47,7 +47,7 @@ function showMap() {
                             console.log(lat, lng);
                             coordinates = [lng, lat];
                             console.log(coordinates);
-                            distance = (((111.320 * (userLocation[0]-lng))**2 + (110.574 * (userLocation[1]-lat))**2)**0.5).toFixed(2)
+                            distance = (((111.320 * 0.555 * (userLocation[0]-lng))**2 + (110.574 * (userLocation[1]-lat))**2)**0.5).toFixed(2)
                             // Coordinates
                             event_name = doc.data().name; // Event Name
                             preview = doc.data().details; // Text Preview
