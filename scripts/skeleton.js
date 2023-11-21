@@ -10,6 +10,11 @@ function toggleFooterIcon (url) {
     } else {
         document.getElementById("bookmark-icon").className = 'material-icons-outlined';
     }
+    if (address == 'map.html') {
+        document.getElementById("map-icon").className = 'material-icons';
+    } else {
+        document.getElementById("map-icon").className = 'material-icons-outlined';
+    }
 }
 
 //---------------------------------------------------
