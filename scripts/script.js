@@ -67,22 +67,6 @@ function toFavouriteHospital() {
     })
 }
 
-function toNotification() {
-    console.log("go to notification");
-    firebase.auth().onAuthStateChanged(user => {
-        console.log(user);
-        if (user) {
-            console.log('user logged in, need to create a notification page.')
-            // location.href = "favourite_hospitals.html";
-        } else {
-            console.log('user not logged in');
-            if (confirm("You are not logged in, log in now!")) {
-                location.href = "login.html";
-            } 
-        }
-    })
-}
-
 function toPostReview(url) {
     hospitalid = url.split("?")[1];
     console.log("go to post review page");

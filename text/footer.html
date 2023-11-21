@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <div id="hamburgerPlaceholder"></div>
+<div id="notificationPlaceholder"></div>
 
 <footer class="container-fluid p-3 px-4 fixed-bottom">
     <div class="row justify-content-between">
@@ -9,8 +10,8 @@
             </button>
         </div>
         <div class="col text-center">
-            <button class="btn p-0 border-0" type="'button" onclick="toNotification()">
-                <a class="material-icons-outlined" id="notification-icon">notifications</a>
+            <button class="btn p-0 border-0">
+                <a onclick="toggleNotification()" class="material-icons-outlined" id="notification-icon">notifications</a>
             </button>
         </div>
         <div class="col text-center">

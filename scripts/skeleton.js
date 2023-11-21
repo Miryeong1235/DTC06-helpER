@@ -23,7 +23,6 @@ function loadSkeleton(url = undefined) {
             // User is signed in.
             // Do something for the user here.
             console.log($('#navbarPlaceholder').load('./text/nav_after_login.html'));
-            // console.log($('#footerPlaceholder').load('./text/footer.html'));
             $('#footerPlaceholder').load('./text/footer.html', () => {toggleFooterIcon(url)});
         } else {
             // No user is signed in.
@@ -40,6 +39,44 @@ function getCurrentURL() {
 function setup() {
     loadSkeleton(getCurrentURL());
 }
+
+notificationOpen = false;
+
+function toggleNotification() {
+    if (notificationOpen) {
+        closeNotification();
+    } else {
+        openNotification();
+        closeMenu();
+    }
+}
+
+function openNotification() {
+    $('#notificationPlaceholder').load('./text/notification.html', () => {
+        firebase.auth().onAuthStateChanged(user => {
+            console.log(user);
+            if (user) {
+                console.log('user logged in, need to create a notification page.')
+                // location.href = "favourite_hospitals.html";
+            } else {
+                console.log('user not logged in');
+                if (confirm("You are not logged in, log in now!")) {
+                    location.href = "login.html";
+                } 
+            }
+        })
+    })
+    document.getElementById("notificationPlaceholder").style.height = "200px";
+    document.getElementById("notification-icon").className = 'material-icons';
+    notificationOpen = true;
+}
+
+function closeNotification() {
+    document.getElementById("notificationPlaceholder").style.height = "0";
+    document.getElementById("notification-icon").className = 'material-icons-outlined';
+    notificationOpen = false;
+}
+
 var menuOpen = false;
 
 function toggleMenu() {
@@ -47,13 +84,13 @@ function toggleMenu() {
         closeMenu();
     } else {
         openMenu();
+        closeNotification();
     }
 }
 
 function openMenu() {
     $('#hamburgerPlaceholder').load('./text/hamburger_menu.html', () => {
         firebase.auth().onAuthStateChanged(user => {
-            console.log(document.getElementById('logout-btn').style.display === 'block', '====')
             // Check if a user is signed in:
             if (user) {
                 // Do something for the currently logged-in user here: 

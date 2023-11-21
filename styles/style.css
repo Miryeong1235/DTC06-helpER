@@ -146,6 +146,21 @@ footer a {
     transition: 0.2s;
 }
 
+#notificationPlaceholder {
+    box-sizing: border-box;
+    height: 0;
+    width: 75%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    color: black;
+    background-color: whitesmoke;
+    transition: 0.2s;
+}
+
 .material-icons2 {
     cursor: pointer;
     font-size: 25px;
