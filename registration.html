@@ -21,7 +21,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
@@ -106,15 +108,18 @@
         <p class="lead">Emergency Contact</p>
         <div class="form-group">
             <label for="exampleInputEmergengyName">Full name</label>
-            <input type="text" class="form-control extension-emergency_contact" id="exampleInputEmergengyName" placeholder="Full name">
+            <input type="text" class="form-control extension-emergency_contact" id="exampleInputEmergengyName"
+                placeholder="Full name">
         </div>
         <div class="form-group">
             <label for="exampleInputEmergengyPhone">Phone number</label>
-            <input type="number" class="form-control extension-emergency_contact" id="exampleInputEmergengyPhone" placeholder="No hyphens">
+            <input type="number" class="form-control extension-emergency_contact" id="exampleInputEmergengyPhone"
+                placeholder="No hyphens">
         </div>
         <div class="form-group">
             <label for="exampleInputRelation">Relationship</label>
-            <input type="text" class="form-control extension-emergency_contact" id="exampleInputRelation" placeholder="Enter the relationship">
+            <input type="text" class="form-control extension-emergency_contact" id="exampleInputRelation"
+                placeholder="Enter the relationship">
         </div>
 
     </form>
@@ -123,15 +128,18 @@
         <p class="lead">Family Doctor</p>
         <div class="form-group">
             <label for="exampleInputFamilyDoctorName">Doctor's Full name</label>
-            <input type="text" class="form-control extension-family_doctor" id="exampleInputFamilyDoctorName" placeholder="Full name">
+            <input type="text" class="form-control extension-family_doctor" id="exampleInputFamilyDoctorName"
+                placeholder="Full name">
         </div>
         <div class="form-group">
             <label for="exampleInputFamilyClinicName">Clinic's name</label>
-            <input type="text" class="form-control extension-family_doctor" id="exampleInputFamilyClinicName" placeholder="Clinic's name">
+            <input type="text" class="form-control extension-family_doctor" id="exampleInputFamilyClinicName"
+                placeholder="Clinic's name">
         </div>
         <div class="form-group">
             <label for="exampleInputDoctorPhone">Phone number</label>
-            <input type="number" class="form-control extension-family_doctor" id="exampleInputDoctorPhone" placeholder="No hyphens">
+            <input type="number" class="form-control extension-family_doctor" id="exampleInputDoctorPhone"
+                placeholder="No hyphens">
         </div>
 
     </form>
@@ -140,15 +148,18 @@
         <p class="lead">Medical History</p>
         <div class="form-group">
             <label for="exampleInputMedications">Please list any medications you are currently taking:</label>
-            <input type="text" class="form-control extension-medical_history" id="exampleInputMedications" placeholder="Medication name">
+            <input type="text" class="form-control extension-medical_history" id="exampleInputMedications"
+                placeholder="Medication name">
         </div>
         <div class="form-group">
             <label for="exampleInputAllergies">Please list any allergies:</label>
-            <input type="text" class="form-control extension-medical_history" id="exampleInputAllergies" placeholder="Enter if you have allergy">
+            <input type="text" class="form-control extension-medical_history" id="exampleInputAllergies"
+                placeholder="Enter if you have allergy">
         </div>
         <div class="form-group">
             <label for="exampleInputSurgery">Please list any surgery history:</label>
-            <input type="text" class="form-control extension-medical_history" id="exampleInputSurgery" placeholder="Enter your surgery history">
+            <input type="text" class="form-control extension-medical_history" id="exampleInputSurgery"
+                placeholder="Enter your surgery history">
         </div>
 
     </form>
@@ -159,9 +170,15 @@
         <p>Do you consume any alcohol?</p>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="alcohol" id="alcoholDont">
-            <label class="form-check-label" for="alcoholDont" id="alcoholDontLabel">
-                Don't drink
+            <input class="form-check-input" type="radio" name="alcohol" id="alcoholNever">
+            <label class="form-check-label" for="alcoholNever" id="alcoholNeverLabel">
+                Never
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="alcohol" id="alcoholRarely">
+            <label class="form-check-label" for="alcoholRarely" id="alcoholRarelyLabel">
+                Rarely
             </label>
         </div>
         <div class="form-check">
@@ -171,9 +188,21 @@
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="alcohol" id="alcoholEveryday" checked>
-            <label class="form-check-label" for="alcoholEveryday" id="alcoholEverydayLabel">
-                Everyday
+            <input class="form-check-input" type="radio" name="alcohol" id="alcoholOften">
+            <label class="form-check-label" for="alcoholOften" id="alcoholOftenLabel">
+                Often
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="alcohol" id="alcoholAlways">
+            <label class="form-check-label" for="alcoholAlways" id="alcoholAlwaysLabel">
+                Always
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="alcohol" id="alcoholQuit" checked>
+            <label class="form-check-label" for="alcoholQuit" id="alcoholQuitLabel">
+                I quit
             </label>
         </div>
 
@@ -186,19 +215,37 @@
         <div class="form-check">
             <input class="form-check-input" type="radio" name="tobacco" id="smokeNever">
             <label class="form-check-label" for="smokeNever" id="smokeNeverLabel">
-                Never smoke
+                Never
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="tobacco" id="smokeYes" checked>
-            <label class="form-check-label" for="smokeYes" id="smokeYesLabel">
-                I do smoke
+            <input class="form-check-input" type="radio" name="tobacco" id="smokeRarely" checked>
+            <label class="form-check-label" for="smokeRarely" id="smokeRarelyLabel">
+                Rarely
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tobacco" id="smokeSometimes" checked>
+            <label class="form-check-label" for="smokeSometimes" id="smokeSometimesLabel">
+                Sometimes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tobacco" id="smokeOften" checked>
+            <label class="form-check-label" for="smokeOften" id="smokeOftenLabel">
+                Often
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="tobacco" id="smokeAlways" checked>
+            <label class="form-check-label" for="smokeAlways" id="smokeAlwaysLabel">
+                Always
             </label>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="tobacco" id="smokeQuit" checked>
             <label class="form-check-label" for="smokeQuit" id="smokeQuitLabel">
-                I quitted
+                I quit
             </label>
         </div>
 
