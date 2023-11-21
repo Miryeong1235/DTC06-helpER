@@ -30,9 +30,10 @@ main {
     color: white;
 }
 
-#profile-icon {
+#profile-icon, #sign-in-icon {
     padding: 5px 15px 0px 15px;
     color: #E9ECEF;
+    font-size: 15px;
 }
 
 #search-icon {
@@ -82,12 +83,12 @@ footer a {
 }
 
 .material-icons-outlined {
-    font-size: 45px;
+    font-size: 35px;
     font-weight: 100;
 }
 
-.active-button, .material-icons {
-    font-size: 45px;
+.material-icons {
+    font-size: 35px;
     font-weight: 700;
 }
 
@@ -250,7 +251,7 @@ footer a {
 }
 
 #notification-icon {
-    font-size: 36px;
+    font-size: 35px;
     text-decoration: none;
     color: #E9ECEF;
 }
