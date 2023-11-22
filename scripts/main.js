@@ -137,7 +137,7 @@ function displayCardsDynamically(collection) {
                         var bookmarks = userDoc.data().bookmarks;
                         if (bookmarks.includes(docID)) {
                             // If already bookmarked, remove the bookmark
-                            document.getElementById('heart-' + docID).innerHTML = 'favorite'
+                            document.getElementById('heart-' + docID).innerHTML = 'bookmark'
                         }
                     }
                 });
@@ -178,14 +178,14 @@ function updateBookmark(hospitalID) {
                                 bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
                             }).then(() => {
                                 console.log("bookmark has been removed for " + hospitalID);
-                                document.getElementById(iconID).innerText = 'favorite_outline';
+                                document.getElementById(iconID).innerText = 'bookmark_add';
                             })
                         } else {
                             currentUser.update({
                                 bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
                             }).then(() => {
                                 console.log("bookmark has been saved for " + hospitalID);
-                                document.getElementById(iconID).innerText = 'favorite';
+                                document.getElementById(iconID).innerText = 'bookmark';
                             })
                         }
                     } else {
