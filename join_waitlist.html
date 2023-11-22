@@ -14,7 +14,9 @@
         crossorigin="anonymous"></script>
 
     <!-- Other libraries go here -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
@@ -35,13 +37,29 @@
 
     <div class="my-5 py-5">
         <h1 class="text-center m-5">Join Waitlist</h1>
-        <div class="m-5">
-            <label for="comment">Purpose of Visit:</label>
-            <textarea class="form-control" rows="5" id="purposeOfVisit" name="text"></textarea>
+        <div class="m-4">
+            <label for="exampleInputFname">First name</label>
+            <input type="text" class="form-control" id="exampleInputFname" placeholder="First name">
         </div>
-        <div class="m-5">
-            <label for="comment">Your Symptoms:</label>
-            <textarea class="form-control" rows="5" id="symptoms" name="text"></textarea>
+        <div class="m-4">
+            <label for="exampleInputLname">Last name</label>
+            <input type="text" class="form-control" id="exampleInputLname" placeholder="Last name">
+        </div>
+        <div class="m-4">
+            <label for="exampleInputdof">Date of birth</label>
+            <input type="date" class="form-control" id="exampleInputdof" placeholder="MM/DD/YYYY">
+        </div>
+        <div class="m-4">
+            <label for="exampleInputPhone">Phone number</label>
+            <input type="number" class="form-control" id="exampleInputPhone" placeholder="No hyphens">
+        </div>
+        <div class="m-4">
+            <label for="exampleInputPHN">Personal Health Number</label>
+            <input type="number" class="form-control" id="exampleInputPHN" placeholder="No hyphens">
+        </div>
+        <div class="m-4 pb-5">
+            <label for="comment">Purpose of Visit / Symptoms:</label>
+            <textarea class="form-control" rows="5" id="purposeOfVisit" name="text"></textarea>
         </div>
         <div class="m-4">
             <h2 class="text-center py-2">Authorization</h2>
@@ -53,7 +71,8 @@
             <input class="form-control input-sm" id="signature" type="text"><br>
             <label>Date:</label><br>
             <input class="form-control input-sm" id="signDate" type="date"><br>
-            <div class="text-center my-5"><button class="btn btn-primary px-5" onclick="writeReservation()">Confirm</button></div>
+            <div class="text-center my-5"><button class="btn btn-primary px-5"
+                    onclick="writeReservation()">Confirm</button></div>
         </div>
     </div>
 
@@ -70,6 +89,9 @@
     <script src="./scripts/script.js"></script>
     <script src="./scripts/waitlist.js"></script>
 
+    <script>
+        populateReservationInfo();
+    </script>
 </body>
 
 </html>

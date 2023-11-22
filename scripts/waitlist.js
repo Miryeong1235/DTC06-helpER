@@ -1,6 +1,6 @@
 function populateReservationInfo() {
     console.log('populate user info from firestore database');
-    readProfile(true);
+    readReservation(true);
 }
 
 function writeReservation() {
@@ -11,7 +11,6 @@ function writeReservation() {
 
     reservation.set({
         purposeOfVisit: $("#purposeOfVisit").val(),
-        symptoms: $("#symptoms").val(),
         signature: $("#signature").val(),
         signDate: $("#signDate").val(),
         last_updated: firebase.firestore.FieldValue.serverTimestamp(),
@@ -30,16 +29,19 @@ function readReservation(populate=false) {
             userProfile.get().then(doc => doc.data())
                 .then(data => {
                     console.log(data);
-                    document.getElementById('fname').innerHTML = data.first_name;
-                    document.getElementById('lname').innerHTML = data.last_name;
-                    document.getElementById('dateOfBirth').innerHTML = data.date_of_birth;
-                    document.getElementById('phone').innerHTML = data.phn;
-                    document.getElementById('phn').innerHTML = data.phone;
-                    document.getElementById('exampleInputStreetNumber').innerHTML = data.street_no;
-                    document.getElementById('exampleInputStreetName').innerHTML = data.street_name;
-                    document.getElementById('exampleInputCity').innerHTML = data.city;
-                    document.getElementById('exampleInputProvince').innerHTML = data.province;
-                    document.getElementById('exampleInputPostalCode').innerHTML = data.postal_code;
+                    if (populate) {
+                        document.getElementById('exampleInputFname').value = data.first_name;
+                        document.getElementById('exampleInputLname').value = data.last_name;
+                        document.getElementById('exampleInputdof').value = data.date_of_birth;
+                        document.getElementById('exampleInputPhone').value = data.phn;
+                        document.getElementById('exampleInputPHN').value = data.phone;
+                    } else {
+                        document.getElementById('fname').innerHTML = data.first_name;
+                        document.getElementById('lname').innerHTML = data.last_name;
+                        document.getElementById('dateOfBirth').innerHTML = data.date_of_birth;
+                        document.getElementById('phone').innerHTML = data.phn;
+                        document.getElementById('phn').innerHTML = data.phone;
+                    }
                 })
             reservation.get().then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
                 .then(reservationList => {
@@ -47,7 +49,6 @@ function readReservation(populate=false) {
                         reservation.doc(hospitalId).get().then(doc => doc.data())
                             .then(data => {
                                 document.getElementById('purposeOfVisit').innerHTML = data.purposeOfVisit;
-                                document.getElementById('symptoms').innerHTML = data.symptoms;
                             })
                     }
                 })
