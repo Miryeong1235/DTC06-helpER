@@ -36,6 +36,12 @@ main {
     font-size: 15px;
 }
 
+#logo {
+    color: #E9ECEF;
+    font-size: 25px;
+    font-family: 'Lobster', sans-serif;
+}
+
 #search-icon {
     margin: 0;
     padding: 15px;
