@@ -40,6 +40,7 @@ main {
     color: #E9ECEF;
     font-size: 25px;
     font-family: 'Lobster', sans-serif;
+    text-decoration: none;
 }
 
 #search-icon {
