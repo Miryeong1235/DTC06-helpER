@@ -6,21 +6,16 @@ function getNameFromAuth() {
         if (user) {
             // Do something for the currently logged-in user here: 
             userUid = user.uid;
-            console.log(user.uid); //print the uid in the browser console
-            console.log(user.displayName);  //print the user name in the browser console
-            userName = user.displayName;
-
-            //method #1:  insert with JS
-            //document.getElementById("name-goes-here").innerText = userName;    
-
-            //method #2:  insert using jquery
-            $("#name-goes-here").text(userName); //using jquery
-
-            //method #3:  insert using querySelector
-            //document.querySelector("#name-goes-here").innerText = userName
-
+            console.log('User singned in with the id:', user.uid); //print the uid in the browser console
+            var currentUser = db.collection("userProfiles").doc(userUid);
+            currentUser.get()
+                .then(doc => {
+                    userName = doc.data().first_name;
+                    $("#name-goes-here").text(userName);
+                })
         } else {
             // No user is signed in.
+            console.log('User has not signed in')
         }
     });
 }
