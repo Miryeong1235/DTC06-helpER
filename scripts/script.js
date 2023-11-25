@@ -67,6 +67,12 @@ function toFavouriteHospital() {
     })
 }
 
+function prevResvReview(btn) {
+    let hospital_id = $(btn).closest('.card-body').find("#previousReservationHospitalId").text();
+    toPostReview(`?docID=${hospital_id}`)
+}
+
+
 function toPostReview(url) {
     hospitalid = url.split("?docID=")[1];
     console.log("go to post review page");
