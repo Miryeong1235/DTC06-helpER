@@ -6,21 +6,16 @@ function getNameFromAuth() {
         if (user) {
             // Do something for the currently logged-in user here: 
             userUid = user.uid;
-            console.log(user.uid); //print the uid in the browser console
-            console.log(user.displayName);  //print the user name in the browser console
-            userName = user.displayName;
-
-            //method #1:  insert with JS
-            //document.getElementById("name-goes-here").innerText = userName;    
-
-            //method #2:  insert using jquery
-            $("#name-goes-here").text(userName); //using jquery
-
-            //method #3:  insert using querySelector
-            //document.querySelector("#name-goes-here").innerText = userName
-
+            console.log('User singned in with the id:', user.uid); //print the uid in the browser console
+            var currentUser = db.collection("userProfiles").doc(userUid);
+            currentUser.get()
+                .then(doc => {
+                    userName = doc.data().first_name;
+                    $("#name-goes-here").text(userName);
+                })
         } else {
             // No user is signed in.
+            console.log('User has not signed in')
         }
     });
 }
@@ -137,7 +132,7 @@ function displayCardsDynamically(collection) {
                         var bookmarks = userDoc.data().bookmarks;
                         if (bookmarks.includes(docID)) {
                             // If already bookmarked, remove the bookmark
-                            document.getElementById('heart-' + docID).innerHTML = 'favorite'
+                            document.getElementById('heart-' + docID).innerHTML = 'bookmark'
                         }
                     }
                 });
@@ -178,14 +173,14 @@ function updateBookmark(hospitalID) {
                                 bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
                             }).then(() => {
                                 console.log("bookmark has been removed for " + hospitalID);
-                                document.getElementById(iconID).innerText = 'favorite_outline';
+                                document.getElementById(iconID).innerText = 'bookmark_add';
                             })
                         } else {
                             currentUser.update({
                                 bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
                             }).then(() => {
                                 console.log("bookmark has been saved for " + hospitalID);
-                                document.getElementById(iconID).innerText = 'favorite';
+                                document.getElementById(iconID).innerText = 'bookmark';
                             })
                         }
                     } else {
