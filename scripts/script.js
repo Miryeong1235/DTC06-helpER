@@ -95,7 +95,13 @@ function joinWaitList(url) {
                 .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
                 .then(reservationList => {
                     if (reservationList.includes(hospitalId)) {
-                        location.href = "waitlist_confirmed.html?docID=" + user.uid + "-" + hospitalId;
+                        reservationRef.doc(hospitalId).get().then(hospital_doc => {
+                            if (hospital_doc.data().visited == true) {
+                                location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
+                            } else {
+                                location.href = "waitlist_confirmed.html?docID=" + user.uid + "-" + hospitalId;
+                            }
+                        })
                     } else {
                         location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
                     }

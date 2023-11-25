@@ -31,7 +31,7 @@ function getQueue(userId, hospitalId) {
                     i++;
                     let promise = userProfiles.doc(otherUser.id).collection('reservation').doc(hospitalId).get()
                         .then(otherReservation => {
-                            if (otherReservation.exists && otherReservation.data().last_updated.seconds < user_resv_timestamp) {
+                            if (otherReservation.exists && otherReservation.data().visited == false && otherReservation.data().last_updated.seconds < user_resv_timestamp) {
                                 queue.push(otherUser.id);
                             }
                         });
