@@ -1,6 +1,3 @@
-// $('#myModal').on('shown.bs.modal', function () {
-//     $('#myInput').trigger('focus')
-// })
 
 var userUid = undefined;
 
@@ -17,8 +14,36 @@ function getUserId() {
     })
 }
 
-getUserId();
+function getQueue(userId, hospitalId) {
+    let userProfiles = db.collection('userProfiles');
+    let queue = [];
+    let i = 0;
+    let endi = 0;
 
+    return userProfiles.doc(userId).collection('reservation').doc(hospitalId)
+        .get()
+        .then(doc => doc.data().last_updated.seconds)
+        .then(user_resv_timestamp => {
+            return userProfiles.get().then(otherUsers => {
+                endi = otherUsers.docs.length;
+                let promises = []; // Store promises in an array
+                otherUsers.forEach(otherUser => {
+                    i++;
+                    let promise = userProfiles.doc(otherUser.id).collection('reservation').doc(hospitalId).get()
+                        .then(otherReservation => {
+                            if (otherReservation.exists && otherReservation.data().last_updated.seconds < user_resv_timestamp) {
+                                queue.push(otherUser.id);
+                            }
+                        });
+                    promises.push(promise); // Add each promise to the array
+                });
+                // Wait for all promises to resolve before returning the queue length
+                return Promise.all(promises).then(() => {
+                    return queue.length;
+                });
+            });
+        });
+}
 
 function displayCardsDynamically(collection, userUid) { //collection is userProfiles
     let current_count = 0;
@@ -34,7 +59,7 @@ function displayCardsDynamically(collection, userUid) { //collection is userProf
                     let thisReservationID = reservation_doc.id; //get reservation id
                     // get hospital's name based on the reservation ID
                     db.collection('hospitals').doc(thisReservationID)
-                        .get().then(hospital_doc => {
+                        .get().then(async hospital_doc => {
                             if (hospital_doc.exists) {
                                 if (!reservation_doc.data().visited) {
                                     if (current_count == 0) {
@@ -45,9 +70,14 @@ function displayCardsDynamically(collection, userUid) { //collection is userProf
                                     newCard.querySelector('#currentReservationHospitalName').innerHTML = hospital_doc.data().name;
                                     newCard.querySelector('#currentReservationHospitalId').innerHTML = thisReservationID;
 
-                                    let randomNumberOfPeople = Math.floor(Math.random() * 30) + 1
-                                    newCard.querySelector('#numberOfPeople').innerHTML = randomNumberOfPeople;
-
+                                    await getQueue(userUid, thisReservationID).then(randomNumberOfPeople => {
+                                        if (randomNumberOfPeople == 0) {
+                                            newCard.querySelector('#numberOfPeople').innerHTML = 'You are next!'
+                                        } else {
+                                            newCard.querySelector('#numberOfPeople').innerHTML = randomNumberOfPeople;
+                                        }
+                                    })
+                                    
                                     document.getElementById("current-reservation-go-here").appendChild(newCard);
                                 } else {
                                     if (previous_count == 0) {
@@ -65,5 +95,11 @@ function displayCardsDynamically(collection, userUid) { //collection is userProf
 
             }
         })
-    
 }
+
+
+function setup() {
+    getUserId();
+}
+
+$(document).ready(setup)
