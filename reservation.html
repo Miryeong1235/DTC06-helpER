@@ -64,11 +64,12 @@
             <div class="card-header">In waitlist</div>
             <div class="card-body text-primary">
                 <h5 id="currentReservationHospitalName" class="card-title]" style="padding-bottom: 10px;">Hospital's name</h5>
+                <h5 id="currentReservationHospitalId" style="display: none;"></h5>
                 <p class="card-text text-dark">Teams ahead of you:</p>
                 <p id="numberOfPeople" class="fs-1">number</p>
                 <div class="d-grid gap-2 col-8 mx-auto">
                     <button type="button" id="cancelButton" class="btn btn-danger" data-toggle="modal"
-                        data-target="#exampleModal">
+                        data-target="#exampleModal" onclick="cancelWaitlist(this)">
                         Cancel reservation
                     </button>
                 </div>
@@ -162,6 +163,7 @@
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/reservation.js"></script>
+    <script src="./scripts/waitlist.js"></script>
 
 </body>
 

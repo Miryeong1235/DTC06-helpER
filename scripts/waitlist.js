@@ -88,10 +88,20 @@ function readReservation(populate = false) {
     })
 }
 
-function cancelWaitlist() {
-    var txt;
+function cancelWaitlist(btn) {
     if (confirm("Are you sure you want to cancel?")) {
         alert("You have canceled your waitlist.")
-        location.href = "";
+        let user = firebase.auth().currentUser;
+        let userProfile = db.collection('userProfiles').doc(user.uid);
+        let hospital_id = $(btn).closest('.card-body').find("#currentReservationHospitalId").text();
+        let reservation = userProfile.collection('reservation').doc(hospital_id);
+        reservation.delete().then(() => {
+            console.log("Document successfully deleted!");
+            location.reload();
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+        
+        
     }
 }

@@ -35,6 +35,7 @@ function displayCardsDynamically(collection, userUid) { //collection is userProf
                         if (hospital_doc.exists) {
                             let newCard = cardTemplate.content.cloneNode(true);
                             newCard.querySelector('#currentReservationHospitalName').innerHTML = hospital_doc.data().name;
+                            newCard.querySelector('#currentReservationHospitalId').innerHTML = thisReservationID;
                             
                             let randomNumberOfPeople = Math.floor(Math.random() * 30) + 1
                             newCard.querySelector('#numberOfPeople').innerHTML = randomNumberOfPeople;
