@@ -42,6 +42,7 @@ function writeReservation() {
         signature: $("#signature").val(),
         signDate: $("#signDate").val(),
         last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+        visited: false,
     }).then(() => { location.href = "waitlist_confirmation.html?docID=" + user.uid + "-" + hospitalId; })
 }
 

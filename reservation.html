@@ -50,11 +50,13 @@
 
     <h1 class="text-center" style="padding-top: 120px;">My Reservations</h1>
 
-    <h4 style="padding-top: 50px; padding-left: 20px;">Current Reservation</h4>
+    <h4 style="padding-top: 50px; padding-bottom: 25px; padding-left: 20px;">Current Reservation</h4>
 
     <!-- current reservation container -->
-    <div class="container my-5" id="current-reservation">
-        <div id="current-reservation-go-here" class="row"></div>
+    <div class="container mt-4" id="current-reservation">
+        <div id="current-reservation-go-here" class="row">
+            <p class="text-center text-secondary">You have no record of joined waitlist at the moment!</p>
+        </div>
     </div>
     <br>
 
@@ -63,7 +65,7 @@
         <div class="card border-primary mb-3 mx-auto p-0" style="max-width: 90%;">
             <div class="card-header">In waitlist</div>
             <div class="card-body text-primary">
-                <h5 id="currentReservationHospitalName" class="card-title]" style="padding-bottom: 10px;">Hospital's name</h5>
+                <h5 id="currentReservationHospitalName" class="card-title" style="padding-bottom: 10px;">Hospital's name</h5>
                 <h5 id="currentReservationHospitalId" style="display: none;"></h5>
                 <p class="card-text text-dark">Teams ahead of you:</p>
                 <p id="numberOfPeople" class="fs-1">number</p>
@@ -79,44 +81,31 @@
     </template>
 
     <!-- previous reservations -->
-    <h4 style="padding-top: 25px; padding-left: 20px;">Previous Reservations</h4>
+    <h4 style="padding-top: 25px; padding-bottom: 25px; padding-left: 20px;">Previous Reservations</h4>
+    <div class="container pb-5 mb-5" id="previous-reservation">
+        <div id="previous-reservation-go-here" class="row">
+            <p class="text-center text-secondary">You have no waitlist history!</p>
+        </div>
+    </div>
 
-    <div class="previous-reservations" style="padding-bottom: 80px;">
-        <div class="card border-dark mb-3 mx-auto" style="max-width: 90%;">
+    <!-- <div class="previous-reservations" style="padding-bottom: 80px;"> -->
+    <template id="previousReservationsTemplate">
+        <div class="card border-dark mb-3 mx-auto px-0" style="max-width: 90%;">
             <div class="card-header">Complete</div>
-            <div class="card-body text-dark">
-                <h5 class="card-title" style="padding-bottom: 10px;">Lions Gate Hospital</h5>
+            <div class="card-body text-dark py-4">
+                <h5 id="previousReservationHospitalName" class="card-title" style="padding-bottom: 10px;">Hospital Name</h5>
+                <h5 id="previousReservationHospitalId" style="display: none;"></h5>
                 <p class="card-text text-dark">Checkup complete</p>
                 <div class="d-grid gap-2 col-8 mx-auto">
-                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal-2" onclick="toPostReview('?docID=wB1YhgsXWMdRDc9Z8s2F')">
+                    <button type="button" class="btn btn-dark" data-toggle="modal" 
+                        data-target="#exampleModal-2" onclick="toPostReview(this)">
                         Write Review
                     </button>
-                    <div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel" style="color: blue;">Write review
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body" style="color: black;">
-                                    You will be directed to the review page. Are you sure you want to continue?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go
-                                        Back</button>
-                                    <button type="button" class="btn btn-primary">Continue</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="card border-dark mb-3 mx-auto" style="max-width: 90%;">
+    </template>
+        <!-- <div class="card border-dark mb-3 mx-auto" style="max-width: 90%;">
             <div class="card-header">Complete</div>
             <div class="card-body text-dark">
                 <h5 class="card-title" style="padding-bottom: 10px;">Vancouver General Hospital</h5>
@@ -150,7 +139,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <footer id="footerPlaceholder"></footer>
 
