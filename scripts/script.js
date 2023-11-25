@@ -68,13 +68,13 @@ function toFavouriteHospital() {
 }
 
 function toPostReview(url) {
-    hospitalid = url.split("?")[1];
+    hospitalid = url.split("?docID=")[1];
     console.log("go to post review page");
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
         if (user) {
             console.log('user logged in, need to create a notification page.')
-            location.href = "post_review.html" + "?" + hospitalid;
+            location.href = "post_review.html" + "?docID=" + hospitalid;
         } else {
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {

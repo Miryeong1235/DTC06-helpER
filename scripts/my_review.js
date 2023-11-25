@@ -31,7 +31,7 @@ function displayCardsDynamically(collection, userUid) {
                 if (doc_id.startsWith(userUid)) {
                     let hospitalId = doc_id.split('-')[1];
                     db.collection("hospitals").doc(hospitalId).get().then(hospital_doc => {
-                        console.log(doc.data(), '====');
+                        console.log(doc.data(), '====', hospital_doc.data());
                         let newcard = cardTemplate.content.cloneNode(true);
                         let rating = parseInt(doc.data().rating.split(' stars')[0]);
                         newcard.querySelector('#reviewHospitalName').innerHTML = hospital_doc.data().name;
