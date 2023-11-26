@@ -1,6 +1,6 @@
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param).toLowerCase();
+    return urlParams.get(param);
 }
 
 // Function to display cards dynamically based on query
@@ -12,7 +12,7 @@ async function displayCardsDynamically(query) {
         // Correct syntax for Firebase SDK 8.10.0
         db.collection('hospitals').get().then((docs) => {
             docs.forEach(doc => {
-                if (doc.data().name.toLowerCase().includes(query)) {
+                if (doc.data().name.toLowerCase().includes(query.toLowerCase())) {
                     var title = doc.data().name;
                     var details = doc.data().details;
                     var hospitalCode = doc.data().code;
@@ -49,8 +49,11 @@ async function displayCardsDynamically(query) {
                         }
                     })
                 }
-
             });
+            if (document.getElementById("hospitals-go-here").innerHTML.trim() == '') {
+                document.getElementById("hospitals-go-here").innerHTML += `<p class="pt-5 mt-5 text-secondary">No result match to "${query}"!</p>`;
+                document.getElementById("hospitals-go-here").innerHTML += `<p class="py-1 text-secondary">Please try again with different query!</p>`;
+            }
         })
 
     } catch (error) {
