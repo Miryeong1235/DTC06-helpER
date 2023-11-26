@@ -1,13 +1,12 @@
 
 var userUid = undefined;
 
-function getUserId() {
+function displayCardsDynamically() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
-            var userUid = user.uid;
             console.log('Log in with', userUid);
-            displayCardsDynamically("userProfiles", userUid);
+            display(user.uid)
         } else {
             console.log('User not logged in')
         }
@@ -45,13 +44,13 @@ function getQueue(userId, hospitalId) {
         });
 }
 
-function displayCardsDynamically(collection, userUid) { //collection is userProfiles
+function display(userUid) { //collection is userProfiles
     let current_count = 0;
     let previous_count = 0;
     let reservation_count = 0;
     let cardTemplate = document.getElementById('myReservationCardTemplate');
     let cardCompletedTemplate = document.getElementById('previousReservationsTemplate');
-    db.collection(collection).doc(userUid).collection('reservation').get()
+    db.collection('userProfiles').doc(userUid).collection('reservation').get()
         .then(querySnapshot => {
             reservation_count = querySnapshot.docs.length;
             if (reservation_count > 0) {
@@ -98,8 +97,8 @@ function displayCardsDynamically(collection, userUid) { //collection is userProf
 }
 
 
-function setup() {
-    getUserId();
-}
+// function setup() {
+//     getUserId();
+// }
 
-$(document).ready(setup)
+// $(document).ready(setup)
