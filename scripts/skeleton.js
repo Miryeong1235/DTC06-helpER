@@ -59,10 +59,8 @@ function toggleNotification() {
 function openNotification() {
     $('#notificationPlaceholder').load('./text/notification.html', () => {
         firebase.auth().onAuthStateChanged(user => {
-            console.log(user);
             if (user) {
-                console.log('user logged in, need to create a notification page.')
-                // location.href = "favourite_hospitals.html";
+                console.log('user logged in, open notification page.')
             } else {
                 console.log('user not logged in');
                 if (confirm("You are not logged in, log in now!")) {

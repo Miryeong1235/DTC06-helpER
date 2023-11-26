@@ -157,7 +157,8 @@ footer a {
 #notificationPlaceholder {
     box-sizing: border-box;
     height: 0;
-    width: 75%;
+    width: 100%;
+    border: 0.2px solid grey;
     position: fixed;
     z-index: 1;
     top: 0;

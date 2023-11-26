@@ -1,6 +1,38 @@
 <div class="container pt-5 mt-5">
     <div class="row">
         <h4 class="pb-3 mx-3 px-0">Notifications:</h4>
-        <p class="border-bottom pb-3 mx-3 px-0">You currently have no notifications</p>
+        <p class="border-bottom pb-3 mx-3 px-0" id="notificationMessage">You currently have no notifications</p>
     </div>
 </div>
+
+<script src="./scripts/reservation.js"></script>
+
+<script>
+    var user = firebase.auth().currentUser;
+    var userReservation = db.collection('userProfiles').doc(user.uid).collection('reservation');
+    async function getHospitalData() {
+        let hospitalDict = {};
+        var hospitalsSnapshot = await db.collection('hospitals').get();
+
+        hospitalsSnapshot.forEach(doc => {
+            hospitalDict[doc.id] = doc.data().name;
+        });
+        return hospitalDict;
+    }
+
+    reservationList = userReservation.where('visited', '==', false).get()
+        .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
+    reservationList.then(resvIdList => {
+        resvIdList.forEach(hospitalId => {
+            getHospitalData().then(hosDict => {
+                let hospitalName = hosDict[hospitalId];
+                let msg = undefined;
+                getQueue(user.uid, hospitalId).then(number => {
+                    msg = `<p class="border-bottom pb-3 mx-3 px-0">[${number} teams ahead] waitlist for ${hospitalName}</p>`;
+                    $('#notificationMessage').after().html(msg)
+                })
+                
+            })
+        });
+    })
+</script>
