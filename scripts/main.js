@@ -126,6 +126,8 @@ function displayCardsDynamically(collection) {
 
                 let currentUser = db.collection("userProfiles").doc(userUid);
 
+                //attach to gallery, Example: "hikes-go-here"
+                document.getElementById(collection + "-go-here").appendChild(newcard);
 
                 currentUser.get().then(userDoc => {
                     if (userDoc.exists) {
@@ -137,8 +139,6 @@ function displayCardsDynamically(collection) {
                     }
                 });
 
-                //attach to gallery, Example: "hikes-go-here"
-                document.getElementById(collection + "-go-here").appendChild(newcard);
             })
         })
 }

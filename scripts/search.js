@@ -30,6 +30,8 @@ async function displayCardsDynamically(query) {
                     newcard.querySelector('i').id = "heart-" + docID;
                     newcard.querySelector('i').onclick = () => updateBookmark(docID);
 
+                    document.getElementById("hospitals-go-here").appendChild(newcard);
+
                     firebase.auth().onAuthStateChanged(user => {
                         if (user) {
                             let currentUser = db.collection("userProfiles").doc(user.uid);
@@ -46,7 +48,6 @@ async function displayCardsDynamically(query) {
                             console.log('user not logged in')
                         }
                     })
-                    document.getElementById("hospitals-go-here").appendChild(newcard);
                 }
 
             });
