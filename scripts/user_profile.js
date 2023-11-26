@@ -100,6 +100,7 @@ function writeProfile() {
         })
     };
 
+    var edit = sessionStorage.getItem('edit')
     // write drinking and smoking frequency
     user_profile_extension.doc('smoke_and_drink').set({
         tobacco: tobacco_val,
@@ -107,7 +108,12 @@ function writeProfile() {
     }).then(() => {
         console.log("user profile updated");
     }).then(() => {
-        window.location.assign("confirm_registration.html");
+        if (edit == 'true') {
+            window.location.assign("confirm_registration_edit.html");
+        } else {
+            window.location.assign("confirm_registration.html");
+        }
+
     }).catch((error) => {
         console.log("Error adding user registration: " + error);
     });
@@ -222,4 +228,9 @@ function readProfile(autofillRegistration = false) {
             }
         })
     })
+}
+
+
+function saveEditAndRedirect() {
+    sessionStorage.setItem('edit', 'true')
 }
