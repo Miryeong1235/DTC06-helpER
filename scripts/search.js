@@ -3,22 +3,11 @@ function getQueryParam(param) {
     return urlParams.get(param).toLowerCase();
 }
 
-function createQueryFromURL() {
-    return getQueryParam("query");
-
-    //     const hospitalName = getQueryParam("query");
-    //     console.log(hospitalName);
-    //     const hospitalRef = db.collection("hospitals");
-    //     console.log(hospitalRef);
-
-    //     return hospitalRef.where("name", "==", hospitalName);
-}
-
 // Function to display cards dynamically based on query
 async function displayCardsDynamically(query) {
-
+    var user = firebase.auth().currentUser;
     let cardTemplate = document.getElementById("hospitalCardTemplate");
-    console.log(query)
+    console.log('Query is "' + query + '"')
     try {
         // Correct syntax for Firebase SDK 8.10.0
         db.collection('hospitals').get().then((docs) => {
@@ -38,7 +27,25 @@ async function displayCardsDynamically(query) {
                     newcard.querySelector('.card-text').innerHTML = details;
                     newcard.querySelector('.card-image').src = `./images/${hospitalCode}.png`;
                     newcard.querySelector('a').href = `hospital_detail.html?docID=${docID}`;
+                    newcard.querySelector('i').id = "heart-" + docID;
+                    newcard.querySelector('i').onclick = () => updateBookmark(docID);
 
+                    firebase.auth().onAuthStateChanged(user => {
+                        if (user) {
+                            let currentUser = db.collection("userProfiles").doc(user.uid);
+                            currentUser.get().then(userDoc => {
+                                if (userDoc.exists) {
+                                    var bookmarks = userDoc.data().bookmarks;
+                                    if (bookmarks.includes(docID)) {
+                                        // If already bookmarked, remove the bookmark
+                                        document.getElementById('heart-' + docID).innerHTML = 'bookmark'
+                                    }
+                                }
+                            });
+                        } else {
+                            console.log('user not logged in')
+                        }
+                    })
                     document.getElementById("hospitals-go-here").appendChild(newcard);
                 }
 
@@ -50,5 +57,5 @@ async function displayCardsDynamically(query) {
     }
 }
 
-const userQuery = createQueryFromURL();
+const userQuery = getQueryParam('query');
 displayCardsDynamically(userQuery);
