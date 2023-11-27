@@ -132,7 +132,10 @@ function updateJoinWaitList(url) {
     })
 }
 
-function toMap() {
+function toMap(url = '?docID=') {
+    hospitalId = url.split('?docID=')[1];
+    sessionStorage.setItem('directions', 'true')
+    sessionStorage.setItem('hospitalID', hospitalId)
     location.href = "map.html"
 }
 
@@ -208,9 +211,4 @@ function toContactUs() {
 function toHelp() {
     console.log("go to help page");
     location.href = "help.html";
-}
-
-function toMap() {
-    console.log("go to map");
-    location.href = "map.html";
 }

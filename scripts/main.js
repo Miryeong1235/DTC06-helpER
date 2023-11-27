@@ -101,6 +101,7 @@ function writeHospitals() {
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("hospitalCardTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
+    var mapHospitalId = sessionStorage.getItem('hospitalID')
 
     var currentUser = db.collection("userProfiles").doc(userUid);
 
@@ -127,18 +128,19 @@ function displayCardsDynamically(collection) {
                 let currentUser = db.collection("userProfiles").doc(userUid);
 
                 //attach to gallery, Example: "hikes-go-here"
-                document.getElementById(collection + "-go-here").appendChild(newcard);
+                if (mapHospitalId == "" || mapHospitalId == docID) {
+                    document.getElementById(collection + "-go-here").appendChild(newcard);
 
-                currentUser.get().then(userDoc => {
-                    if (userDoc.exists) {
-                        var bookmarks = userDoc.data().bookmarks;
-                        if (bookmarks.includes(docID)) {
-                            // If already bookmarked, remove the bookmark
-                            document.getElementById('heart-' + docID).innerHTML = 'bookmark'
+                    currentUser.get().then(userDoc => {
+                        if (userDoc.exists) {
+                            var bookmarks = userDoc.data().bookmarks;
+                            if (bookmarks.includes(docID)) {
+                                // If already bookmarked, remove the bookmark
+                                document.getElementById('heart-' + docID).innerHTML = 'bookmark'
+                            }
                         }
-                    }
-                });
-
+                    });
+                }
             })
         })
 }
