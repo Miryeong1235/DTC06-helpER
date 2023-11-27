@@ -23,16 +23,19 @@
     reservationList = userReservation.where('visited', '==', false).get()
         .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
     reservationList.then(resvIdList => {
-        resvIdList.forEach(hospitalId => {
-            getHospitalData().then(hosDict => {
-                let hospitalName = hosDict[hospitalId];
-                let msg = undefined;
-                getQueue(user.uid, hospitalId).then(number => {
-                    msg = `<p class="border-bottom pb-3 mx-3 px-0">[${number} teams ahead] waitlist for ${hospitalName}</p>`;
-                    $('#notificationMessage').after().html(msg)
+        if (resvIdList.length > 0) {
+            document.getElementById('notificationMessage').style.display = 'none';
+            resvIdList.forEach(hospitalId => {
+                getHospitalData().then(hosDict => {
+                    let hospitalName = hosDict[hospitalId];
+                    let msg = undefined;
+                    getQueue(user.uid, hospitalId).then(number => {
+                        msg = `<p class="border-bottom pb-3 mx-3 px-0">[${number} teams ahead] waitlist for ${hospitalName}</p>`;
+                        document.getElementById('notificationMessage').insertAdjacentHTML('afterend', msg);
+                    })
+
                 })
-                
-            })
-        });
+            });
+        }
     })
 </script>
