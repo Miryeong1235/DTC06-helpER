@@ -25,6 +25,10 @@ function showMap() {
     // then Add map features 
     //------------------------------------
     map.on('load', () => {
+        var mapHospitalId = sessionStorage.getItem('hospitalID')
+        sessionStorage.setItem('hospitalID', '')
+
+        sessionStorage.setItem('directions', 'false')
 
         // Defines map pin icon for events
         map.loadImage(
@@ -60,17 +64,21 @@ function showMap() {
 
                             // Pushes information into the features array
                             // in our application, we have a string description of the hike
-                            features.push({
-                                'type': 'Feature',
-                                'properties': {
-                                    'description': `<strong>${event_name}</strong> <br> <br><p>Distance: ${distance} km</p><p>${preview}</p> <br> <a href="/hospital_detail.html?docID=${doc.id}">Read more</a>`
-                                },
-                                'geometry': {
-                                    'type': 'Point',
-                                    'coordinates': coordinates
-                                }
-                            });
+                            if (mapHospitalId == '' || doc.id == mapHospitalId) {
+                                features.push({
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': `<strong>${event_name}</strong> <br> <br><p>Distance: ${distance} km</p><p>${preview}</p> <br> <a href="/hospital_detail.html?docID=${doc.id}">Read more</a>`
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': coordinates
+                                    }
+                                });
+                            }
                         });
+
+
 
                         // features.sort((a, b) => {
                         //     const distA = calculateDistance(a.geometry.coordinates[1], a.geometry.coordinates[0], userLocation[1], userLocation[0]);
