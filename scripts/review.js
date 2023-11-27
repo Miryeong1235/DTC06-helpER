@@ -44,7 +44,7 @@ function writeReview(url) {
             })
                 .then(function () {
                     console.log("review updated");
-                    alert('Thank you for your comment!')
+                    alert('Thank you for taking the time to review! Your comments are valuable to us.')
                     window.location.assign("main.html");
                 }).catch(function (error) {
                     console.log("Error adding review: " + error);
