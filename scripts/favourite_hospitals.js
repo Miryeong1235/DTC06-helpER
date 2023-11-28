@@ -74,7 +74,7 @@ function getBookmarks() {
     })
 }
 
-// the setup function when this js script is referenced
+// the setup function when this script is loaded
 function setup() {
     // update the userUid gobal variable at the beginning
     getUserId();

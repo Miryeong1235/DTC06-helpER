@@ -1,14 +1,16 @@
 function displayHospitalInfo() {
-    let params = new URL(window.location.href); //get URL of search bar
-    // console.log("param is =", params)
-    let ID = params.searchParams.get("docID"); //get value for key "id"
-    console.log(ID);
+    // get URL of search bar and extract the id
+    let params = new URL(window.location.href);
 
-    // doublecheck: is your collection called "Reviews" or "reviews"?
+    //get value for key "id"
+    let ID = params.searchParams.get("docID");
+    
+    // Retrieve hospital document from hospitals collection in firestore
     db.collection("hospitals")
         .doc(ID)
         .get()
         .then(doc => {
+            // extract title and some pertinant information
             thisHospital = doc.data();
             hospitalCode = thisHospital.code;
             hospitalName = doc.data().name;
@@ -22,12 +24,13 @@ function displayHospitalInfo() {
             document.getElementById("hospitalHour").innerHTML = hospitalHour;
             document.getElementById("details").innerHTML = details;
 
+            // populate hospital information
             let imgEvent = document.querySelector(".hospital-img");
             imgEvent.src = `./images/${hospitalCode}.png`;
             document.getElementById("hospitalPhoneNumber").innerHTML = hospitalPhoneNumber;
             document.getElementById("hospitalAddress").innerHTML = hospitalAddress;
         });
-        return ID
 }
 
+// execute the display hospital info when this script is loaded
 displayHospitalInfo();
