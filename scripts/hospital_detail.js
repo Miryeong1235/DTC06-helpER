@@ -1,3 +1,6 @@
+//------------------------------------------------------------------------------
+// Input parameter is a string representing the collection we are reading from
+//------------------------------------------------------------------------------
 function displayHospitalInfo() {
     // get URL of search bar and extract the id
     let params = new URL(window.location.href);

@@ -1,7 +1,9 @@
 // initialize userUid as global variables
 var userUid = undefined;
 
+//---------------------------------------------------------------------------------------------
 // update userUid in the global variable and get display name from the user Auth to use in html
+//---------------------------------------------------------------------------------------------
 function getUserId() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -20,7 +22,9 @@ function getUserId() {
     })
 }
 
+//-------------------------------------------------------------
 // reflect user's bookmark preference from records in firestore
+//-------------------------------------------------------------
 function getBookmarks() {
     // Retrieve user document from userProfiles collection in firestore
     let currentUser = db.collection("userProfiles").doc(userUid);
@@ -74,7 +78,9 @@ function getBookmarks() {
     })
 }
 
+//-----------------------------------------------
 // the setup function when this script is loaded
+//-----------------------------------------------
 function setup() {
     // update the userUid gobal variable at the beginning
     getUserId();
