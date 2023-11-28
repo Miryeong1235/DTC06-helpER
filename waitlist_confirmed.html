@@ -14,7 +14,9 @@
         crossorigin="anonymous"></script>
 
     <!-- Other libraries go here -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
@@ -40,6 +42,8 @@
         <h3 class="text-center">
             Currently <span class="h2 text-danger" id="positionInQueue"></span> people ahead
         </h3>
+
+        <!-- Display the name user typed -->
         <table class="table table-borderless m-4">
             <tr>
                 <td>First Name</td>
@@ -67,7 +71,9 @@
             </tr>
         </table>
         <div class="text-center my-5">
-                        <button class="btn btn-outline-primary m-2" type="button" onclick="location.href='main.html'">Back to main page</button>
+            <!-- Button to direct to main.html -->
+            <button class="btn btn-outline-primary m-2" type="button" onclick="location.href='main.html'">Back to main
+                page</button>
         </div>
     </div>
 
@@ -85,19 +91,19 @@
     <script src="./scripts/reservation.js"></script>
     <script>
         readReservation()
-        
+
         var [userId, hospitalId] = window.location.href.split('?docID=')[1].split('-')
         getQueue(userId, hospitalId).then(position => {
             $('#positionInQueue').html(position);
             if (position == 0) {
-            $('#positionInQueue').parent().append(
-                `
+                $('#positionInQueue').parent().append(
+                    `
                 <h4 class="my-3 pb-3 text-center text-danger">
                     You are the next in queue!
                 </h4>
                 `
-            )
-        }
+                )
+            }
         });
     </script>
 </body>
