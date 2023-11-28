@@ -134,7 +134,6 @@ function updateJoinWaitList(url) {
 
 function toMap(url = '?docID=') {
     hospitalId = url.split('?docID=')[1];
-    sessionStorage.setItem('directions', 'true')
     sessionStorage.setItem('hospitalID', hospitalId)
     location.href = "map.html"
 }

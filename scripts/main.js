@@ -101,7 +101,10 @@ function writeHospitals() {
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
     let cardTemplate = document.getElementById("hospitalCardTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
-    var mapHospitalId = sessionStorage.getItem('hospitalID')
+    var mapHospitalId = ''
+    if (sessionStorage.getItem('hospitalID') != null) {
+        mapHospitalId = sessionStorage.getItem('hospitalID')
+    }
 
     var currentUser = db.collection("userProfiles").doc(userUid);
 

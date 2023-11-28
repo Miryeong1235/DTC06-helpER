@@ -25,10 +25,11 @@ function showMap() {
     // then Add map features 
     //------------------------------------
     map.on('load', () => {
-        var mapHospitalId = sessionStorage.getItem('hospitalID')
+        var mapHospitalId = ''
+        if (sessionStorage.getItem('hospitalID') != null) {
+            mapHospitalId = sessionStorage.getItem('hospitalID')
+        }
         sessionStorage.setItem('hospitalID', '')
-
-        sessionStorage.setItem('directions', 'false')
 
         // Defines map pin icon for events
         map.loadImage(
@@ -51,7 +52,7 @@ function showMap() {
                             console.log(lat, lng);
                             coordinates = [lng, lat];
                             console.log(coordinates);
-                            distance = (((111.320 * 0.555 * (userLocation[0]-lng))**2 + (110.574 * (userLocation[1]-lat))**2)**0.5).toFixed(2)
+                            distance = (((111.320 * 0.555 * (userLocation[0] - lng)) ** 2 + (110.574 * (userLocation[1] - lat)) ** 2) ** 0.5).toFixed(2)
                             // Coordinates
                             event_name = doc.data().name; // Event Name
                             preview = doc.data().details; // Text Preview
