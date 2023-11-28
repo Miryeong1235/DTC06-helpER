@@ -113,10 +113,12 @@
         </button>
     </div>
 
+    <!-- Dropdown of filter for rating -->
     <div class="container my-3">
         <h5>Filter by Rating</h4>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="ratingSelect">Select Rating</label>
+                <!-- When user selects one of the option, filterByRating function is called -->
                 <select class="form-select" id="ratingSelect" onchange="filterByRating(this)">
                     <option value="0">All Ratings</option>
                     <option value="5">5 stars</option>
@@ -137,6 +139,7 @@
     </div>
     <br>
 
+    <!-- template for reviews for the hospital -->
     <template id="reviewTemplate">
         <div class="card mb-4">
             <div class="card-body">
