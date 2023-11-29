@@ -1,3 +1,6 @@
+//-------------
+// show the map
+//-------------
 function showMap() {
     //-----------------------------------------
     // Define and initialize basic mapbox data
@@ -52,16 +55,11 @@ function showMap() {
                             console.log(lat, lng);
                             coordinates = [lng, lat];
                             console.log(coordinates);
+                            // calculate distance to display on the map
                             distance = (((111.320 * 0.555 * (userLocation[0] - lng)) ** 2 + (110.574 * (userLocation[1] - lat)) ** 2) ** 0.5).toFixed(2)
                             // Coordinates
                             event_name = doc.data().name; // Event Name
                             preview = doc.data().details; // Text Preview
-                            // img = doc.data().posterurl; // Image
-                            // url = doc.data().link; // URL
-
-                            //Calculate distance between hospital and user location
-                            // const distance = calculateDistance(lat, lng, userLocation[1], userLocation[0]);
-                            // const distanceText = `${distance.toFixed(2)} km`;
 
                             // Pushes information into the features array
                             // in our application, we have a string description of the hike
@@ -78,14 +76,6 @@ function showMap() {
                                 });
                             }
                         });
-
-
-
-                        // features.sort((a, b) => {
-                        //     const distA = calculateDistance(a.geometry.coordinates[1], a.geometry.coordinates[0], userLocation[1], userLocation[0]);
-                        //     const distB = calculateDistance(b.geometry.coordinates[1], b.geometry.coordinates[0], userLocation[1], userLocation[0]);
-                        //     return distA - distB;
-                        // });
 
                         // Adds features as a source of data for the map
                         map.addSource('places', {
@@ -146,6 +136,9 @@ function showMap() {
                     });
                 }
 
+                //----------------------
+                // Get current location
+                //----------------------
                 async function getLocation() {
                     return new Promise((resolve, reject) => {
                         navigator.geolocation.getCurrentPosition(function (position) {
@@ -181,23 +174,6 @@ function showMap() {
 
                 // Add the image to the map style with width and height values
                 map.addImage('userpin', image, { width: 10, height: 10 });
-
-                // Get the user's location
-                // navigator.geolocation.getCurrentPosition(function (position) {
-                //     userLocation = [position.coords.longitude, position.coords.latitude];
-                //     console.log(userLocation);
-                //     console.log(searchLocation);
-
-                //     // Add a marker to the map at the user's location
-                //     userLocationMarker = new mapboxgl.Marker()
-                //         .setLngLat(userLocation)
-                //         .addTo(map);
-
-                //     // Center the map on the user's location
-                //     map.flyTo({
-                //         center: userLocation
-                //     });
-                // });
 
                 // Add the MapboxGeocoder search box to the map
                 const geocoder = new MapboxGeocoder({
@@ -239,16 +215,3 @@ function showMap() {
 
 // Call the function to display the map with the user's location and event pins
 showMap();
-
-//
-
-// function calculateDistance(lat1, lon1, lat2, lon2) {
-//     const R = 6371; // Earth's radius in kilometers
-//     const dLat = (lat2 - lat1) * Math.PI / 180;
-//     const dLon = (lon2 - lon1) * Math.PI / 180;
-//     const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-//               Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-//               Math.sin(dLon/2) * Math.sin(dLon/2);
-//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-//     return R * c; // returns the distance in kilometers
-// }
