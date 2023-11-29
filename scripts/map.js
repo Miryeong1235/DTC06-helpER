@@ -1,6 +1,6 @@
-//-------------
+//--------------
 // show the map
-//-------------
+//--------------
 function showMap() {
     //-----------------------------------------
     // Define and initialize basic mapbox data
@@ -67,7 +67,7 @@ function showMap() {
                                 features.push({
                                     'type': 'Feature',
                                     'properties': {
-                                        'description': `<strong>${event_name}</strong> <br> <br><p>Distance: ${distance} km</p><p>${preview}</p> <br> <a href="/hospital_detail.html?docID=${doc.id}">Read more</a>`
+                                        'description': `<div class='w-100'><h5 class='text-center'>${event_name}</h5> <br> <br><p>Distance: ${distance} km</p><p>${preview}</p> <br><div class="text-center"><a class="btn mapPopBtn rounded-pill py-2 my-2" href="/hospital_detail.html?docID=${doc.id}">Read more</a></div></div>`
                                     },
                                     'geometry': {
                                         'type': 'Point',
