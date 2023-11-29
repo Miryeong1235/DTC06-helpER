@@ -1,5 +1,9 @@
+// declare userUid as global variable
 var userUid = undefined;
 
+//-------------------------------
+// Get name and id from user Auth
+//-------------------------------
 function getNameFromAuth() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -19,14 +23,19 @@ function getNameFromAuth() {
         }
     });
 }
-getNameFromAuth(); //run the function
+
+// update userUid global variable when the script loaded
+getNameFromAuth();
 
 
-// Hospital information data
+//---------------------------------
+// Write hospital information data
+//---------------------------------
 function writeHospitals() {
     //define a variable for the collection you want to create in Firestore to populate data
     var hospitalsRef = db.collection("hospitals");
 
+    //add hospitals
     hospitalsRef.add({
         code: "VGH",
         name: "Vancouver General Hospital",
@@ -100,21 +109,23 @@ function writeHospitals() {
 // Input parameter is a string representing the collection we are reading from
 //------------------------------------------------------------------------------
 function displayCardsDynamically(collection) {
-    let cardTemplate = document.getElementById("hospitalCardTemplate"); // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
+    // Retrieve the HTML element with the ID "hospitalCardTemplate" and store it in the cardTemplate variable. 
+    let cardTemplate = document.getElementById("hospitalCardTemplate");
+    
+    // get mapHospitalId if it exist in the sessionStorage, otherwise make it an empty string
     var mapHospitalId = ''
     if (sessionStorage.getItem('hospitalID') != null) {
         mapHospitalId = sessionStorage.getItem('hospitalID')
     }
 
-    var currentUser = db.collection("userProfiles").doc(userUid);
-
-    db.collection(collection).get()   //the collection called "hospitals"
+    // get the collection called "hospitals"
+    db.collection(collection).orderBy('name').limit(6).get()
         .then(allHospitals => {
-            //var i = 1;  //Optional: if you want to have a unique ID for each hike
+            // Iterate through the ARRAY of all hospitals
             allHospitals.forEach(doc => { //iterate thru each doc
                 var title = doc.data().name;       // get value of the "name" key
                 var details = doc.data().details;  // get value of the "details" key
-                var hospitalCode = doc.data().code;    //get unique ID to each hike to be used for fetching right image
+                var hospitalCode = doc.data().code;    //get unique ID to each hospital to be used for fetching right image
                 var hospitalHour = doc.data().hours; //gets the length field
                 var docID = doc.id;
                 let newcard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card (newcard) that will be filled with Firestore data.
@@ -128,14 +139,17 @@ function displayCardsDynamically(collection) {
                 newcard.querySelector('i').id = "heart-" + docID; //assigning unique id to each element
                 newcard.querySelector('i').onclick = () => updateBookmark(docID);
 
+                // get the user document in userProfile
                 let currentUser = db.collection("userProfiles").doc(userUid);
 
-                //attach to gallery, Example: "hikes-go-here"
+                // attach to the list if the mapHospitalId is empty string (when displaying in general) 
+                // or when the mapHospitalId equals to hosptial ID in this iteration (when displaying through the hospital direction page)
                 if (mapHospitalId == "" || mapHospitalId == docID) {
                     document.getElementById(collection + "-go-here").appendChild(newcard);
 
                     currentUser.get().then(userDoc => {
                         if (userDoc.exists) {
+                            // update the bookmark if the hospital is saved as favourite for the current user
                             var bookmarks = userDoc.data().bookmarks;
                             if (bookmarks.includes(docID)) {
                                 // If already bookmarked, remove the bookmark
@@ -148,43 +162,50 @@ function displayCardsDynamically(collection) {
         })
 }
 
+//---------------------------------
+// Redirect user to the search page 
+//---------------------------------
 function toSearch() {
     document.getElementById('search').addEventListener('submit', function (event) {
+        // prevent the default action
         event.preventDefault();
 
+        // extract user value and pass to the url
         var userInput = document.getElementById('searchBar').value;
-        console.log(userInput);
-
         window.location.href = 'search.html?query=' + encodeURIComponent(userInput);
 
     });
 }
 
+//-------------------------------------------------------------
+// reflect user's bookmark preference from records in firestore
+//-------------------------------------------------------------
 function updateBookmark(hospitalID) {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
+            // access current user's document on firestore
             let currentUser = db.collection("userProfiles").doc(userUid);
             currentUser.get().then(userDoc => {
+                // extract bookmark record if user document exists
                 if (userDoc.exists) {
                     let bookmarks = userDoc.data().bookmarks;
                     let iconID = 'heart-' + hospitalID;
 
                     if (bookmarks) {
-                        var isBookmarked = bookmarks.includes(hospitalID); //check if this hikeDocID exist in bookmark
-                        console.log(isBookmarked);
+                        //check if this hospitalId exist in bookmark
+                        var isBookmarked = bookmarks.includes(hospitalID);
+                        // update the bookmark attribute on firestore and front end display based on current bookmark status
                         if (isBookmarked) {
                             currentUser.update({
                                 bookmarks: firebase.firestore.FieldValue.arrayRemove(hospitalID)
                             }).then(() => {
-                                console.log("bookmark has been removed for " + hospitalID);
                                 document.getElementById(iconID).innerText = 'bookmark_add';
                             })
                         } else {
                             currentUser.update({
                                 bookmarks: firebase.firestore.FieldValue.arrayUnion(hospitalID)
                             }).then(() => {
-                                console.log("bookmark has been saved for " + hospitalID);
                                 document.getElementById(iconID).innerText = 'bookmark';
                             })
                         }
@@ -192,6 +213,8 @@ function updateBookmark(hospitalID) {
                         console.log("Something went wrong! Bookmark attribute does not exist.")
                     }
                 } else {
+                    // if the doc doesn't exist, will create a empty user doc to show bookmark attribute is EMPTY
+                    // bookmark attribute has to exist for the Union and Remove actions
                     currentUser.set({
                         bookmarks: firebase.firestore.FieldValue.arrayUnion(),
                         first_name: '',
@@ -210,7 +233,7 @@ function updateBookmark(hospitalID) {
 
             })
         } else {
-            console.log('user not logged in');
+            // promt user to log in when user is not logged in
             if (confirm("You are not logged in, log in now!")) {
                 location.href = "login.html";
             }
