@@ -48,7 +48,7 @@
 <body>
     <nav class="pb-4" id="navbarPlaceholder"></nav>
 
-    <h1 class="text-center" style="padding-top: 120px;">My Waitlist</h1>
+    <h1 class="text-center" style="padding-top: 120px;"><span id="user_name"></span>'s Waitlist</h1>
 
     <h4 style="padding-top: 50px; padding-bottom: 25px; padding-left: 20px;">Active</h4>
 
@@ -120,6 +120,7 @@
     <script src="./scripts/waitlist.js"></script>
 
     <script>
+        getDisplayName()
         displayCardsDynamically();
     </script>
 </body>
