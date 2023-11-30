@@ -214,7 +214,7 @@ function updateBookmark(hospitalID) {
                     }
                 } else {
                     // if the doc doesn't exist, will create a empty user doc to show bookmark attribute is EMPTY
-                    // bookmark attribute has to exist for the Union and Remove actions
+                    // bookmark attribute has to exist for the Union and Remove actions used in updateBookmark
                     currentUser.set({
                         bookmarks: firebase.firestore.FieldValue.arrayUnion(),
                         first_name: '',

@@ -62,7 +62,7 @@ function showMap() {
                             preview = doc.data().details; // Text Preview
 
                             // Pushes information into the features array
-                            // in our application, we have a string description of the hike
+                            // in our application, we have a string description of the hospital including distance from current location calculated above
                             if (mapHospitalId == '' || doc.id == mapHospitalId) {
                                 features.push({
                                     'type': 'Feature',
@@ -102,7 +102,7 @@ function showMap() {
 
                         //-----------------------------------------------------------------------
                         // Add Click event listener, and handler function that creates a popup
-                        // that displays info from "hikes" collection in Firestore
+                        // that displays info from "hospitals" collection in Firestore
                         //-----------------------------------------------------------------------
                         map.on('click', 'places', (e) => {
                             // Extract coordinates array.
