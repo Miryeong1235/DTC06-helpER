@@ -33,6 +33,7 @@ function displayHospitalInfo() {
             document.getElementById("hospitalPhoneNumber").innerHTML = hospitalPhoneNumber;
             document.getElementById("hospitalAddress").innerHTML = hospitalAddress;
         });
+    return ID
 }
 
 // execute the display hospital info when this script is loaded
