@@ -288,5 +288,7 @@ footer a {
 #app-color {
     background-color: #A8DADC;
     color: #1D3557;
-    /* border-color: #1D3557; */
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 5px;
 }
