@@ -50,7 +50,14 @@
 
     <h1 class="text-center" style="padding-top: 120px;"><span id="user_name"></span>'s Waitlist</h1>
 
-    <h4 style="padding-top: 50px; padding-bottom: 25px; padding-left: 20px;">Active</h4>
+    <div class="container" style="padding-top: 50px; padding-bottom: 25px; padding-left: 20px;">
+        <div class="row justify-content-between">
+            <div class="col">
+                <h4>Active</h4>
+            </div>
+            <div class="col-3"><a onclick="refresh()" type="button" class="btn" id="app-color">refresh</a></div>
+        </div>
+    </div>
 
     <!-- current reservation container -->
     <div class="container mt-4" id="current-reservation">
@@ -120,8 +127,12 @@
     <script src="./scripts/waitlist.js"></script>
 
     <script>
-        getDisplayName()
+        getDisplayName();
         displayCardsDynamically();
+
+        function refresh() {
+            location.reload()
+        }
     </script>
 </body>
 

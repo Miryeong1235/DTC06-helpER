@@ -284,3 +284,9 @@ footer a {
     background-color: #1D3557;
     color: #E9ECEF;
 }
+
+#app-color {
+    background-color: #A8DADC;
+    color: #1D3557;
+    /* border-color: #1D3557; */
+}
