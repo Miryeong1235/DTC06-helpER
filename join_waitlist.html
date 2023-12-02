@@ -94,6 +94,21 @@
 
     <script>
         populateReservationInfo();
+        window.onload = function loadDate() {
+            let date = new Date(),
+                day = date.getDate(),
+                month = date.getMonth() + 1,
+                year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+
+            const todayDate = `${year}-${month}-${day}`;
+
+            document.getElementById("signDate").defaultValue = todayDate;
+        };
+
+        loadDate();
     </script>
 </body>
 
