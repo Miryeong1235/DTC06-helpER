@@ -1,7 +1,10 @@
-
+// declare userUid as global variable
 var userUid = undefined;
 
-function displayCardsDynamically() {
+//-------------------------------
+// Get name and id from user Auth
+//-------------------------------
+function getUserId() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
@@ -50,7 +53,7 @@ function display(userUid) { //collection is userProfiles
     let reservation_count = 0;
     let cardTemplate = document.getElementById('myReservationCardTemplate');
     let cardCompletedTemplate = document.getElementById('previousReservationsTemplate');
-    db.collection('userProfiles').doc(userUid).collection('reservation').get()
+    db.collection('userProfiles').doc(userUid).collection('reservation').orderBy('last_updated', 'desc').get()
         .then(querySnapshot => {
             reservation_count = querySnapshot.docs.length;
             if (reservation_count > 0) {
@@ -97,8 +100,8 @@ function display(userUid) { //collection is userProfiles
 }
 
 
-// function setup() {
-//     getUserId();
-// }
+function setup() {
+    getUserId();
+}
 
-// $(document).ready(setup)
+$(document).ready(setup)

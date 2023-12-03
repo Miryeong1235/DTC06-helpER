@@ -19,6 +19,11 @@ function writeReservation() {
                 date_of_birth: $("#dateOfBirth").val(),
                 phone: $("#phone").val(),
                 phn: $("#phn").val(),
+                street_no: $("#street_no").val(),
+                street_name: $("#street_name").val(),
+                city: $("#city").val(),
+                province: $("#province").val(),
+                postal_code: $("#postal_code").val(),
             })
         } else {
             userProfile.set({
@@ -28,11 +33,11 @@ function writeReservation() {
                 date_of_birth: $("#dateOfBirth").val(),
                 phone: $("#phone").val(),
                 phn: $("#phn").val(),
-                street_no: '',
-                street_name: '',
-                city: '',
-                province: '',
-                postal_code: '',
+                street_no: $("#street_no").val(),
+                street_name: $("#street_name").val(),
+                city: $("#city").val(),
+                province: $("#province").val(),
+                postal_code: $("#postal_code").val(),
             })
         }
     })
@@ -59,18 +64,27 @@ function readReservation(populate = false) {
                 .then(data => {
                     if (data) {
                         if (populate) {
-                            console.log('populateeeee')
                             document.getElementById('fname').value = data.first_name;
                             document.getElementById('lname').value = data.last_name;
                             document.getElementById('dateOfBirth').value = data.date_of_birth;
                             document.getElementById('phn').value = data.phn;
                             document.getElementById('phone').value = data.phone;
+                            document.getElementById("street_no").value = data.street_no;
+                            document.getElementById("street_name").value = data.street_name;
+                            document.getElementById("city").value = data.city;
+                            document.getElementById("province").value = data.province;
+                            document.getElementById("postal_code").value = data.postal_code;
                         } else {
                             document.getElementById('fname').innerHTML = data.first_name;
                             document.getElementById('lname').innerHTML = data.last_name;
                             document.getElementById('dateOfBirth').innerHTML = data.date_of_birth;
                             document.getElementById('phn').innerHTML = data.phn;
                             document.getElementById('phone').innerHTML = data.phone;
+                            document.getElementById("street_no").innerHTML = data.street_no;
+                            document.getElementById("street_name").innerHTML = data.street_name;
+                            document.getElementById("city").innerHTML = data.city;
+                            document.getElementById("province").innerHTML = data.province;
+                            document.getElementById("postal_code").innerHTML = data.postal_code;
                         }
                     }
                 })
@@ -102,7 +116,7 @@ function cancelWaitlist(btn) {
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
-        
-        
+
+
     }
 }

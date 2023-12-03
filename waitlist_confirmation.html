@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,8 +14,10 @@
         crossorigin="anonymous"></script>
 
     <!-- Other libraries go here -->
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+        rel="stylesheet">
+
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
@@ -28,6 +31,7 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 </head>
+
 <body>
     <nav id="navbarPlaceholder"></nav>
 
@@ -60,6 +64,12 @@
                 <td>Purpose of Visit / Symptoms</td>
                 <td id="purposeOfVisit"></td>
             </tr>
+            <tr class="invisible" style="max-height: 0;">
+                <td>Address</td>
+                <td><span id="street_no"></span>&nbsp;<span id="street_name"></span>
+                    ,&nbsp;<span id="city"></span>,&nbsp;<span id="province"></span>
+                    &nbsp;<span id="postal_code"></span></td>
+            </tr>
         </table>
         <div class="text-center my-5">
             <!-- button to confirm -->
@@ -84,4 +94,5 @@
         readReservation()
     </script>
 </body>
+
 </html>
