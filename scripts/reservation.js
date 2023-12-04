@@ -20,27 +20,25 @@ function getQueue(userId, hospitalId) {
     let userProfiles = db.collection('userProfiles');
     let queue = [];
     let i = 0;
-    let endi = 0;
 
     return userProfiles.doc(userId).collection('reservation').doc(hospitalId)
         .get()
         .then(doc => doc.data().last_updated.seconds)
         .then(user_resv_timestamp => {
             return userProfiles.get().then(otherUsers => {
-                endi = otherUsers.docs.length;
-                let promises = []; // Store promises in an array
+                let otherResvs = []; // Store otherResvs in an array
                 otherUsers.forEach(otherUser => {
                     i++;
-                    let promise = userProfiles.doc(otherUser.id).collection('reservation').doc(hospitalId).get()
+                    let otherResv = userProfiles.doc(otherUser.id).collection('reservation').doc(hospitalId).get()
                         .then(otherReservation => {
                             if (otherReservation.exists && otherReservation.data().visited == false && otherReservation.data().last_updated.seconds < user_resv_timestamp) {
                                 queue.push(otherUser.id);
                             }
                         });
-                    promises.push(promise); // Add each promise to the array
+                        otherResvs.push(otherResv); // Add each otherWaitList to the array
                 });
-                // Wait for all promises to resolve before returning the queue length
-                return Promise.all(promises).then(() => {
+                // Wait for all otherResvs to resolve before returning the queue length
+                return Promise.all(otherResvs).then(() => {
                     return queue.length;
                 });
             });
