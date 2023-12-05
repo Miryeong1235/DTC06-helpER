@@ -46,24 +46,34 @@ function showMap() {
 
                 // READING information from "hospitals" collection in Firestore
                 function successCallback(position) {
-                    db.collection('hospitals').get().then(allHospitals => {
+                    let hospitalsQuery;
+
+                    if (mapHospitalId) {
+                        // Fetch only the specific hospital
+                        hospitalsQuery = db.collection('hospitals').doc(mapHospitalId).get();
+                    } else {
+                        // Fetch all hospitals
+                        hospitalsQuery = db.collection('hospitals').get();
+                    }
+
+                    hospitalsQuery.then(querySnapshot => {
                         const features = []; // Defines an empty array for information to be added to
-
-                        allHospitals.forEach(doc => {
+                        // If mapHospitalId is set, querySnapshot is a single doc
+                        if (mapHospitalId) {
+                            const doc = querySnapshot;
+                            // Process single hospital data
                             lat = doc.data().lat;
-                            lng = doc.data().lng;
-                            console.log(lat, lng);
-                            coordinates = [lng, lat];
-                            console.log(coordinates);
-                            // calculate distance to display on the map
-                            distance = (((111.320 * 0.555 * (userLocation[0] - lng)) ** 2 + (110.574 * (userLocation[1] - lat)) ** 2) ** 0.5).toFixed(2)
-                            // Coordinates
-                            event_name = doc.data().name; // Event Name
-                            preview = doc.data().details; // Text Preview
+                                lng = doc.data().lng;
+                                console.log(lat, lng);
+                                coordinates = [lng, lat];
+                                // calculate distance to display on the map
+                                distance = (((111.320 * 0.555 * (userLocation[0] - lng)) ** 2 + (110.574 * (userLocation[1] - lat)) ** 2) ** 0.5).toFixed(2)
+                                // Coordinates
+                                event_name = doc.data().name; // Event Name
+                                preview = doc.data().details; // Text Preview
 
-                            // Pushes information into the features array
-                            // in our application, we have a string description of the hospital including distance from current location calculated above
-                            if (mapHospitalId == '' || doc.id == mapHospitalId) {
+                                // Pushes information into the features array
+                                // in our application, we have a string description of the hospital including distance from current location calculated above
                                 features.push({
                                     'type': 'Feature',
                                     'properties': {
@@ -74,8 +84,33 @@ function showMap() {
                                         'coordinates': coordinates
                                     }
                                 });
-                            }
-                        });
+                        } else {
+                            // Process all hospitals data
+                            querySnapshot.forEach(doc => {
+                                lat = doc.data().lat;
+                                lng = doc.data().lng;
+                                console.log(lat, lng);
+                                coordinates = [lng, lat];
+                                // calculate distance to display on the map
+                                distance = (((111.320 * 0.555 * (userLocation[0] - lng)) ** 2 + (110.574 * (userLocation[1] - lat)) ** 2) ** 0.5).toFixed(2)
+                                // Coordinates
+                                event_name = doc.data().name; // Event Name
+                                preview = doc.data().details; // Text Preview
+
+                                // Pushes information into the features array
+                                // in our application, we have a string description of the hospital including distance from current location calculated above
+                                features.push({
+                                    'type': 'Feature',
+                                    'properties': {
+                                        'description': `<div class='w-100'><h5 class='text-center'>${event_name}</h5> <br> <br><p>Distance: ${distance} km</p><p>${preview}</p> <br><div class="text-center"><a class="btn mapPopBtn rounded-pill py-2 my-2" href="/hospital_detail.html?docID=${doc.id}">Read more</a></div></div>`
+                                    },
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': coordinates
+                                    }
+                                });
+                            });
+                        }
 
                         // Adds features as a source of data for the map
                         map.addSource('places', {
