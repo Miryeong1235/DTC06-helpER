@@ -98,10 +98,10 @@
     <script>
         readReservation()
 
-        var [userId, hospitalId] = window.location.href.split('?docID=')[1].split('-')
-        getQueue(userId, hospitalId).then(position => {
+        var [userId, hospitalId] = window.location.href.split('?docID=')[1].split('-') // get user id and hospital id from url
+        getQueue(userId, hospitalId).then(position => { // get position in queue by calling getQueue function
             $('#positionInQueue').html(position);
-            if (position == 0) {
+            if (position == 0) { // if position is 0, display the extra message below
                 $('#positionInQueue').parent().append(
                     `
                 <h4 class="my-3 pb-3 text-center text-danger">

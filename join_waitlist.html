@@ -114,7 +114,7 @@
 
     <script>
         populateReservationInfo();
-        window.onload = function loadDate() {
+        window.onload = function loadDate() { // load today's date
             let date = new Date(),
                 day = date.getDate(),
                 month = date.getMonth() + 1,
@@ -125,7 +125,7 @@
 
             const todayDate = `${year}-${month}-${day}`;
 
-            document.getElementById("signDate").defaultValue = todayDate;
+            document.getElementById("signDate").defaultValue = todayDate; // set default date to today's date in the signature section
         };
 
         loadDate();
