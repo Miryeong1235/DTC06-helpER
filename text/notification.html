@@ -1,3 +1,4 @@
+<!-- This page is for displaying the notifications of the user -->
 <div class="container pt-5 mt-5">
     <div class="row">
         <h4 class="pb-3 mx-3 px-0">Notifications:</h4>
@@ -5,32 +6,44 @@
     </div>
 </div>
 
+<!---------------------------------------------->
+<!-- Your own JavaScript functions go here    -->
+<!---------------------------------------------->
+
+<!-- Link to scripts of your own -->
 <script src="./scripts/reservation.js"></script>
 
 <script>
-    var user = firebase.auth().currentUser;
-    var userReservation = db.collection('userProfiles').doc(user.uid).collection('reservation');
+    var user = firebase.auth().currentUser; // get current user
+    var userReservation = db.collection('userProfiles').doc(user.uid).collection('reservation'); // get current user's reservation collection
+    //-----------------------------------------------------------------------------------
+    // this function gets the hospital name and hospital id, and put them in a dictionary
+    //-----------------------------------------------------------------------------------
     async function getHospitalData() {
-        let hospitalDict = {};
-        var hospitalsSnapshot = await db.collection('hospitals').get();
+        let hospitalDict = {}; // initialize dictionary to store hospital name and id
+        var hospitalsSnapshot = await db.collection('hospitals').get(); // get all hospitals
 
-        hospitalsSnapshot.forEach(doc => {
+        hospitalsSnapshot.forEach(doc => { // for each hospital, put hospital name and id in the dictionary
             hospitalDict[doc.id] = doc.data().name;
         });
         return hospitalDict;
     }
 
+    // get all reservations for current user that have not been visited
     reservationList = userReservation.where('visited', '==', false).get()
-        .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
+        .then(querySnapshot => querySnapshot.docs.map(doc => doc.id)) // get all reservation ids
     reservationList.then(resvIdList => {
+        // if there are reservations, display them
         if (resvIdList.length > 0) {
             document.getElementById('notificationMessage').style.display = 'none';
-            resvIdList.forEach(hospitalId => {
+            resvIdList.forEach(hospitalId => { // for each reservation, get the hospital name and number of teams ahead
                 getHospitalData().then(hosDict => {
                     let hospitalName = hosDict[hospitalId];
                     let msg = undefined;
+                    // get the number of teams ahead by calling getQueue function
                     getQueue(user.uid, hospitalId).then(number => {
                         msg = `<p class="border-bottom pb-3 mx-3 px-0">[${number} teams ahead] waitlist for ${hospitalName}</p>`;
+                        // insert the message after the last message
                         document.getElementById('notificationMessage').insertAdjacentHTML('afterend', msg);
                     })
 
