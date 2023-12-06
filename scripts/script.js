@@ -7,6 +7,7 @@ function logout() {
         console.log("logging out user");
     }).catch((error) => {
         // An error happened.
+        console.log('Error logging out user')
     });
 }
 
@@ -18,23 +19,28 @@ function signIn() {
     location.href = "login.html";
 }
 
+//------------------------------------------------
+// Call this function when the "profile" button is clicked
+//-------------------------------------------------
 function profile() {
     console.log("user clicked profile icon or personal info");
+
+    // check if user is logged in
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
-        if (user) {
+        if (user) { // if user is logged in, check if user has a profile
             db.collection('userProfiles').get()
-                .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
-                .then(uidList => {
+                .then(querySnapshot => querySnapshot.docs.map(doc => doc.id)) // get all user ids
+                .then(uidList => { // check if user has a profile
                     console.log('user profile has record:', uidList.includes(user.uid));
-                    if (uidList.includes(user.uid)) {
+                    if (uidList.includes(user.uid)) { // if user has a profile, go to personal info page
                         location.href = "personal_info.html";
-                    } else {
+                    } else { // if user does not have a profile, go to prompt to register page
                         location.href = "prompt_to_register.html";
                     }
                 })
 
-        } else {
+        } else { // if user is not logged in, go to login page
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {
                 location.href = "login.html";
@@ -52,13 +58,15 @@ function toMain() {
     location.href = "main.html";
 }
 
+//------------------------------------------------
+// Call this function to go to favourite hospital page
+//-------------------------------------------------
 function toFavouriteHospital() {
-    console.log("go to favourite hospitals page");
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(user => { // check if user is logged in
         console.log(user);
-        if (user) {
+        if (user) { // if user is logged in, go to favourite hospital page
             location.href = "favourite_hospitals.html";
-        } else {
+        } else { // if user is not logged in, go to login page
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {
                 location.href = "login.html";
@@ -67,21 +75,28 @@ function toFavouriteHospital() {
     })
 }
 
+//------------------------------------------------
+// Call this function to pass hospital id to postReview function
+//-------------------------------------------------
 function prevResvReview(btn) {
     let hospital_id = $(btn).closest('.card-body').find("#previousReservationHospitalId").text();
+    // call toPostReview function
     toPostReview(`?docID=${hospital_id}`)
 }
 
-
+//------------------------------------------------
+// Call this function to go to post review page in the completed wait list section
+//-------------------------------------------------
 function toPostReview(url) {
+    // get hospital id from url
     hospitalid = url.split("?docID=")[1];
-    console.log("go to post review page");
+    // check if user is logged in
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
-        if (user) {
+        if (user) { // if user is logged in, go to post review page
             console.log('user logged in, need to create a notification page.')
             location.href = "post_review.html" + "?docID=" + hospitalid;
-        } else {
+        } else { // if user is not logged in, go to login page
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {
                 location.href = "login.html";
@@ -90,29 +105,32 @@ function toPostReview(url) {
     })
 }
 
+//------------------------------------------------
+// Call this function to go to hospital detail page
+//-------------------------------------------------
 function joinWaitList(url) {
-    console.log("go to join waitlist page");
+    // get hospital id from url
     hospitalId = url.split("?docID=")[1];
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
-        if (user) {
+        if (user) { // if user is logged in, check if user has a reservation
             let reservationRef = db.collection('userProfiles').doc(user.uid).collection('reservation');
             reservationRef.get()
-                .then(querySnapshot => querySnapshot.docs.map(doc => doc.id))
+                .then(querySnapshot => querySnapshot.docs.map(doc => doc.id)) // get all reservation ids
                 .then(reservationList => {
-                    if (reservationList.includes(hospitalId)) {
-                        reservationRef.doc(hospitalId).get().then(hospital_doc => {
-                            if (hospital_doc.data().visited == true) {
+                    if (reservationList.includes(hospitalId)) { // if user has a reservation, check if user has visited
+                        reservationRef.doc(hospitalId).get().then(hospital_doc => { // get reservation doc
+                            if (hospital_doc.data().visited == true) { // if user has visited, go to waitlist confirmed page
                                 location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
-                            } else {
+                            } else { // if user has not visited, go to waitlist confirmed page
                                 location.href = "waitlist_confirmed.html?docID=" + user.uid + "-" + hospitalId;
                             }
                         })
-                    } else {
+                    } else { // if user does not have a reservation, go to join waitlist page
                         location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
                     }
                 });
-        } else {
+        } else { // if user is not logged in, go to login page
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {
                 location.href = "login.html";
@@ -121,51 +139,66 @@ function joinWaitList(url) {
     })
 }
 
+//------------------------------------------------
+// Call this function to go to join wait list page
+//-------------------------------------------------
 function updateJoinWaitList(url) {
-    console.log("go to join waitlist page");
-    hospitalId = url.split("?docID=")[1];
-    firebase.auth().onAuthStateChanged(user => {
+    hospitalId = url.split("?docID=")[1]; // get hospital id from url
+    firebase.auth().onAuthStateChanged(user => { // check if user is logged in
         console.log(user);
-        if (user) {
+        if (user) { // if user is logged in, go to join waitlist page
             location.href = "join_waitlist.html?docID=" + user.uid + "-" + hospitalId;
         }
     })
 }
 
+//------------------------------------------------
+//  Call this function to go to map page
+//-------------------------------------------------
 function toMap(url = '?docID=') {
     hospitalId = url.split('?docID=')[1];
     sessionStorage.setItem('hospitalID', hospitalId)
     location.href = "map.html"
 }
 
+//------------------------------------------------
+// Call this function to go to prompt to register page
+//-------------------------------------------------
 function toRegister() {
-    console.log("go to prompt to register page");
     location.href = "prompt_to_register.html";
 }
 
+//------------------------------------------------
+// Call this function to go to registration page
+//-------------------------------------------------
 function toRegistration() {
-    console.log("go to registration page");
     location.href = "registration.html";
 }
 
+// ------------------------------------------------
+// Call this function to go to confirm registration page
+// ------------------------------------------------
 function toConfirmRegister() {
-    console.log("go to confirm registration page");
     location.href = "confirm_registration.html";
 }
 
+//------------------------------------------------
+// Call this function to go to waitlist confirmed page
+//-------------------------------------------------
 function toWaitlistConfirmed(url) {
     param = url.split('?docID=')[1];
-    console.log("go to waitlist confirmed page");
     location.href = "waitlist_confirmed.html?docID=" + param;
 }
 
+//------------------------------------------------
+// Call this function to go to review page
+//-------------------------------------------------
 function toMyReview() {
-    console.log("go to my reviews page");
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
-        if (user) {
+        if (user) { // if user is logged in, go to review page
             location.href = "review.html";
-        } else {
+        } else { // if user is not logged in, go to login page
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {
                 location.href = "login.html";
@@ -174,13 +207,15 @@ function toMyReview() {
     })
 }
 
+//------------------------------------------------
+// Call this function to go to my reservation page if user is logged in
+//-------------------------------------------------
 function toMyReservation() {
-    console.log("go to my reviews page");
     firebase.auth().onAuthStateChanged(user => {
         console.log(user);
-        if (user) {
+        if (user) { // if user is logged in, go to my reservation page
             location.href = "reservation.html";
-        } else {
+        } else { // if user is not logged in, go to login page
             console.log('user not logged in');
             if (confirm("You are not logged in, log in now!")) {
                 location.href = "login.html";
@@ -202,12 +237,16 @@ function getDisplayName() {
     })
 }
 
+//------------------------------------------------
+// Call this function to go to contact page
+//-------------------------------------------------
 function toContactUs() {
-    console.log("go to contact page");
     location.href = "contact.html";
 }
 
+//------------------------------------------------
+// Call this function to go to help page
+//-------------------------------------------------
 function toHelp() {
-    console.log("go to help page");
     location.href = "help.html";
 }
