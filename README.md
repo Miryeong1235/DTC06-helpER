@@ -243,7 +243,7 @@ Firebase hosting files:      # Firebase hosting files
 
 ## Contact 
 * Eric Kim - hkim467@my.bcit.ca
-* Hsin Pang - 
+* Hsin Pang - hpang19@my.bcit.ca
 * Misuzu Taniguchi - mtaniguchi3@my.bcit.ca
 
 ## Acknowledgements 
