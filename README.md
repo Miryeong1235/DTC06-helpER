@@ -1,8 +1,8 @@
 # Project Title
+helpER
 
 ## 1. Project Description
-State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
-This browser based web application to ... 
+helpER is a mobile application that helps users find the nearest hospital with the shortest wait time. Users can also see the reviews of the hospitals and the waitlist status. Users can join the waitlist and save their favourite hospitals.
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
@@ -15,26 +15,45 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 * HTML, CSS, JavaScript
 * Bootstrap 5.0 (Frontend library)
 * Firebase 8.0 (BAAS - Backend as a Service)
-* ...
+* MapBox
+* Geoapify
+* Font Awesome (Icons)
+* Adobe Fonts (Fonts)
+* Adobe Stock Images (Images)
+* Google Fonts (Fonts)
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
-* ...
-* ...
-* ...
+* Start the login.html page
+* Create an account
+* Login
+* Start using the app
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
-* ...
-* ...
-* ...
+* Hospital information page doesn't show how many teams are in the waitlist
+* Map doesn't give directions to the hospital
+* Hospitals are limited to the ones in the database
+* Web scraping is not implemented yet
+* Hospitals can't respond to reviews
+* Users can't edit their reviews
+* Users can't delete their reviews
+* Users can't delete their accounts
+* Pop up window doesn't match the overall aesthetic of the website
+
 
 ## 6. Features for Future
 What we'd like to build in the future:
-* ...
-* ...
-* ...
+* Live chat between users and hospitals
+* Web scraping to get more hospitals
+* Users can edit their reviews
+* Users can delete their reviews
+* Users can delete their accounts
+* Hospitals can respond to reviews
+* Hospitals can edit their information
+* Use Google Maps for directions
+
 	
 ## 7. Contents of Folder
 Content of the project folder:
@@ -43,19 +62,72 @@ Content of the project folder:
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
 ├── index.html               # landing HTML file, this is what users see when you come to url
-└── README.md
+├── login.html               # login HTML file, the log-in page
+├── main.html                # main HTML file, the landing page after log-in or user set-up
+├── confirm_registration_edit.html  # page to notify personal information edit was successful
+├── confirm_registration.html       # page to notify registration was successful
+├── contact.html                    # contact page
+├── favourite_hospitals.html        # favourite hospitals page
+├── help.html                       # help page
+├── hospital_detail.html            # hospital detail page
+├── join_waitlist.html              # join waitlist page
+├── map.html                        # map page
+├── personal_info.html              # personal information page
+├── post_review.html                # post review page
+├── prompt_to_register.html         # prompt to register page
+├── registration.html               # registration page
+├── reservation.html                # reservation page
+├── review.html                     # review page
+├── search.html                     # search page
+├── waitlist_confirmation.html      # waitlist confirmation page
+├── waitlist_confirmed.html         # waitlist confirmed page
+└── README.md                # information about this project
+
 
 It has the following subfolders and files:
-├── .git                     # Folder for git repo
+├── .vscode
+    /settings.json           # Visual Studio Code settings file
 ├── images                   # Folder for images
-    /blah.jpg                # Acknowledge source
+    /blank-profile-picture.webp  # Default profile picture
+    /hospital.jpg            # Hospital image
+    /LGH.png                 # Hospital image
+    /MSJ.png                 # Hospital image
+    /RH.png                  # Hospital image
+    /SPH.png                 # Hospital image
+    /UBC.png                 # Hospital image
+    /VGH.png                 # Hospital image
 ├── scripts                  # Folder for scripts
-    /blah.js                 # 
+    /authentications.js      # Firebase authentication
+    favourite_hospitals.js   # Favourite hospitals
+    /firebaseAPI_TEAM06.js   # Firebase API
+    /hospital_detail.js      # Hospital detail
+    /main.js                 # Main page
+    /map.js                  # Map
+    /my_review.js            # My review
+    /reservation.js          # Reservation
+    /review.js               # Review
+    /script.js               # Script
+    /search.js               # Search
+    /skeleton.js             # Skeleton
+    /user_profile.js         # User profile
+    /waitlist.js             # Waitlist
 ├── styles                   # Folder for styles
-    /blah.css                # 
+    /style.css               # Style
+├── text                     # Folder for text
+    /footer.html             # Footer
+    /hamburger_menu.html     # Hamburger menu
+    /nav_after_login.html    # Navigation bar after login
+    /nav_before_login.html   # Navigation bar before login
+    /notification.html       # Notification
 
-
-
+Firebase hosting files:      # Firebase hosting files
+├── .firebase                # Folder for firebase
+    /hosting..cache          # Firebase cache
+├── .firebaserc              # Firebase config
+├── 404.html                 # 404 page
+├── firebase.json            # Firebase config
+├── firestore.indexes.json   # Firebase config
+├── firestore.rules          # Firebase config
 ```
 
 ## CapWise
@@ -65,7 +137,8 @@ It has the following subfolders and files:
 * [Contents](#content)
 
 ## General Info
-project description
+helpER is a mobile application that helps users find the nearest hospital with the shortest wait time. Users can also see the reviews of the hospitals and the waitlist status. Users can join the waitlist and save their favourite hospitals. 
+
 	
 ## Technologies
 Technologies used for this project:
@@ -73,7 +146,12 @@ Technologies used for this project:
 * JavaScript
 * Bootstrap 5.0
 * Firebase Version 8 (Authentication, Firestore, Storage, Hosting)
-* MapBox, Geoapify, Leaflet? 
+* MapBox
+* Geoapify
+* Font Awesome
+* Adobe Fonts
+* Adobe Stock Images
+* Google Fonts
 	
 ## Content
 Content of the project folder:
@@ -84,48 +162,89 @@ Content of the project folder:
 ├── index.html               # landing HTML file, this is what users see when you come to url
 ├── login.html               # login HTML file, the log-in page
 ├── main.html                # main HTML file, the landing page after log-in or user set-up
-└── README.md                # woah, you're reading this now!
+├── confirm_registration_edit.html  # page to notify personal information edit was successful
+├── confirm_registration.html       # page to notify registration was successful
+├── contact.html                    # contact page
+├── favourite_hospitals.html        # favourite hospitals page
+├── help.html                       # help page
+├── hospital_detail.html            # hospital detail page
+├── join_waitlist.html              # join waitlist page
+├── map.html                        # map page
+├── personal_info.html              # personal information page
+├── post_review.html                # post review page
+├── prompt_to_register.html         # prompt to register page
+├── registration.html               # registration page
+├── reservation.html                # reservation page
+├── review.html                     # review page
+├── search.html                     # search page
+├── waitlist_confirmation.html      # waitlist confirmation page
+├── waitlist_confirmed.html         # waitlist confirmed page
+└── README.md                # information about this project
+
 
 It has the following subfolders and files:
-├── .git                     # Folder for git repo
+├── .vscode
+    /settings.json           # Visual Studio Code settings file
 ├── images                   # Folder for images
-        /icons
-            /activity.svg
-        /login.jpg
-        
-├── scripts                         # Folder for scripts
-  
-        /firebase_api.js            # firebase API stuff, shared across pages
-        /login_firebase.js          # JS for login.html
+    /blank-profile-picture.webp  # Default profile picture
+    /hospital.jpg            # Hospital image
+    /LGH.png                 # Hospital image
+    /MSJ.png                 # Hospital image
+    /RH.png                  # Hospital image
+    /SPH.png                 # Hospital image
+    /UBC.png                 # Hospital image
+    /VGH.png                 # Hospital image
+├── scripts                  # Folder for scripts
+    /authentications.js      # Firebase authentication
+    favourite_hospitals.js   # Favourite hospitals
+    /firebaseAPI_TEAM06.js   # Firebase API
+    /hospital_detail.js      # Hospital detail
+    /main.js                 # Main page
+    /map.js                  # Map
+    /my_review.js            # My review
+    /reservation.js          # Reservation
+    /review.js               # Review
+    /script.js               # Script
+    /search.js               # Search
+    /skeleton.js             # Skeleton
+    /user_profile.js         # User profile
+    /waitlist.js             # Waitlist
+├── styles                   # Folder for styles
+    /style.css               # Style
+├── text                     # Folder for text
+    /footer.html             # Footer
+    /hamburger_menu.html     # Hamburger menu
+    /nav_after_login.html    # Navigation bar after login
+    /nav_before_login.html   # Navigation bar before login
+    /notification.html       # Notification
 
-├── styles                          # Folder for styles
-        /index.css                  # style for index.html
-        /login.css                  # style for login.html
-        /main.css                   # style for main.htm
-
-Firebase hosting files: 
-├── .firebase
-	/hosting..cache
-├── .firebaserc
-├── 404.html
-├── firebase.json
-├── firestore.indexes.json
-├── firestore.rules
-├── storage.rules
-
-
+Firebase hosting files:      # Firebase hosting files
+├── .firebase                # Folder for firebase
+    /hosting..cache          # Firebase cache
+├── .firebaserc              # Firebase config
+├── 404.html                 # 404 page
+├── firebase.json            # Firebase config
+├── firestore.indexes.json   # Firebase config
+├── firestore.rules          # Firebase config
 ```
 
 ## Limitations
-- known bugs
+- Hospital information page doesn't show how many teams are in the waitlist
+- Map doesn't give directions to the hospital
+- Hospitals are limited to the ones in the database
+- Web scraping is not implemented yet
+- Hospitals can't respond to reviews
+- Users can't edit their reviews
+- Users can't delete their reviews
+- Users can't delete their accounts
+- Pop up window doesn't match the overall aesthetic of the website
 
 ## Resources
-- In-app icons from Feather v4.28.0 (Open Source https://feathericons.com/)
-- Logo homemade!
 
 ## Contact 
-* John Smith - jsmith@my.bcit.ca 
-* ...
+* Eric Kim - hkim467@my.bcit.ca
+* Hsin Pang - 
+* Misuzu Taniguchi - mtaniguchi3@my.bcit.ca
 
 ## Acknowledgements 
 * <a href="https://fontawesome.com/">Font Awesome</a>
