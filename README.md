@@ -148,9 +148,6 @@ Technologies used for this project:
 * Firebase Version 8 (Authentication, Firestore, Storage, Hosting)
 * MapBox
 * Geoapify
-* Font Awesome
-* Adobe Fonts
-* Adobe Stock Images
 * Google Fonts
 	
 ## Content
