@@ -1,8 +1,8 @@
 ## CapWise
 
-* [Project Title](#Project)
+* [General info](#general-info)
 * [Technologies](#technologies)
-* [Contents](#)
+* [Contents](#content)
 
 # Project Title
 helpER
@@ -135,6 +135,13 @@ Firebase hosting files:      # Firebase hosting files
 ├── firestore.indexes.json   # Firebase config
 ├── firestore.rules          # Firebase config
 ```
+
+
+## General Info
+helpER is a mobile application that helps users find the nearest hospital with the shortest wait time. Users can also see the reviews of the hospitals and the waitlist status. Users can join the waitlist and save their favourite hospitals. 
+	
+
+## Resources
 
 ## Contact 
 * Eric Kim - hkim467@my.bcit.ca
