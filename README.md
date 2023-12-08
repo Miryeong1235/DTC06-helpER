@@ -1,8 +1,17 @@
 ## CapWise
 
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Contents](#content)
+* [General Info](#general-info)
+* [Project Description](#1-project-description)
+* [Names of Contributors](#2-names-of-contributors)
+* [Technologies and Resources Used](#3-technologies-and-resources-used)
+* [Complete setup/installion/usage](#4-complete-setupinstallionusage)
+* [Known Bugs and Limitations](#5-known-bugs-and-limitations)
+* [Features for Future](#6-features-for-future)
+* [Contents of Folder](#7-contents-of-folder)
+* [References](#8-references)
+* [Contact](#9-contact)
+* [Acknowledgements](#10-acknowledgements)
+
 
 # Project Title
 helpER
@@ -136,18 +145,15 @@ Firebase hosting files:      # Firebase hosting files
 ├── firestore.rules          # Firebase config
 ```
 
+## 8. References
+Images
+* <a href="http://www.edwaittimes.ca/WaitTimes.aspx/">Get Emergency Wait Times</a>
 
-## General Info
-helpER is a mobile application that helps users find the nearest hospital with the shortest wait time. Users can also see the reviews of the hospitals and the waitlist status. Users can join the waitlist and save their favourite hospitals. 
-	
-
-## Resources
-
-## Contact 
+## 9. Contact 
 * Eric Kim - hkim467@my.bcit.ca
 * Hsin Pang - hpang19@my.bcit.ca
 * Misuzu Taniguchi - mtaniguchi3@my.bcit.ca
 
-## Acknowledgements 
+## 10. Acknowledgements 
 * <a href="https://fonts.google.com/">Google Fonts</a>
 * <a href="https://getbootstrap.com/">Bootstrap</a>
