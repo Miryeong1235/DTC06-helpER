@@ -1,8 +1,10 @@
 ## CapWise
 
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Contents](#content)
+* [Project Title](#Project Title)
+* [Names of Contributors](#Project Description)
+* [Technologies and Resources Used](#Names of Contributors)
+* [Complete setup/installion/usage](#Complete setup/installion/usage)
+
 
 # Project Title
 helpER
