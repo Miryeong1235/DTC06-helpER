@@ -1,3 +1,9 @@
+## CapWise
+
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Contents](#content)
+
 # Project Title
 helpER
 
@@ -130,122 +136,11 @@ Firebase hosting files:      # Firebase hosting files
 ├── firestore.rules          # Firebase config
 ```
 
-## CapWise
-
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Contents](#content)
-
-## General Info
-helpER is a mobile application that helps users find the nearest hospital with the shortest wait time. Users can also see the reviews of the hospitals and the waitlist status. Users can join the waitlist and save their favourite hospitals. 
-
-	
-## Technologies
-Technologies used for this project:
-* HTML 5, CSS
-* JavaScript
-* Bootstrap 5.0
-* Firebase Version 8 (Authentication, Firestore, Storage, Hosting)
-* MapBox
-* Geoapify
-* Google Fonts
-	
-## Content
-Content of the project folder:
-
-```
- Top level of project folder: 
-├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see when you come to url
-├── login.html               # login HTML file, the log-in page
-├── main.html                # main HTML file, the landing page after log-in or user set-up
-├── confirm_registration_edit.html  # page to notify personal information edit was successful
-├── confirm_registration.html       # page to notify registration was successful
-├── contact.html                    # contact page
-├── favourite_hospitals.html        # favourite hospitals page
-├── help.html                       # help page
-├── hospital_detail.html            # hospital detail page
-├── join_waitlist.html              # join waitlist page
-├── map.html                        # map page
-├── personal_info.html              # personal information page
-├── post_review.html                # post review page
-├── prompt_to_register.html         # prompt to register page
-├── registration.html               # registration page
-├── reservation.html                # reservation page
-├── review.html                     # review page
-├── search.html                     # search page
-├── waitlist_confirmation.html      # waitlist confirmation page
-├── waitlist_confirmed.html         # waitlist confirmed page
-└── README.md                # information about this project
-
-
-It has the following subfolders and files:
-├── .vscode
-    /settings.json           # Visual Studio Code settings file
-├── images                   # Folder for images
-    /blank-profile-picture.webp  # Default profile picture
-    /hospital.jpg            # Hospital image
-    /LGH.png                 # Hospital image
-    /MSJ.png                 # Hospital image
-    /RH.png                  # Hospital image
-    /SPH.png                 # Hospital image
-    /UBC.png                 # Hospital image
-    /VGH.png                 # Hospital image
-├── scripts                  # Folder for scripts
-    /authentications.js      # Firebase authentication
-    favourite_hospitals.js   # Favourite hospitals
-    /firebaseAPI_TEAM06.js   # Firebase API
-    /hospital_detail.js      # Hospital detail
-    /main.js                 # Main page
-    /map.js                  # Map
-    /my_review.js            # My review
-    /reservation.js          # Reservation
-    /review.js               # Review
-    /script.js               # Script
-    /search.js               # Search
-    /skeleton.js             # Skeleton
-    /user_profile.js         # User profile
-    /waitlist.js             # Waitlist
-├── styles                   # Folder for styles
-    /style.css               # Style
-├── text                     # Folder for text
-    /footer.html             # Footer
-    /hamburger_menu.html     # Hamburger menu
-    /nav_after_login.html    # Navigation bar after login
-    /nav_before_login.html   # Navigation bar before login
-    /notification.html       # Notification
-
-Firebase hosting files:      # Firebase hosting files
-├── .firebase                # Folder for firebase
-    /hosting..cache          # Firebase cache
-├── .firebaserc              # Firebase config
-├── 404.html                 # 404 page
-├── firebase.json            # Firebase config
-├── firestore.indexes.json   # Firebase config
-├── firestore.rules          # Firebase config
-```
-
-## Limitations
-- Hospital information page doesn't show how many teams are in the waitlist
-- Map doesn't give directions to the hospital
-- Hospitals are limited to the ones in the database
-- Web scraping is not implemented yet
-- Hospitals can't respond to reviews
-- Users can't edit their reviews
-- Users can't delete their reviews
-- Users can't delete their accounts
-- Pop up window doesn't match the overall aesthetic of the website
-
-## Resources
-
 ## Contact 
 * Eric Kim - hkim467@my.bcit.ca
 * Hsin Pang - hpang19@my.bcit.ca
 * Misuzu Taniguchi - mtaniguchi3@my.bcit.ca
 
 ## Acknowledgements 
-* <a href="https://fontawesome.com/">Font Awesome</a>
-* <a href="https://fonts.adobe.com/">Adobe Fonts</a> 
 * <a href="https://fonts.google.com/">Google Fonts</a>
-* <a href="https://stock.adobe.com/images">Adobe Stock Images</a>
 * <a href="https://getbootstrap.com/">Bootstrap</a>
